@@ -1,0 +1,22 @@
+#!/usr/bin/env bash
+
+#/ Uninstall git configuration.
+#/
+#/ Flags:
+#/   --help | -h Show help message
+#/
+
+. <(cat $DOTFILES_SCRIPTS/common/common)
+
+GITCONFIG=$HOME/.gitconfig
+GITMESSAGE=$HOME/.gitmessage
+
+echo "INFO: uninstalling .gitconfig configuration"
+
+if [ -L "$GITCONFIG" ]; then
+    rm $GITCONFIG
+fi
+
+if [ -L "$GITMESSAGE" ]; then
+    rm "$GITMESSAGE"
+fi

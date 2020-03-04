@@ -1,0 +1,17 @@
+#!/usr/bin/env bash
+
+#/ Uninstall .X files configuration.
+#/
+#/ Flags:
+#/   --help | -h Show help message
+#/
+
+. <(cat $DOTFILES_SCRIPTS/common/common)
+
+echo "INFO: uninstalling Xmodmap"
+
+XMODMAP=$HOME/.Xmodmap
+
+if [ -L "$XMODMAP" ]; then
+    rm "$XMODMAP"
+fi

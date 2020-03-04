@@ -1,0 +1,28 @@
+#/bin/bash
+
+# git branch
+parse_git_branch() {
+     git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/ (\1)/'
+}
+
+# Golang auto complete
+complete -C $HOME/go/bin/gocomplete go
+
+PS1="\[\e[34m\]\W/\[\033[32m\]\$(parse_git_branch)\[\e[91m\] >\[\e[93m\]>\[\e[92m\]>\[\e[0m\] "
+
+# Python ENVs
+export PATH=$PATH:$HOME/.local/bin
+
+alias lls='ls -lh'
+alias gt=git
+alias gti=git
+alias sva='source venv/bin/activate'
+alias pvv='python -m venv venv'
+alias pvv-sva='pvv && sva'
+alias nh='nvim .'
+alias vi='nvim'
+alias vim='nvim'
+
+if [ -e $HOME/.dotfiles/config/bash/.local ]; then
+    . <(cat $HOME/.dotfiles/config/bash/.local)
+fi

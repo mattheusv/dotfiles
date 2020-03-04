@@ -1,0 +1,34 @@
+[user]
+	name = Matheus Alcantara
+	email = matheusssilv97@gmail.com
+
+[push]
+	default = current
+
+[pull]
+	default = current
+	rebase = true
+
+[alias]
+	st = status -s
+	sst = status
+	aa = add .
+	cm = commit
+	cmm = commit -m
+	cma = commit -am
+	ck = checkout
+	cka = checkout .
+	cko = checkout origin
+	ps = push
+	pso = push origin
+	pl = pull
+	plo = pull origin
+	r = remote -v
+	b = branch
+	l = log --pretty=oneline
+
+[core]
+    editor = 'nvim'
+
+[commit]
+	template = /home/matheus/.gitmessage

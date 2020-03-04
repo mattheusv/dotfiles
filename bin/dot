@@ -1,0 +1,69 @@
+#!/usr/bin/env bash
+
+#/ dot manager dot files configuration
+#/
+#/ Commands:
+#/  contexts | c  Show all available contexts
+#/
+#/ Usage:
+#/   dot <context> <cmd> <args>
+#/
+#/ Example:
+#/   dot neovim install
+#/
+
+export HERE="${DOTFILES:-$(cd "$(dirname "${BASH_SOURCE[0]}")/.." >/dev/null && pwd)}"
+export DOTFILES=$HERE/config
+export DOTFILES_SCRIPTS=$HERE/scripts
+. <(cat $DOTFILES_SCRIPTS/common/common)
+
+
+contexts() {
+    echo "Available Contexts:"
+    for dir in $(ls $DOTFILES_SCRIPTS | sort); do
+        echo "   "$dir
+    done
+    echo -e "\nUse \"dot <context>\" to see available commands to context.\n"
+}
+
+commands() {
+    echo "Commands to $1 context:"
+    for cmd in $(find "$DOTFILES_SCRIPTS/$1" -maxdepth 2 -executable -type f -exec sh -c 'echo $(basename {})' \; \
+        | sort); do
+        echo "   "$cmd
+    done
+    echo -e "\nUse \"dot $1 <cmd> -h\" to see available arguments to command\n"
+}
+
+show_usage() {
+  echo "Usage: 'dot <context> <cmd> <args>'"
+  echo "Try 'dot --help' for more information."
+}
+
+show_unknown_command() {
+  echo "ERROR: unknown command \"$1\""
+  echo "Try 'dot --help' for more information."
+}
+
+case "$1" in
+    "contexts"  ) contexts; exit 0 ;;
+    "c"         ) contexts; exit 0 ;;
+    ""          ) show_usage; exit 0 ;;
+esac
+
+# check if context folder exist
+if [ ! -d "$DOTFILES_SCRIPTS/$1" ]; then
+    show_unknown_command $@
+    exit 1
+fi
+
+# check if cmd file exist
+if [ ! -f "$DOTFILES_SCRIPTS/$1/$2" ]; then
+    commands $@
+    exit 0
+fi
+
+# execute dot <context> <cmd> <args>
+if [ "$#" -gt 1 ]; then
+    $DOTFILES_SCRIPTS/$1/$2 "${@:3}"
+fi

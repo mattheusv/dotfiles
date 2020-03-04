@@ -1,0 +1,15 @@
+#!/usr/bin/env bash
+
+#/ mod-init - Create a go mod file with basename of current path
+#/
+#/ Flags:
+#/   --help | -h Show help message
+#/
+
+. <(cat $DOTFILES_SCRIPTS/common/common)
+
+CURRENT=`pwd`
+BASENAME=`basename "$CURRENT"`
+GITHUB_USER="msAlcantara"
+
+go mod init github.com/$GITHUB_USER/$BASENAME

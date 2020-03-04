@@ -1,0 +1,15 @@
+#!/usr/bin/env bash
+
+#/ Install git configuration.
+#/
+#/ Flags:
+#/   --help | -h Show help message
+#/
+
+. <(cat $DOTFILES_SCRIPTS/common/common)
+
+
+echo "INFO: installing gitconfig configuration"
+ln -s $DOTFILES/git/gitconfig $HOME/.gitconfig
+ln -s $DOTFILES/git/gitmessage $HOME/.gitmessage
+echo "INFO: your .gitconfig configuration is complete :D"

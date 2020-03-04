@@ -1,0 +1,32 @@
+#!/usr/bin/env bash
+
+#/ install-lsp Install Language's Server to neoclide/coc.nvim.
+#/
+#/ Flags:
+#/   --help | -h Show help message
+#/
+
+. <(cat $DOTFILES_SCRIPTS/common/common)
+
+
+install_python_lsp() {
+    pip install --user python-language-server
+    python -m venv ~/.config/nvim/venv
+    ~/.config/nvim/venv/bin/pip install pynvim
+}
+
+install_bash_lsp() {
+    npm i -g bash-language-server
+}
+
+install_docker_lsp() {
+    npm install -g dockerfile-language-server-nodejs
+}
+
+main() {
+    install_python_lsp
+    install_bash_lsp
+    install_docker_lsp
+}
+
+main

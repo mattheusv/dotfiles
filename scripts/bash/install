@@ -1,0 +1,13 @@
+#!/usr/bin/env bash
+
+#/ Install ~/.bash_profile file configuration.
+#/
+#/ Flags:
+#/   --help | -h Show help message
+#/
+
+. <(cat $DOTFILES_SCRIPTS/common/common)
+
+ln -s $DOTFILES/bash/bash_profile $HOME/.bash_profile
+
+echo "INFO: your .bash_profile configuration is complete :D"

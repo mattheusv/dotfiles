@@ -1,0 +1,13 @@
+#!/usr/bin/env bash
+
+#/ Install .X files configuration.
+#/
+#/ Flags:
+#/   --help | -h Show help message
+#/
+
+. <(cat $DOTFILES_SCRIPTS/common/common)
+
+
+ln -s $DOTFILES/X/xinitrc $HOME/.xinitrc
+echo "INFO: your X files configuration is complete :D"
