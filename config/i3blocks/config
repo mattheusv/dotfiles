@@ -1,0 +1,55 @@
+# i3blocks config file
+
+command=~/.config/i3blocks/$BLOCK_NAME
+separator_block_width=15
+markup=pango
+
+[volume]
+label=墳 
+command=volume/volume
+interval=5
+signal=10
+
+[cpu_usage]
+label= 
+command=cpu_usage/cpu_usage
+interval=1
+min_width=CPU 100.00%
+
+[memory]
+command=memory/memory
+label= 
+interval=1
+
+[uptime]
+label=  
+command=uptime | awk '{sub(",","",$3); print "'"${1} "'"$3}'
+interval=60
+
+[wifi]
+label= 
+command=iwgetid -r | tr '\n' ' ' && grep $(iwgetid -m | awk '{ printf "%s", $1 }') /proc/net/wireless | awk '{ printf "%i%\n", int($3 * 100 / 70) }'
+interval=10
+
+[battery]
+label= 
+command=battery/battery
+interval=30
+
+[temperature]
+label= 
+command=temperature/temperature
+interval=10
+
+[time]
+command=date '+ %Y-%m-%d %H:%M:%S'
+interval=1
+label= 
+
+[shutdown_menu]
+full_text= 
+command=shutdown_menu/shutdown_menu
+ROFI_TEXT=Menu:
+ENABLE_CONFIRMATIONS=true
+LAUNCHER=rofi
+LOCKSCRIPT=i3lock -i ~/Images/wallpaper.png -p default -n

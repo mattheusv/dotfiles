@@ -1,0 +1,84 @@
+/* global settings and color variables */
+* {
+    maincolor:        #50fa7b;
+    fg:               #f8f8f2;
+    bg:               #282a36;
+    darkgray:         #848484;
+
+    blackselect:      #44475a;
+    font: "SpaceMono Nerd Font Black 12";
+    background-color: @bg;
+    show-icons: true;
+}
+
+mainbox {
+    background-color: @bg;
+    spacing:          0px;
+    children: [inputbar, message, mode-switcher, listview];
+}
+
+textbox {
+    text-color:@darkgray;
+    background-color:@bg;
+}
+
+listview {
+    dynamic: true;
+    scrollbar: true;
+    spacing: 0px;
+    padding: 1px 0px 0px 0px;
+    margin: 0px 0px 1px 0px;
+    background: @bg;
+}
+
+element {
+    padding: 2px 15px;
+}
+
+element normal.normal {
+    padding: 0px 15px;
+    background-color: @bg;
+    text-color: @fg;
+}
+
+element selected.normal {
+    background-color: @blackselect;
+    text-color:       @fg;
+}
+
+element selected.active {
+    background-color: @maincolor;
+    text-color:       @bg;
+}
+
+element alternate.normal {
+    background-color: @bg;
+    text-color:       @fg;
+}
+
+scrollbar {
+    background-color: @bg;
+    handle-color: @darkgray;
+    handle-width: 15px;
+}
+
+button {
+    background-color: @bg;
+    text-color:       @darkgray;
+}
+
+button selected {
+    text-color:       @maincolor;
+}
+
+prompt {
+    padding:6px 9px;
+    background-color: @maincolor;
+    text-color:@bg;
+}
+
+entry {
+    padding:6px 10px;
+    background-color:@bg;
+    text-color:@fg;
+}
