@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+
+#/ Install ~/.bash_profile file configuration.
+#/
+#/ Flags:
+#/   --help | -h Show help message
+#/
+
+. <(cat $DOTFILES_SCRIPTS/common/common)
+
+dconf load /com/gexperts/Tilix/ < $DOTFILES/tilix/tilix.dconf
