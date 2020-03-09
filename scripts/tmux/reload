@@ -1,0 +1,23 @@
+#!/usr/bin/env bash
+
+#/ Reload tmux sessions.
+#/
+#/ Flags:
+#/   --help | -h Show help message
+#/
+
+
+. <(cat $DOTFILES_SCRIPTS/common/common)
+
+SESSION="reload"
+
+tmux new-session -s $SESSION -d
+
+tmux send-key -t $SESSION  ~/.tmux/plugins/tmux-resurrect/scripts/restore.sh Enter
+
+sleep 1
+
+tmux kill-session -t $SESSION
+
+echo -e "Sessions reloaded with successful\n"
+tmux ls
