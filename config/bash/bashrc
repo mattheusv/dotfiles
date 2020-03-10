@@ -13,16 +13,20 @@ PS1="\[\e[34m\]\W/\[\033[32m\]\$(parse_git_branch)\[\e[91m\] >\[\e[93m\]>\[\e[92
 # Python ENVs
 export PATH=$PATH:$HOME/.local/bin
 
-alias lls='ls -lh'
-alias gt=git
-alias gti=git
-alias sva='source venv/bin/activate'
-alias pvv='python -m venv venv'
-alias pvv-sva='pvv && sva'
-alias nh='nvim .'
-alias vi='nvim'
-alias vim='nvim'
+# -- alias -- #
+alias \
+    ll="ls -alF" \
+    lls="ls -lh" \
+    sva="source venv/bin/activate" \
+    pvv="python -m venv venv" \
+    pvv-sva="pvv && sva" \
+    g="git" \
+    v="nvim" \
+    nh="v ." \
+    grep="grep --color=auto" \
+    diff="diff --color=auto" \
 
+# Load specific configurations per system
 if [ -e $HOME/.dotfiles/config/bash/.local ]; then
     . <(cat $HOME/.dotfiles/config/bash/.local)
 fi
