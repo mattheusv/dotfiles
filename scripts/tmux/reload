@@ -9,15 +9,25 @@
 
 . <(cat $DOTFILES_SCRIPTS/common/common)
 
-SESSION="reload"
+SESSION="tmp"
 
 tmux new-session -s $SESSION -d
 
 tmux send-key -t $SESSION  ~/.tmux/plugins/tmux-resurrect/scripts/restore.sh Enter
 
+# wait to reload sessions 
 sleep 1
 
 tmux kill-session -t $SESSION
 
 echo -e "Sessions reloaded with successful\n"
+
+echo -e "\nChoose one session to attached or empty to cancel:\n"
+
 tmux ls
+
+read -p "> " attached_session
+
+if [ "$attached_session" ]; then
+    tmux a -t $attached_session
+fi
