@@ -41,5 +41,5 @@ XDG_SESSION_TYPE=X11
 # define custon keyboard
 setxkbmap -option caps:escape &
 
-# start xfce
-exec startxfce4
+# start i3
+exec i3
