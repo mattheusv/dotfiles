@@ -4,11 +4,21 @@
 
 [[ -f ~/.bashrc ]] && . ~/.bashrc
 
+# define locale
+export LC_ALL=en_US.UTF-8
+
+# define X11 display
+XDG_SESSION_TYPE=X11
+
 # avoid duplicated bash history
 export HISTCONTROL=ignoreboth:erasedups
 
+# Default programs
+export EDITOR="nvim"
+export TERMINAL="tilix"
+export BROWSER="brave"
+
 # auto start X
-# https://wiki.archlinux.org/index.php/Xinit#Autostart_X_at_login
 if systemctl -q is-active graphical.target && [[ ! $DISPLAY && $XDG_VTNR -eq 1 ]]; then
   exec startx
 fi

@@ -35,8 +35,8 @@ if [ -d ~/.cache/sessions ]; then
     rm -rf ~/.cache/sessions
 fi
 
-# define X11 display
-XDG_SESSION_TYPE=X11
+# define keyboard to X session
+setxkbmap br
 
 # define custon keyboard
 setxkbmap -option caps:escape &
