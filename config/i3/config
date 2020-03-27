@@ -18,11 +18,14 @@ set $refresh_i3status killall -SIGUSR1 i3blocks
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
 
+# open $EDITOR in $TERMINAL
+bindsym $mod+n exec $TERMINAL -e $EDITOR
+
 # start a terminal
-bindsym $mod+Return exec tilix
+bindsym $mod+Return exec $TERMINAL
 
 # start brave browser
-bindsym $mod+b exec brave
+bindsym $mod+b exec $BROWSER
 
 # lockscream
 bindsym $mod+Shift+t exec i3lock -i ~/.wallpaper.png -p default -n
