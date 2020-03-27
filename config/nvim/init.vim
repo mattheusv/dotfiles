@@ -171,6 +171,10 @@ cnoreabbrev D d
 "" Mappings
 "*****************************************************************************
 
+" Delete lines without copy
+noremap <S-d> "_d
+xnoremap <S-d> "_d
+
 "" Split Buffers
 noremap <Leader>h :<C-u>split<CR>
 noremap <Leader>v :<C-u>vsplit<CR>
