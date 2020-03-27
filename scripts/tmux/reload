@@ -16,7 +16,7 @@ tmux new-session -s $SESSION -d
 tmux send-key -t $SESSION  ~/.tmux/plugins/tmux-resurrect/scripts/restore.sh Enter
 
 # wait to reload sessions 
-sleep 1
+sleep 5
 
 tmux kill-session -t $SESSION
 
