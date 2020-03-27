@@ -21,7 +21,10 @@ alias \
     pvv="python -m venv venv" \
     pvv-sva="pvv && sva" \
     g="git" \
+    gti="git" \
     v="nvim" \
+    vi="nvim" \
+    vim="nvim" \
     nh="v ." \
     grep="grep --color=auto" \
     diff="diff --color=auto" \
