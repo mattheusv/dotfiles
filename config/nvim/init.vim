@@ -190,28 +190,12 @@ nnoremap <C-H> <C-W><C-H> "move to the split to the left
 nnoremap <leader>th :terminal<CR>
 nnoremap <leader>tv :vertical terminal<CR>
 
-" session management
-nnoremap <leader>so :OpenSession<Space>
-nnoremap <leader>ss :SaveSession<Space>
-nnoremap <leader>sd :DeleteSession<CR>
-nnoremap <leader>sc :CloseSession<CR>
-
 "" Tabs
 nnoremap <S-Tab> gT
 nnoremap <silent> <S-t> :tabnew<CR>
 
 "" Set working directory
 nnoremap <leader>. :lcd %:p:h<CR>
-
-"" Opens an edit command with the path of the currently edited file filled in
-noremap <Leader>e :e <C-R>=expand("%:p:h") . "/" <CR>
-
-"" Opens a tab edit command with the path of the currently edited file filled
-noremap <Leader>te :tabe <C-R>=expand("%:p:h") . "/" <CR>
-
-cnoremap <C-P> <C-R>=expand("%:p:h") . "/" <CR>
-nnoremap <silent> <leader>b :Buffers<CR>
-nnoremap <silent> <leader>e :FZF -m<CR>
 
 "" Buffer nav
 noremap <leader>z :bp<CR>
@@ -222,6 +206,8 @@ noremap <leader>c :bp<cr>:bd #<cr>
 
 "" Search for files
 nnoremap <c-p> :Files<cr>
+nnoremap <silent> <leader>b :Buffers<CR>
+nnoremap <silent> <leader>e :FZF -m<CR>
 
 " Enable folding with the spacebar
 nnoremap <space> za
