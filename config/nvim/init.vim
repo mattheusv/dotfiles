@@ -171,6 +171,9 @@ cnoreabbrev D d
 "" Mappings
 "*****************************************************************************
 
+" Reload nvim easy
+noremap <Leader>r : source ~/.config/nvim/init.vim<CR>
+
 " Delete lines without copy
 noremap <S-d> "_d
 xnoremap <S-d> "_d
