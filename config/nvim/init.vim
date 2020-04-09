@@ -32,12 +32,8 @@ Plug 'majutsushi/tagbar'
 Plug 'Yggdroot/indentLine'
 
 " Fuzzy finder
-if isdirectory('/usr/local/opt/fzf')
-  Plug '/usr/local/opt/fzf' | Plug 'junegunn/fzf.vim'
-else
-  Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --bin' }
-  Plug 'junegunn/fzf.vim'
-endif
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --bin' }
+Plug 'junegunn/fzf.vim'
 
 " Multiple selections
 Plug 'terryma/vim-multiple-cursors'
@@ -119,6 +115,20 @@ set secure
 
 " Enable nvim copy allways to clipboard
 set clipboard+=unnamedplus
+
+"" Autocmd to fix syntax highlight
+"" https://vim.fandom.com/wiki/Fix_syntax_highlighting
+augroup vimrc-sync-fromstart
+  autocmd!
+  autocmd BufEnter * :syntax sync fromstart
+augroup END
+
+"" Remember cursor position
+augroup vimrc-remember-cursor-position
+  autocmd!
+  autocmd BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g`\"" | endif
+augroup END
+
 
 "*****************************************************************************
 "" Visual Settings
@@ -336,30 +346,10 @@ set updatetime=300
 " don't give |ins-completion-menu| messages.
 set shortmess+=c
 
-let g:coc_snippet_next = '<s-tab>'
-
-" Highlight symbol under cursor on CursorHold
-autocmd CursorHold * silent call CocActionAsync('highlight')
-
-augroup mygroup
-  autocmd!
-  " Setup formatexpr specified filetype(s).
-  autocmd FileType typescript,json setl formatexpr=CocAction('formatSelected')
-  " Update signature help on jump placeholder
-  autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
-augroup end
-
-" Use `:Format` to format current buffer
-command! -nargs=0 Format :call CocAction('format')
-
-" Use `:Fold` to fold current buffer
-command! -nargs=? Fold :call     CocAction('fold', <f-args>)
-
-" use `:OR` for organize import of current buffer
-command! -nargs=0 OR   :call     CocAction('runCommand', 'editor.action.organizeImport')
-
 " Add status line support, for integration with other plugin, checkout `:h coc-status`
 set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
+
+let g:coc_snippet_next = '<s-tab>'
 
 " Global extensions
 let g:coc_global_extensions = [
@@ -372,6 +362,26 @@ let g:coc_global_extensions = [
     \ "coc-html",
     \ "coc-rls",
 \]
+
+augroup coc_group
+  autocmd!
+  " Setup formatexpr specified filetype(s).
+  autocmd FileType typescript,json setl formatexpr=CocAction('formatSelected')
+  " Update signature help on jump placeholder
+  autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
+augroup end
+
+" Highlight symbol under cursor on CursorHold
+autocmd CursorHold * silent call CocActionAsync('highlight')
+
+" Use `:Format` to format current buffer
+command! -nargs=0 Format :call CocAction('format')
+
+" Use `:Fold` to fold current buffer
+command! -nargs=? Fold :call     CocAction('fold', <f-args>)
+
+" use `:OR` for organize import of current buffer
+command! -nargs=0 OR   :call     CocAction('runCommand', 'editor.action.organizeImport')
 
 "*****************************************************************************
 "" coc.nvim Functions
@@ -393,7 +403,7 @@ function! s:show_documentation()
 endfunction
 
 "*****************************************************************************
-"" Custom configs
+"" Languages Custom configs
 "*****************************************************************************
 
 " ALE
@@ -478,12 +488,16 @@ augroup go
 
 augroup END
 
-" Comfortable-motion
+"*****************************************************************************
+"" Plugins Custom configs
+"*****************************************************************************
+
+" yuttie/comfortable-motion.vim
 nnoremap <silent> <C-d> :call comfortable_motion#flick(100)<CR>
 nnoremap <silent> <C-u> :call comfortable_motion#flick(-100)<CR>
 let g:comfortable_motion_no_default_key_mappings = 1
 
-" Tagbar
+" majutsushi/tagbar
 let g:tagbar_autofocus = 1
 
 "" NERDTree configuration
@@ -501,40 +515,25 @@ let NERDTreeMinimalUI = 1
 let NERDTreeDirArrows = 1
 set wildignore+=*/tmp/*,*.so,*.swp,*.zip,*.pyc,*.db,*.sqlite
 
-"" grep.vim
+"" vim-scripts/grep.vim
 let Grep_Default_Options = '-IR'
 let Grep_Skip_Files = '*.log *.db'
 let Grep_Skip_Dirs = '.git node_modules venv'
 
-"" Autocmd Rules
-augroup vimrc-sync-fromstart
-  autocmd!
-  autocmd BufEnter * :syntax sync fromstart
-  " autocmd BufEnter * :syntax sync maxlines=200
-augroup END
-
-"" fzf.vim
+"" junegunn/fzf.vim
 set wildmode=list:longest,list:full
 set wildignore+=*.o,*.obj,.git,*.rbc,*.pyc,__pycache__
-let $FZF_DEFAULT_COMMAND =  "find * -path '*/\.*' -prune -o -path 'node_modules/**' -prune -o -path 'target/**' -prune -o -path 'dist/**' -prune -o  -type f -print -o -type l -print 2> /dev/null"
-
-" The Silver Searcher
-if executable('ag')
+if executable('ag') " The Silver Searcher
   let $FZF_DEFAULT_COMMAND = 'ag --hidden --ignore .git -g ""'
   set grepprg=ag\ --nogroup\ --nocolor
+else
+    let $FZF_DEFAULT_COMMAND =  "find * -path '*/\.*' -prune -o -path 'node_modules/**' -prune -o -path 'target/**' -prune -o -path 'dist/**' -prune -o  -type f -print -o -type l -print 2> /dev/null"
 endif
 
-"" Remember cursor position
-augroup vimrc-remember-cursor-position
-  autocmd!
-  autocmd BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g`\"" | endif
-augroup END
-
-" vim-airline
+"" vim-airline/vim-airline
 if !exists('g:airline_symbols')
   let g:airline_symbols = {}
 endif
-
 let g:airline#extensions#tabline#left_sep = ''
 let g:airline#extensions#tabline#left_alt_sep = ''
 let g:airline_left_sep = ''
