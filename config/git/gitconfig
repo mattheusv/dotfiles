@@ -26,6 +26,7 @@
 	r = remote -v
 	b = branch
 	l = log --pretty=oneline
+    sh = stash
 
 [core]
     editor = 'nvim'
