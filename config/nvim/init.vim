@@ -196,10 +196,12 @@ xnoremap <S-d> "_d
 "" Split Buffers
 noremap <Leader>h :<C-u>split<CR>
 noremap <Leader>v :<C-u>vsplit<CR>
-nnoremap <C-J> <C-W><C-J> "move to the split below
-nnoremap <C-K> <C-W><C-K> "move to the split above
-nnoremap <C-L> <C-W><C-L> "move to the split to the right
-nnoremap <C-H> <C-W><C-H> "move to the split to the left
+
+" Move between splits
+nnoremap <C-k> <C-W>k
+nnoremap <C-j> <C-W>j
+nnoremap <C-h> <C-W>h
+nnoremap <C-l> <C-W>l
 
 ""Split Terminal
 nnoremap <leader>th :terminal<CR>
