@@ -53,7 +53,11 @@ Plug 'yuttie/comfortable-motion.vim'
 " Git Blame
 Plug 'rhysd/git-messenger.vim'
 
+" Icons
 Plug 'ryanoasis/vim-devicons'
+
+" Surround parentheses, brackets, quotes, XML tags, and more
+Plug 'tpope/vim-surround'
 
 "*****************************************************************************
 "" Custon Plugs
