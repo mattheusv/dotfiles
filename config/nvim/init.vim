@@ -25,9 +25,6 @@ Plug 'vim-scripts/grep.vim'
 " Auto-completion for quotes, parens, brackets, etc.
 Plug 'Raimondi/delimitMate'
 
-" Displays tags in a window,
-Plug 'majutsushi/tagbar'
-
 " Display the indention levels
 Plug 'Yggdroot/indentLine'
 
@@ -245,8 +242,7 @@ nmap <silent> <F5> :NERDTreeRefreshRoot<CR>
 "grep.vim
 nnoremap <silent> <leader>f :Rgrep<CR>
 
-" Tagbar
-nmap <silent> <F4> :TagbarToggle<CR>
+" Tagbar FZF
 nmap <Leader>T :Tags<CR>
 nmap <Leader>t :BTags<CR>
 nmap <Leader>l :BLines<CR>
@@ -511,9 +507,6 @@ augroup END
 nnoremap <silent> <C-d> :call comfortable_motion#flick(100)<CR>
 nnoremap <silent> <C-u> :call comfortable_motion#flick(-100)<CR>
 let g:comfortable_motion_no_default_key_mappings = 1
-
-" majutsushi/tagbar
-let g:tagbar_autofocus = 1
 
 "" NERDTree configuration
 let g:NERDTreeChDirMode=2
