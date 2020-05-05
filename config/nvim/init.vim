@@ -296,8 +296,7 @@ nmap <silent> gi <Plug>(coc-implementation)
 nmap <silent> gr <Plug>(coc-references)
 
 " Remap for format selected region
-" disable for while
-" xmap <leader>f  <Plug>(coc-format-selected)
+xmap <leader>i  <Plug>(coc-format-selected)
 
 " Remap for rename current word
 nmap <leader>rn <Plug>(coc-rename)
