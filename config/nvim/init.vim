@@ -207,6 +207,10 @@ nnoremap <C-l> <C-W>l
 xnoremap K :move '<-2<CR>gv-gv
 xnoremap J :move '>+1<CR>gv-gv
 
+" Make < > shifts keep selection
+vnoremap < <gv
+vnoremap > >gv
+
 ""Split Terminal
 nnoremap <leader>th :terminal<CR>
 nnoremap <leader>tv :vertical terminal<CR>
