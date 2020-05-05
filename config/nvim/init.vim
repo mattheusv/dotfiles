@@ -203,6 +203,10 @@ nnoremap <C-j> <C-W>j
 nnoremap <C-h> <C-W>h
 nnoremap <C-l> <C-W>l
 
+" Move lines
+xnoremap K :move '<-2<CR>gv-gv
+xnoremap J :move '>+1<CR>gv-gv
+
 ""Split Terminal
 nnoremap <leader>th :terminal<CR>
 nnoremap <leader>tv :vertical terminal<CR>
