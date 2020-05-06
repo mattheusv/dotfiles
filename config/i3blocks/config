@@ -43,7 +43,7 @@ interval=10
 
 [backlight]
 label= 
-command=xbacklight -get
+command=printf "%.2g\n" $(xbacklight -get)
 interval=10
 
 [time]
