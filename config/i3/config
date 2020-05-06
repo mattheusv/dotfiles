@@ -134,7 +134,6 @@ assign [instance="ranger"] $ws4
 # Change focus on specific programs when open on specific workspace
 for_window [class=(?i)Telegram] focus
 for_window [class=(?i)Zoom] focus
-for_window [class=(?i)Teams] focus
 for_window [class=(?i)Thunar] focus
 for_window [class=(?i)Ranger] focus
 
