@@ -66,7 +66,6 @@ Plug 'dense-analysis/ale'
 
 " Python
 Plug 'tmhedberg/SimpylFold'
-Plug 'jmcantrell/vim-virtualenv'
 Plug 'raimon49/requirements.txt.vim', {'for': 'requirements'}
 
 "" Golang
@@ -420,8 +419,6 @@ let g:ale_python_flake8_options = '--max-line-length=88'
 
 " Python
 let python_highlight_all = 1
-let g:virtualenv_auto_activate = 1
-let g:virtualenv_directory = '.'
 let g:python3_host_prog = '~/.config/nvim/venv/bin/python3'
 
 " go
