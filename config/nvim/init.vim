@@ -56,6 +56,13 @@ Plug 'ryanoasis/vim-devicons'
 " Surround parentheses, brackets, quotes, XML tags, and more
 Plug 'tpope/vim-surround'
 
+function! BuildComposer(info)
+  if a:info.status != 'unchanged' || a:info.force
+      !cargo build --release --locked
+  endif
+endfunction
+
+Plug 'euclio/vim-markdown-composer', { 'do': function('BuildComposer') }
 "*****************************************************************************
 "" Custon Plugs
 "*****************************************************************************"
