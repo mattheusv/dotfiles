@@ -222,9 +222,6 @@ nnoremap <leader>tv :vertical terminal<CR>
 nnoremap <S-Tab> gT
 nnoremap <silent> <S-t> :tabnew<CR>
 
-"" Set working directory
-nnoremap <leader>. :lcd %:p:h<CR>
-
 "" Buffer nav
 noremap <leader>z :bp<CR>
 noremap <leader>x :bn<CR>
@@ -233,9 +230,9 @@ noremap <leader>x :bn<CR>
 noremap <leader>c :bp<cr>:bd #<cr>
 
 "" Search for files
-nnoremap <c-p> :Files<cr>
+nnoremap <c-p> :GFiles<cr>
+nnoremap <c-P> :Files<cr>
 nnoremap <silent> <leader>b :Buffers<CR>
-nnoremap <silent> <leader>e :FZF -m<CR>
 
 " Enable folding with the spacebar
 nnoremap <space> za
@@ -249,11 +246,9 @@ nmap <silent> <F5> :NERDTreeRefreshRoot<CR>
 nnoremap <silent> <leader>f :Rgrep<CR>
 
 " Tagbar FZF
-nmap <Leader>T :Tags<CR>
 nmap <Leader>t :BTags<CR>
 nmap <Leader>l :BLines<CR>
 nmap <Leader>L :Lines<CR>
-nmap <Leader>/ :Ag<Space>
 
 " Git Gutter Hunks
 nmap ]h <Plug>(GitGutterNextHunk)
