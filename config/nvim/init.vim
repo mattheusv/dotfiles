@@ -484,9 +484,5 @@ let Grep_Skip_Dirs = '.git node_modules venv'
 "" junegunn/fzf.vim
 set wildmode=list:longest,list:full
 set wildignore+=*.o,*.obj,.git,*.rbc,*.pyc,__pycache__
-if executable('ag') " The Silver Searcher
-  let $FZF_DEFAULT_COMMAND = 'ag --hidden --ignore .git -g ""'
-  set grepprg=ag\ --nogroup\ --nocolor
-else
-    let $FZF_DEFAULT_COMMAND =  "find * -path '*/\.*' -prune -o -path 'node_modules/**' -prune -o -path 'target/**' -prune -o -path 'dist/**' -prune -o  -type f -print -o -type l -print 2> /dev/null"
-endif
+let $FZF_DEFAULT_COMMAND = 'ag --hidden --ignore .git -g ""'
+set grepprg=ag\ --nogroup\ --nocolor
