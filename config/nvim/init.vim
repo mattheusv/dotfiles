@@ -355,6 +355,7 @@ let g:coc_snippet_next = '<s-tab>'
 
 " Global extensions
 let g:coc_global_extensions = [
+    \ "coc-prettier",
     \ "coc-json",
     \ "coc-python",
     \ "coc-snippets",
