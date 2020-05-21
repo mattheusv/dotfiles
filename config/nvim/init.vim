@@ -22,9 +22,6 @@ Plug 'vim-airline/vim-airline-themes'
 " Search tool
 Plug 'vim-scripts/grep.vim'
 
-" Auto-completion for quotes, parens, brackets, etc.
-Plug 'Raimondi/delimitMate'
-
 " Display the indention levels
 Plug 'Yggdroot/indentLine'
 
