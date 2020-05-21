@@ -1,25 +1,59 @@
+/*
+ * ROFI One Dark
+ *
+ * Based on User Themes/OneDark (https://github.com/davatorium/rofi-themes)
+ *
+ * Author: Matheus Alcantara
+ * User: msAlcantara
+ *
+ */
+
+
 /* global settings and color variables */
 * {
-    maincolor:        #50fa7b;
-    fg:               #f8f8f2;
-    bg:               #282a36;
-    darkgray:         #848484;
+    black:      #000000;
+    red:        #eb6e67;
+    green:      #95ee8f;
+    yellow:     #f8c456;
+    blue:       #6eaafb;
+    mangenta:   #d886f3;
+    cyan:       #6cdcf7;
+    emphasis:   #50536b;
+    text:       #dfdfdf;
+    text-alt:   #b2b2b2;
+    fg:         #abb2bf;
+    bg:         #282c34;
 
-    blackselect:      #44475a;
+    spacing: 0;
+    background-color: transparent;
+
     font: "SpaceMono Nerd Font Black 12";
-    background-color: @bg;
+    text-color: @text;
     show-icons: true;
 }
 
 mainbox {
     background-color: @bg;
     spacing:          0px;
-    children: [inputbar, message, mode-switcher, listview];
 }
 
-textbox {
-    text-color:@darkgray;
-    background-color:@bg;
+inputbar {
+  margin: 0px 0px 20px 0px;
+  children: [prompt, textbox-prompt-colon, entry, case-indicator];
+}
+
+prompt {
+  text-color: @blue;
+}
+
+textbox-prompt-colon {
+  expand: false;
+  str: ":";
+  text-color: @text-alt;
+}
+
+entry {
+  margin: 0px 10px;
 }
 
 listview {
@@ -31,54 +65,42 @@ listview {
     background: @bg;
 }
 
-element {
-    padding: 2px 15px;
-}
-
-element normal.normal {
-    padding: 0px 15px;
-    background-color: @bg;
-    text-color: @fg;
-}
-
-element selected.normal {
-    background-color: @blackselect;
-    text-color:       @fg;
-}
-
-element selected.active {
-    background-color: @maincolor;
-    text-color:       @bg;
-}
-
-element alternate.normal {
-    background-color: @bg;
-    text-color:       @fg;
-}
-
 scrollbar {
-    background-color: @bg;
+    background-color: @emphasis;
     handle-color: @darkgray;
     handle-width: 15px;
 }
 
-button {
-    background-color: @bg;
-    text-color:       @darkgray;
+element {
+  padding: 5px;
+  text-color: @text-alt;
+  highlight: bold #95ee8f; /* green */
+  border-radius: 3px;
+}
+
+element selected {
+  background-color: @emphasis;
+  text-color: @text;
+}
+
+element urgent, element selected urgent {
+  text-color: @red;
+}
+
+element active, element selected active {
+  text-color: @purple;
+}
+
+message {
+  padding: 5px;
+  border-radius: 3px;
+  background-color: @emphasis;
+  border: 1px;
+  border-color: @cyan;
 }
 
 button selected {
-    text-color:       @maincolor;
-}
-
-prompt {
-    padding:6px 9px;
-    background-color: @maincolor;
-    text-color:@bg;
-}
-
-entry {
-    padding:6px 10px;
-    background-color:@bg;
-    text-color:@fg;
+  padding: 5px;
+  border-radius: 3px;
+  background-color: @emphasis;
 }
