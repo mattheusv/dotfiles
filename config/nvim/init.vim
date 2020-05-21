@@ -104,6 +104,7 @@ set smartcase
 
 "" Directories for swp files
 set nobackup
+set nowritebackup
 set noswapfile
 
 " Enable folding
@@ -116,6 +117,15 @@ set secure
 
 " Enable nvim copy allways to clipboard
 set clipboard+=unnamedplus
+
+" Better display for messages
+set cmdheight=2
+
+" You will have bad experience for diagnostic messages when it's default 4000.
+set updatetime=300
+
+" don't give |ins-completion-menu| messages.
+set shortmess+=c
 
 "" Autocmd to fix syntax highlight
 "" https://vim.fandom.com/wiki/Fix_syntax_highlighting
@@ -302,19 +312,6 @@ nmap <silent> ]g <Plug>(coc-diagnostic-next-error)
 "*****************************************************************************
 "" coc.nvim configuration
 "*****************************************************************************"
-
-" Some servers have issues with backup files
-set nobackup
-set nowritebackup
-
-" Better display for messages
-set cmdheight=2
-
-" You will have bad experience for diagnostic messages when it's default 4000.
-set updatetime=300
-
-" don't give |ins-completion-menu| messages.
-set shortmess+=c
 
 " Add status line support, for integration with other plugin, checkout `:h coc-status`
 set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
