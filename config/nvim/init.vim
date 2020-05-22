@@ -14,6 +14,7 @@ Plug 'tpope/vim-commentary'
 " Git integration
 Plug 'tpope/vim-fugitive'
 Plug 'airblade/vim-gitgutter'
+Plug 'rhysd/git-messenger.vim'
 
 " Status/tabline
 Plug 'vim-airline/vim-airline'
@@ -40,9 +41,6 @@ Plug 'editorconfig/editorconfig-vim'
 
 " Smooth scrolling
 Plug 'yuttie/comfortable-motion.vim'
-
-" Git Blame
-Plug 'rhysd/git-messenger.vim'
 
 " Icons
 Plug 'ryanoasis/vim-devicons'
