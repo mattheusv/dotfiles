@@ -195,7 +195,6 @@ nnoremap <silent> <esc> :noh<return><esc>
 
 " Delete lines without copy
 noremap <S-d> "_d
-xnoremap <S-d> "_d
 
 "" Split Buffers
 noremap <Leader>h :<C-u>split<CR>
@@ -231,8 +230,7 @@ noremap <leader>x :bn<CR>
 noremap <leader>c :bp<cr>:bd #<cr>
 
 "" Search for files
-nnoremap <c-p> :GFiles<cr>
-nnoremap <c-P> :Files<cr>
+nnoremap <c-p> :Files<cr>
 nnoremap <silent> <leader>b :Buffers<CR>
 
 " Enable folding with the spacebar
