@@ -190,8 +190,8 @@ cnoreabbrev D d
 "" Mappings
 "*****************************************************************************
 
-" Reload nvim easy
-noremap <Leader>r : source ~/.config/nvim/init.vim<CR>
+" Clear highlight
+nnoremap <silent> <esc> :noh<return><esc>
 
 " Delete lines without copy
 noremap <S-d> "_d
