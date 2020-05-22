@@ -233,8 +233,8 @@ noremap <leader>c :bp<cr>:bd #<cr>
 nnoremap <c-p> :Files<cr>
 nnoremap <silent> <leader>b :Buffers<CR>
 
-" Enable folding with the spacebar
-nnoremap <space> za
+" Enable folding with the leader + spacebar
+nnoremap <leader><space> za
 
 "NERDTree
 nnoremap <C-g> :NERDTreeFind<CR>
