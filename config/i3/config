@@ -28,7 +28,7 @@ bindsym $mod+Return exec $TERMINAL
 bindsym $mod+b exec $BROWSER
 
 # lockscream
-bindsym $mod+Shift+t exec i3lock -i ~/.wallpaper.png -p default -n
+bindsym $mod+Shift+t exec i3lock -i ~/.lockscreen.png -p default -n
 
 # printscren
 bindsym Print exec xfce4-screenshooter
