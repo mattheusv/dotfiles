@@ -2,7 +2,7 @@
 
 set $mod Mod4
 
-font pango: SpaceMono Nerd Font Mono Medium 8
+font pango: Hack Nerd Font Bold 8
 
 # default workspace layout
 workspace_layout tabbed
