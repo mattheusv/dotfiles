@@ -37,7 +37,7 @@ font-1 = SpaceMono Nerd Font Mono:style=Bold:pixelsize=9;1
 
 
 modules-left = i3
-modules-right = uptime filesystem xbacklight pulseaudio memory cpu wlan battery temperature date powermenu
+modules-right = uptime filesystem xbacklight pulseaudio memory cpu network battery temperature date powermenu
 
 tray-position = right
 tray-padding = 2
@@ -140,9 +140,9 @@ format-prefix-foreground = ${colors.foreground-alt}
 format-underline = ${colors.red}
 label = %percentage:2%%
 
-[module/wlan]
+[module/network]
 type = internal/network
-interface = wlp3s0
+interface = ${env:NETWORK_INTERFACE:wlp3s0}
 interval = 3.0
 
 format-connected = <ramp-signal> <label-connected>
@@ -161,8 +161,8 @@ ramp-signal-foreground = ${colors.foreground-alt}
 
 [module/battery]
 type = internal/battery
-battery = BAT1
-adapter = ADP1
+battery = ${env:BATTERY_BAT:BAT1}
+adapter = ${env:BATTERY_ADAPTER:ADP1}
 full-at = 98
 
 format-charging = <animation-charging> <label-charging>

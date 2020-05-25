@@ -6,6 +6,18 @@ killall -q polybar
 # Wait until the processes have been shut down
 while pgrep -u $UID -x polybar >/dev/null; do sleep 1; done
 
+
+set_variables() {
+    # [module/network] variables
+    export NETWORK_INTERFACE=$(ip route | grep '^default' | awk '{print $5}' | head -n1)
+
+    # [module/battery] variables
+    export BATTERY_BAT=$(ls /sys/class/power_supply/ | grep BAT)
+    export BATTERY_ADAPTER=$(ls /sys/class/power_supply/ | grep -v BAT)
+}
+
+set_variables
+
 # Launch Polybar, using default config location ~/.config/polybar/config
 polybar dot &
 
