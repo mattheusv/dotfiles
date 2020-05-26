@@ -216,14 +216,10 @@ bindsym XF86MonBrightnessUp exec xbacklight -inc 10 # increase screen brightness
 bindsym XF86MonBrightnessDown exec xbacklight -dec 10 # decrease screen brightness
 
 
-# ----- i3blocks bar ----- #
-bar {
-        status_command i3blocks
-        position top
-        font pango: SpaceMono Nerd Font Bold 9
-}
-
 # ----- Startup programs ----- #
+
+# start polybar
+exec_always --no-startup-id dot polybar launch
 
 # define wallpaper
 exec --no-startup-id feh --bg-fill ~/.wallpaper.png
