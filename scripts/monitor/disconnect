@@ -1,0 +1,35 @@
+#!/usr/bin/env bash
+
+#/ Disconnect monitor
+#/
+#/ Flags:
+#/   --help | -h Show help message
+#/   --monitor Inform monitor to disconnect. If not informed, an menu will be prompt
+#/
+
+. <(cat $DOTFILES_SCRIPTS/common/common)
+
+
+main() {
+
+    if [ "$1" == "--monitor" ]; then
+        monitor="$2"
+    else
+        monitors=$(xrandr --query | grep " connected" | cut -d" " -f1)
+        monitor=$(echo -e $monitors | tr " " "\n" | rofi -dmenu -i -lines 5 -p "Monitors")
+    fi
+
+    if [ "$monitor" ]; then
+        xrandr --output $monitor --off
+    else
+        echo "Nothing to do"
+        exit 0
+    fi
+
+    i3-msg restart >> /dev/null
+
+    echo "Disconnected $monitor"
+}
+
+
+main "$@"
