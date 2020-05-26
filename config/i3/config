@@ -119,6 +119,14 @@ bindsym $mod+z gaps inner current set 0; gaps outer current set 0
 # Set gaps
 bindsym $mod+Shift+z gaps inner current set $inner_gaps; gaps outer current set $outer_gaps
 
+# Move workspaces between monitors
+bindsym $mod+Control+p move workspace to output primary
+bindsym $mod+Control+Shift+p move workspace to output HDMI1
+bindsym $mod+Control+h move workspace to output left
+bindsym $mod+Control+j move workspace to output down
+bindsym $mod+Control+k move workspace to output up
+bindsym $mod+Control+l move workspace to output right
+
 # ----- Workspace Setup ----- #
 
 set $ws1 "1: "
