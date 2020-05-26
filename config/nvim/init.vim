@@ -53,15 +53,14 @@ function! BuildComposer(info)
       !cargo build --release --locked
   endif
 endfunction
-
 Plug 'euclio/vim-markdown-composer', { 'do': function('BuildComposer') }
+
 "*****************************************************************************
 "" Custon Plugs
 "*****************************************************************************"
 
 " LSP
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
-Plug 'dense-analysis/ale'
 
 " Python
 Plug 'tmhedberg/SimpylFold'
@@ -357,22 +356,6 @@ endfunction
 "*****************************************************************************
 "" Languages Custom configs
 "*****************************************************************************
-
-" ALE
-" Nice tools to use:
-    " isort utility / library to sort imports.
-    " yapf A formatter for Python files
-    " black Python code formatter
-let g:ale_fix_on_save = 1
-let g:ale_fixers = {
-\   '*': ['remove_trailing_lines', 'trim_whitespace'],
-\   'python': [
-\       'isort',
-\       'black',
-\   ],
-\   'javascript': ['eslint']
-\}
-let g:ale_python_flake8_options = '--max-line-length=88'
 
 " Python
 let python_highlight_all = 1
