@@ -41,5 +41,10 @@ setxkbmap br
 # define custon keyboard
 setxkbmap -option caps:escape &
 
+# hide mouse cursor when not using
+if type "xrandr"; then
+    unclutter &
+fi
+
 # start i3
 exec i3
