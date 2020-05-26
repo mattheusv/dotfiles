@@ -1,15 +1,18 @@
 # ----- Basic Setup ----- #
 
 set $mod Mod4
+set $inner_gaps 10
+set $outer_gaps 10
 
 font pango: Hack Nerd Font Bold 8
 
 # default workspace layout
 workspace_layout tabbed
 
+# #---Gaps---# #
 for_window [class="^.*"] border pixel 2
-gaps inner 10
-gaps outer 10
+gaps inner $inner_gaps
+gaps outer $outer_gaps
 
 set $refresh_i3status killall -SIGUSR1 i3blocks
 
@@ -110,18 +113,23 @@ bindsym $mod+Shift+r restart
 # exit i3 (logs you out of your X session)
 bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -B 'Yes, exit i3' 'i3-msg exit'"
 
+# Remove gaps
+bindsym $mod+z gaps inner current set 0; gaps outer current set 0
+
+# Set gaps
+bindsym $mod+Shift+z gaps inner current set $inner_gaps; gaps outer current set $outer_gaps
 
 # ----- Workspace Setup ----- #
 
-set $ws1 "1:  "
-set $ws2 "2:  "
-set $ws3 "3 "
-set $ws4 "4:  "
-set $ws5 "5 "
-set $ws6 "6 "
-set $ws7 "7 "
-set $ws8 "8 "
-set $ws9 "9 "
+set $ws1 "1: "
+set $ws2 "2: "
+set $ws3 "3: "
+set $ws4 "4: "
+set $ws5 "5: "
+set $ws6 "6: "
+set $ws7 "7: "
+set $ws8 "8: "
+set $ws9 "9: "
 set $ws10 "10 "
 
 # Always open some programs on specified workspace
