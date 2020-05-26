@@ -18,7 +18,13 @@ set_variables() {
 
 set_variables
 
-# Launch Polybar, using default config location ~/.config/polybar/config
-polybar dot &
+# Launch dot bar in multiple monitors
+if type "xrandr"; then
+  for m in $(xrandr --query | grep " connected" | cut -d" " -f1); do
+    MONITOR=$m polybar dot &
+  done
+else
+  polybar dot &
+fi
 
 echo "Polybar launched..."
