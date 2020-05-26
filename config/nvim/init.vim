@@ -144,6 +144,7 @@ augroup END
 
 " Line number
 set number
+set relativenumber
 
 " Highlighting in cursor line
 set cursorline
