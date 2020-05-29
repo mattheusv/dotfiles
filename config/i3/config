@@ -127,6 +127,10 @@ bindsym $mod+Control+j move workspace to output down
 bindsym $mod+Control+k move workspace to output up
 bindsym $mod+Control+l move workspace to output right
 
+# Manage multie monitors
+bindsym $mod+Control+m mode "monitor"
+
+
 # ----- Workspace Setup ----- #
 
 set $ws1 "1: "
@@ -208,6 +212,19 @@ mode "resize" {
         bindsym Return mode "default"
         bindsym Escape mode "default"
         bindsym $mod+r mode "default"
+}
+
+# Manage multi monitors
+mode "monitor" {
+    bindsym c exec --no-startup-id dot monitor extra --disconnect # Connect to new monitor and disconnect other
+    bindsym r exec --no-startup-id dot monitor extra --right # Connect new monitor on right side
+    bindsym l exec --no-startup-id dot monitor extra --left # Connect new monitor on left side
+    bindsym d exec --no-startup-id dot monitor disconnect # Disconnect monitor (Rofi menu will be prompt to choose the monitor)
+
+    # back to normal: Enter or Escape or $mod+Control+m
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+    bindsym $mod+Control+m mode "default"
 }
 
 # ----- XF86 Bindings ----- #
