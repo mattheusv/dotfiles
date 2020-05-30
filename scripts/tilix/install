@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-#/ Install ~/.bash_profile file configuration.
+#/ Install tilix file configuration.
 #/
 #/ Flags:
 #/   --help | -h Show help message
