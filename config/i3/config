@@ -144,19 +144,6 @@ set $ws8 "8: "
 set $ws9 "9: "
 set $ws10 "10 "
 
-# Always open some programs on specified workspace
-assign [instance="telegram"] $ws3
-assign [instance="zoom"] $ws3
-assign [instance="teams"] $ws3
-assign [instance="thunar"] $ws4
-assign [instance="ranger"] $ws4
-
-# Change focus on specific programs when open on specific workspace
-for_window [class=(?i)Telegram] focus
-for_window [class=(?i)Zoom] focus
-for_window [class=(?i)Thunar] focus
-for_window [class=(?i)Ranger] focus
-
 # ----- Workspace Bindings ----- #
 
 # switch to workspace
