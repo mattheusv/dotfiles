@@ -196,6 +196,12 @@ cnoreabbrev D d
 "" Mappings
 "*****************************************************************************
 
+nnoremap <leader>gs :G<CR>
+nnoremap <leader>gd :Gdiffsplit<CR>
+
+" Set working directory
+nnoremap <leader>. :lcd %:p:h<CR>
+
 " Clear highlight
 nnoremap <silent> <esc> :noh<return><esc>
 
