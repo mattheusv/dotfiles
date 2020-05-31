@@ -38,12 +38,6 @@ Plug 'morhetz/gruvbox'
 " Manage editoconfig files
 Plug 'editorconfig/editorconfig-vim'
 
-" Smooth scrolling
-Plug 'yuttie/comfortable-motion.vim'
-
-" Icons
-Plug 'ryanoasis/vim-devicons'
-
 " Surround parentheses, brackets, quotes, XML tags, and more
 Plug 'tpope/vim-surround'
 
@@ -438,10 +432,6 @@ augroup END
 "" Plugins Custom configs
 "*****************************************************************************
 
-" yuttie/comfortable-motion.vim
-nnoremap <silent> <C-d> :call comfortable_motion#flick(100)<CR>
-nnoremap <silent> <C-u> :call comfortable_motion#flick(-100)<CR>
-let g:comfortable_motion_no_default_key_mappings = 1
 
 "" NERDTree configuration
 let g:NERDTreeChDirMode=2
