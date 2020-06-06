@@ -279,9 +279,6 @@ inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
 inoremap <silent><expr> <c-space> coc#refresh()
 
 " coc snippets
-" Use <C-l> for trigger snippet expand.
-imap <C-l> <Plug>(coc-snippets-expand)
-
 " Use <C-j> for both expand and jump (make expand higher priority.)
 imap <C-j> <Plug>(coc-snippets-expand-jump)
 
@@ -297,16 +294,6 @@ xmap <leader>i  <Plug>(coc-format-selected)
 " Remap for rename current word
 nmap <leader>rn <Plug>(coc-rename)
 
-" Using CocList
-" Show all diagnostics
-nnoremap <silent> <space>a  :<C-u>CocList diagnostics<cr>
-
-" Find symbol of current document
-nnoremap <silent> <space>o  :<C-u>CocList outline<cr>
-
-" Search workspace symbols
-nnoremap <silent> <space>s  :<C-u>CocList -I symbols<cr>
-
 " Use K to show documentation in preview window
 nnoremap <silent> <S-K> :call <SID>show_documentation()<CR>
 
@@ -317,11 +304,6 @@ nmap <silent> ]g <Plug>(coc-diagnostic-next-error)
 "*****************************************************************************
 "" coc.nvim configuration
 "*****************************************************************************"
-
-" Add status line support, for integration with other plugin, checkout `:h coc-status`
-set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
-
-let g:coc_snippet_next = '<s-tab>'
 
 " Global extensions
 let g:coc_global_extensions = [
