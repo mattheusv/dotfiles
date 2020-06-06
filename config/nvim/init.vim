@@ -199,8 +199,12 @@ nnoremap <leader>. :lcd %:p:h<CR>
 " Clear highlight
 nnoremap <silent> <esc> :noh<return><esc>
 
-" Delete lines without copy
+" Delete/Change lines without copy
 noremap <S-d> "_d
+noremap <x> "_x
+noremap <S-x> "_X
+noremap <c> "_c
+noremap <S-c> "_C
 
 "" Split Buffers
 noremap <Leader>h :<C-u>split<CR>
