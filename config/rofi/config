@@ -11,7 +11,7 @@ rofi.lines: 10
 rofi.columns: 1
 
 ! "Font to use"
-rofi.font: SpaceMono Nerd Font Mono Medium 12
+rofi.font: Hack Nerd Font Bold 12
 
 ! "Border width"
 rofi.bw: 1
