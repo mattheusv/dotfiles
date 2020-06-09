@@ -4,9 +4,8 @@ call plug#begin()
 "" Basic Plugs
 "*****************************************************************************"
 
-" NERDTree
-Plug 'scrooloose/nerdtree' | Plug 'Xuyuanp/nerdtree-git-plugin'
-Plug 'jistr/vim-nerdtree-tabs'
+" Vifm file browser
+Plug 'vifm/vifm.vim'
 
 " Comment stuff
 Plug 'tpope/vim-commentary'
@@ -246,11 +245,6 @@ nnoremap <silent> <leader>b :Buffers<CR>
 " Enable folding with the leader + spacebar
 nnoremap <leader><space> za
 
-"NERDTree
-nnoremap <C-g> :NERDTreeFind<CR>
-nnoremap <C-b> :NERDTreeToggle<CR>
-nmap <silent> <F5> :NERDTreeRefreshRoot<CR>
-
 "grep.vim
 nnoremap <silent> <leader>f :Rgrep<CR>
 
@@ -417,22 +411,6 @@ augroup END
 "*****************************************************************************
 "" Plugins Custom configs
 "*****************************************************************************
-
-
-"" NERDTree configuration
-let g:NERDTreeChDirMode=2
-let g:NERDTreeIgnore=['\.rbc$', '\~$', '\.pyc$', '\.db$', '\.sqlite$', '__pycache__']
-let g:NERDTreeSortOrder=['^__\.py$', '\/$', '*', '\.swp$', '\.bak$', '\~$']
-let g:NERDTreeShowBookmarks=1
-let g:nerdtree_tabs_focus_on_files=1
-let g:NERDTreeMapOpenInTabSilent = '<RightMouse>'
-let g:NERDTreeWinSize = 50
-let g:NERDTreeShowHidden = 1
-let g:NERDTreeQuitOnOpen = 1
-let NERDTreeAutoDeleteBuffer = 1
-let NERDTreeMinimalUI = 1
-let NERDTreeDirArrows = 1
-set wildignore+=*/tmp/*,*.so,*.swp,*.zip,*.pyc,*.db,*.sqlite
 
 "" vim-scripts/grep.vim
 let Grep_Default_Options = '-IR'
