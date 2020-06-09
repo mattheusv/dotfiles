@@ -220,6 +220,11 @@ mode "monitor" {
         bindsym $mod+Control+m mode "default"
 }
 
+bar {
+    status_command i3blocks
+    position top
+}
+
 # ----- XF86 Bindings ----- #
 
 # Volume config
@@ -235,9 +240,6 @@ bindsym XF86MonBrightnessDown exec xbacklight -dec 10 # decrease screen brightne
 
 
 # ----- Startup programs ----- #
-
-# start polybar
-exec_always --no-startup-id dot polybar launch
 
 # define wallpaper
 exec_always --no-startup-id feh --bg-fill ~/.wallpaper.png
