@@ -14,7 +14,7 @@ for_window [class="^.*"] border pixel 2
 gaps inner $inner_gaps
 gaps outer $outer_gaps
 
-set $refresh_i3status killall -SIGUSR1 i3blocks
+set $refresh_i3status pkill -RTMIN+10 i3blocks
 
 # ----- Bindings ----- #
 
