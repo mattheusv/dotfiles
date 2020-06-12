@@ -2,6 +2,9 @@
 	name = Matheus Alcantara
 	email = matheusssilv97@gmail.com
 
+[includeIf "gitdir:~/dev/work/**"]
+    path = ~/dev/work/.gitconfig
+
 [push]
 	default = current
 
