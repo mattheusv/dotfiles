@@ -1,0 +1,37 @@
+- shell:
+    - command: dot i3blocks setup
+      description: Download i3blocks scripts
+      stdout: true
+      sterr: true
+
+
+- link:
+    ~/.config/i3/config:
+      create: true
+      path: config/i3/config
+
+    ~/.config/i3blocks/config:
+      create: true
+      path: config/i3blocks/config
+
+    ~/.config/rofi/config:
+      create: true
+      path: config/rofi/config
+
+    ~/.config/vifm/vifmrc:
+      create: true
+      force: true
+      path: config/vifm/vifmrc
+
+    ~/.config/vifm/colors/molakai.vifm:
+      create: true
+      path: config/vifm/colors/molokai.vifm
+
+    ~/.config/vifm/scripts/imgc:
+      create: true
+      path: config/vifm/scripts/imgc
+
+    ~/.config/vifm/scripts/imgt:
+      create: true
+      path: config/vifm/scripts/imgt
+

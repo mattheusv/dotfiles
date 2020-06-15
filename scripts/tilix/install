@@ -6,6 +6,10 @@
 #/   --help | -h Show help message
 #/
 
-. <(cat $DOTFILES_SCRIPTS/common/common)
+set -e
+
+help() {
+     grep '^#/' < "$0" | cut -c4-
+}
 
 dconf load /com/gexperts/Tilix/ < $DOTFILES/tilix/tilix.dconf

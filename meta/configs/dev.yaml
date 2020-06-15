@@ -1,0 +1,59 @@
+- link:
+    ~/.tmux.conf:
+      path: config/tmux/tmux.conf
+
+    ~/.config/nvim/init.vim:
+      create: true
+      path: config/nvim/init.vim
+
+    ~/.config/nvim/coc-settings.json:
+      create: true
+      path: config/nvim/coc-settings.json
+
+    ~/.config/coc/ultisnips/go.snippets:
+      create: true
+      path: config/nvim/ultisnips/go.snippets
+
+    ~/.gitconfig:
+      path: config/git/gitconfig
+
+    ~/.gitmessage:
+      path: config/git/gitmessage
+
+- shell:
+    - command: dot tilix install
+      description: Install Tilix configuration
+      stdout: true
+      sterr: true
+      quiet: true
+
+    - command: dot tmux setup
+      description: Setup tmux plugin manager
+      stdout: true
+      sterr: true
+      quiet: true
+
+    - command: dot asdf install
+      description: Install asdf
+      stdout: true
+      sterr: true
+      quiet: true
+
+    - command: dot asdf setup
+      description: Install and configure asdf languages
+      stdout: true
+      sterr: true
+      quiet: true
+
+
+    - command: dot neovim setup
+      description: Setup neovim plugin manager
+      stdout: true
+      sterr: true
+      quiet: true
+
+    - command: dot neovim setup-lsp
+      description: Setup coc-nvim language server
+      stdout: true
+      sterr: true
+      quiet: true

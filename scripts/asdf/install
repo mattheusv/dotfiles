@@ -6,13 +6,19 @@
 #/   --help | -h Show help message
 #/
 
-. <(cat $DOTFILES_SCRIPTS/common/common)
+set -e
+
+help() {
+     grep '^#/' < "$0" | cut -c4-
+}
 
 ASDF_PATH=~/.asdf
 ASDF_BIN=$ASDF_PATH/bin/asdf
 
 download() {
-    git clone https://github.com/asdf-vm/asdf.git $ASDF_PATH --branch v0.7.6
+    if [ ! -d $ASDF_PATH  ]; then
+        git clone https://github.com/asdf-vm/asdf.git $ASDF_PATH --branch v0.7.6
+    fi
 }
 
 setup() {
@@ -23,5 +29,4 @@ setup() {
 download
 setup
 
-echo "asdf installed with succesfull :D"
-echo "Reload bash with source ~/.bashrc and type asdf for help."
+echo "INFO: Finish."

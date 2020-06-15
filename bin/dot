@@ -15,8 +15,10 @@
 export HERE="$(cd $(dirname "$0")/.. && pwd)"
 export DOTFILES=$HERE/config
 export DOTFILES_SCRIPTS=$HERE/scripts
-. <(cat $DOTFILES_SCRIPTS/common/common)
 
+help() {
+     grep '^#/' < "$0" | cut -c4-
+}
 
 contexts() {
     echo "Available Contexts:"

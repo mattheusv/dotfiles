@@ -1,19 +1,55 @@
 #!/usr/bin/env bash
 
+#/ Install configuration using dotbot
+#/
+#/ Arguments:
+#/   Name of config to install
+#/
+#/ Commands:
+#/   ls List all configuration
+#/
+#/ Flags:
+#/   --help | -h Show help message
+#/
 
-export DOTFILES=$(dirname $0)
+set -e
 
-echo '
-  __| | ___ | |_
- / _` |/ _ \| __|
-| (_| | (_) | |_
- \__,_|\___/ \__|
+META_DIR="meta"
+CONFIG_DIR="configs"
+DOTBOT_DIR="dotbot"
 
-'
+DOTBOT_BIN="bin/dotbot"
+BASEDIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
-export DOTFILES="${DOTFILES:-$(cd "$(dirname "${BASH_SOURCE[0]}")/.." >/dev/null && pwd)}"
+git -C "${DOTBOT_DIR}" submodule sync --quiet --recursive
+git submodule update --init --recursive "${DOTBOT_DIR}"
 
-echo -e "\n . <(cat $DOTFILES/config/bash/bashrc)" >> $HOME/.bashrc
-echo -e '\n export PATH=$PATH:$HOME/.dotfiles/bin' > $DOTFILES/config/bash/.local
+help() {
+    grep '^#/' < "$0" | cut -c4-
+    echo -e "\n\ndotbot helper\n\n"
+    "${BASEDIR}/${DOTBOT_DIR}/${DOTBOT_BIN}" -h
+}
 
-echo -e "Your dot setup is complete.\nRestart your shell and type 'dot -h' for help."
+ls_configs() {
+    echo "dev      Configure development tools such as neovim, tilix, tmux, etc"
+    echo "system   Configure system files such as bash_profile, xinitrc, etc"
+    echo "wm       Configure i3-wm configuration with i3blocks and rofi"
+}
+
+case "$1" in
+    "-h"        ) help; exit 0 ;;
+    "--help"    ) help; exit 0 ;;
+    "ls"        ) ls_configs; exit 0 ;;
+esac
+
+CONFIG="${1}"
+if [ -z $CONFIG ]; then
+    echo "ERROR: Configuration is required"
+    exit 1
+fi
+
+shift
+
+echo -e '\n. $HOME/.dotfiles/config/bash/bashrc' >> ~/.bashrc
+echo -e '\nexport PATH=$PATH:$HOME/.dotfiles/bin' >> ~/.bashrc
+"${BASEDIR}/${DOTBOT_DIR}/${DOTBOT_BIN}" -d "${BASEDIR}" -c "${BASEDIR}/${META_DIR}/${CONFIG_DIR}/${CONFIG}.yaml" "${@}"

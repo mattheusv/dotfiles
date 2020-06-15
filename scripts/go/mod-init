@@ -6,7 +6,9 @@
 #/   --help | -h Show help message
 #/
 
-. <(cat $DOTFILES_SCRIPTS/common/common)
+help() {
+     grep '^#/' < "$0" | cut -c4-
+}
 
 CURRENT=`pwd`
 BASENAME=`basename "$CURRENT"`

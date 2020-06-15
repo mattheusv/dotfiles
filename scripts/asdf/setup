@@ -6,7 +6,11 @@
 #/   --help | -h Show help message
 #/
 
-. <(cat $DOTFILES_SCRIPTS/common/common)
+# set -e
+
+help() {
+     grep '^#/' < "$0" | cut -c4-
+}
 
 
 PYTHON_VERSION=3.7.6

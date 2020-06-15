@@ -1,0 +1,23 @@
+#!/usr/bin/env bash
+
+#/ Download i3blocks scripts
+#/
+#/ Flags:
+#/   --help | -h Show help message
+#/
+
+set -e
+
+I3BLOCKS_PATH=~/.config/i3blocks
+
+help() {
+     grep '^#/' < "$0" | cut -c4-
+}
+
+echo "INFO: Setting i3blocks scripts"
+
+if [ ! -d $I3BLOCKS_PATH ]; then
+    git clone https://github.com/vivien/i3blocks-contrib $I3BLOCKS_PATH
+fi
+
+echo "INFO: Finish"

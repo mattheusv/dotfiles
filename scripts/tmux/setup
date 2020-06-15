@@ -1,0 +1,24 @@
+#!/usr/bin/env bash
+
+#/ Setup tmux plugin manager configuration.
+#/
+#/ Flags:
+#/   --help | -h Show help message
+#/
+
+set -e
+
+TPM_PATH=~/.tmux/plugins/tpm
+
+help() {
+     grep '^#/' < "$0" | cut -c4-
+}
+
+echo "INFO: Setting tmux configuration"
+
+
+if [ ! -d $TPM_PATH ]; then
+    git clone https://github.com/tmux-plugins/tpm $TPM_PATH
+fi
+
+echo "INFO: Done"

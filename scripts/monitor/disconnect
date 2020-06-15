@@ -7,7 +7,9 @@
 #/   --monitor Inform monitor to disconnect. If not informed, an menu will be prompt
 #/
 
-. <(cat $DOTFILES_SCRIPTS/common/common)
+help() {
+     grep '^#/' < "$0" | cut -c4-
+}
 
 
 main() {
