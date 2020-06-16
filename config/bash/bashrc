@@ -23,9 +23,7 @@ alias \
     g="git" \
     gti="git" \
     v="nvim" \
-    vi="nvim" \
-    vim="nvim" \
-    nh="v ." \
+    vf="vifm" \
     grep="grep --color=auto" \
     diff="diff --color=auto" \
 
