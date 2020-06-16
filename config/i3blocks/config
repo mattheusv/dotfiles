@@ -21,11 +21,6 @@ command=memory/memory
 label= 
 interval=1
 
-[uptime]
-label=  
-command=uptime | awk '{sub(",","",$3); print "'"${1} "'"$3}'
-interval=60
-
 [wifi]
 label= 
 command=iwgetid -r | tr '\n' ' ' && grep $(iwgetid -m | awk '{ printf "%s", $1 }') /proc/net/wireless | awk '{ printf "%i%\n", int($3 * 100 / 70) }'
@@ -39,11 +34,6 @@ interval=30
 [temperature]
 label= 
 command=temperature/temperature
-interval=10
-
-[backlight]
-label= 
-command=printf "%.2g\n" $(xbacklight -get)
 interval=10
 
 [time]
