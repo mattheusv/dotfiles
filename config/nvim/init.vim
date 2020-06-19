@@ -305,9 +305,6 @@ let g:coc_global_extensions = [
     \ "coc-rls",
 \]
 
-" Highlight symbol under cursor on CursorHold
-autocmd CursorHold * silent call CocActionAsync('highlight')
-
 " Use `:Format` to format current buffer
 command! -nargs=0 Format :call CocAction('format')
 
