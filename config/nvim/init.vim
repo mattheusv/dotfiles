@@ -233,7 +233,7 @@ noremap <leader>c :bp<cr>:bd #<cr>
 
 "" Search for files
 nnoremap <c-p> :Files<cr>
-nnoremap <silent> <leader>b :Buffers<CR>
+nnoremap <silent> <leader>q :Buffers<CR>
 
 " Enable folding with the leader + spacebar
 nnoremap <leader><space> za
