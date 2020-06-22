@@ -159,9 +159,6 @@ let g:lightline = {
       \ },
       \ }
 
-"SimpylFold config
-let g:SimpylFold_docstring_preview=1
-
 "*****************************************************************************
 "" Abbreviations
 "*****************************************************************************
@@ -182,6 +179,7 @@ cnoreabbrev D d
 "" Mappings
 "*****************************************************************************
 
+" Git Maps
 nnoremap <leader>gs :G<CR>
 nnoremap <leader>gd :Gdiffsplit<CR>
 
@@ -309,7 +307,7 @@ let g:coc_global_extensions = [
 command! -nargs=0 Format :call CocAction('format')
 
 " use `:OR` for organize import of current buffer
-command! -nargs=0 OR   :call     CocAction('runCommand', 'editor.action.organizeImport')
+command! -nargs=0 OR :call CocAction('runCommand', 'editor.action.organizeImport')
 
 "*****************************************************************************
 "" coc.nvim Functions
@@ -412,3 +410,6 @@ set wildmode=list:longest,list:full
 set wildignore+=*.o,*.obj,.git,*.rbc,*.pyc,__pycache__
 let $FZF_DEFAULT_COMMAND = 'ag --hidden --ignore .git -g ""'
 set grepprg=ag\ --nogroup\ --nocolor
+
+"SimpylFold config
+let g:SimpylFold_docstring_preview=1
