@@ -189,13 +189,6 @@ nnoremap <leader>. :lcd %:p:h<CR>
 " Clear highlight
 nnoremap <silent> <esc> :noh<return><esc>
 
-" Delete/Change lines without copy
-noremap <S-d> "_d
-noremap <x> "_x
-noremap <S-x> "_X
-noremap <c> "_c
-noremap <S-c> "_C
-
 "" Split Buffers
 noremap <Leader>h :<C-u>split<CR>
 noremap <Leader>v :<C-u>vsplit<CR>
@@ -213,14 +206,6 @@ xnoremap J :move '>+1<CR>gv-gv
 " Make < > shifts keep selection
 vnoremap < <gv
 vnoremap > >gv
-
-""Split Terminal
-nnoremap <leader>th :terminal<CR>
-nnoremap <leader>tv :vertical terminal<CR>
-
-"" Tabs
-nnoremap <S-Tab> gT
-nnoremap <silent> <S-t> :tabnew<CR>
 
 "" Buffer nav
 noremap <leader>z :bp<CR>
