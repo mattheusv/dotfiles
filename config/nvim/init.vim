@@ -18,9 +18,6 @@ Plug 'rhysd/git-messenger.vim'
 " Status/tabline
 Plug 'itchyny/lightline.vim'
 
-" Search tool
-Plug 'vim-scripts/grep.vim'
-
 " Display the indention levels
 Plug 'Yggdroot/indentLine'
 
@@ -221,9 +218,6 @@ nnoremap <silent> <leader>q :Buffers<CR>
 " Enable folding with the leader + spacebar
 nnoremap <leader><space> za
 
-"grep.vim
-nnoremap <silent> <leader>f :Rgrep<CR>
-
 " Tagbar FZF
 nmap <Leader>t :BTags<CR>
 nmap <Leader>l :BLines<CR>
@@ -384,11 +378,6 @@ augroup END
 "*****************************************************************************
 "" Plugins Custom configs
 "*****************************************************************************
-
-"" vim-scripts/grep.vim
-let Grep_Default_Options = '-IR'
-let Grep_Skip_Files = '*.log *.db'
-let Grep_Skip_Dirs = '.git node_modules venv'
 
 "" junegunn/fzf.vim
 set wildmode=list:longest,list:full
