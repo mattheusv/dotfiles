@@ -4,9 +4,6 @@ call plug#begin()
 "" Basic Plugs
 "*****************************************************************************"
 
-" Vifm file browser
-Plug 'vifm/vifm.vim'
-
 " Comment stuff
 Plug 'tpope/vim-commentary'
 
