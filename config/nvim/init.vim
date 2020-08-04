@@ -329,6 +329,7 @@ let g:go_highlight_array_whitespace_error = 0
 let g:go_highlight_trailing_whitespace_error = 0
 let g:go_highlight_extra_types = 1
 let g:go_rename_command = "gopls"
+let g:go_echo_go_info = 0
 
 augroup go
     au!
