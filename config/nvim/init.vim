@@ -334,6 +334,7 @@ augroup go
     au Filetype go command! -bang AV call go#alternate#Switch(<bang>0, 'vsplit')
     au Filetype go command! -bang AS call go#alternate#Switch(<bang>0, 'split')
     au Filetype go command! -bang AT call go#alternate#Switch(<bang>0, 'tabe')
+    au FileType go nmap <Leader>rt :GoTestFunc<CR>
     au FileType go nmap <Leader>dd <Plug>(go-def-vertical)
     au FileType go nmap <Leader>dv <Plug>(go-doc-vertical)
     au FileType go nmap <leader>t :GoDecls<CR>
