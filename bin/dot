@@ -9,14 +9,14 @@
 #/   dot <context> <cmd> <args>
 #/
 #/ Example:
-#/   dot neovim install
+#/   dot tmux reload
 #/
 
 export HERE="$(cd $(dirname "$0")/.. && pwd)"
 export DOTFILES=$HERE/config
 export DOTFILES_SCRIPTS=$HERE/scripts
 
-help() {
+show_help() {
      grep '^#/' < "$0" | cut -c4-
 }
 
@@ -50,6 +50,7 @@ show_unknown_command() {
 case "$1" in
     "contexts"  ) contexts; exit 0 ;;
     "c"         ) contexts; exit 0 ;;
+    "-h"        ) show_help; exit 0 ;;
     ""          ) show_usage; exit 0 ;;
 esac
 
