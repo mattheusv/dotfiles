@@ -1,6 +1,0 @@
-- link:
-    ~/.xinitrc:
-      path: config/X/xinitrc
-
-    ~/.bash_profile:
-      path: config/bash/bash_profile
