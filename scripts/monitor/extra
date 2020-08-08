@@ -10,10 +10,6 @@
 #/
 
 
-help() {
-     grep '^#/' < "$0" | cut -c4-
-}
-
 main() {
     monitors=$(xrandr --query | grep " connected" | cut -d" " -f1)
 

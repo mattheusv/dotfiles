@@ -7,10 +7,6 @@
 #/
 
 
-help() {
-     grep '^#/' < "$0" | cut -c4-
-}
-
 SESSION="tmp"
 
 tmux new-session -s $SESSION -d

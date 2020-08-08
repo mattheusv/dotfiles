@@ -68,5 +68,9 @@ fi
 
 # execute dot <context> <cmd> <args>
 if [ "$#" -gt 1 ]; then
+    if [ "$3" == '-h' ]; then
+        grep '^#/' < "$DOTFILES_SCRIPTS/$1/$2" | cut -c4-
+        exit 0
+    fi
     $DOTFILES_SCRIPTS/$1/$2 "${@:3}"
 fi

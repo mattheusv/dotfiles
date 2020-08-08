@@ -7,11 +7,6 @@
 #/   --monitor Inform monitor to disconnect. If not informed, an menu will be prompt
 #/
 
-help() {
-     grep '^#/' < "$0" | cut -c4-
-}
-
-
 main() {
 
     if [ "$1" == "--monitor" ]; then
