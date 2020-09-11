@@ -17,6 +17,7 @@
 
 set -e
 
+ALACRITTY_PATH=~/.config/alacritty/
 INIT_VIM=$HOME/.config/nvim/init.vim
 COC_SETTINGS=$HOME/.config/nvim/coc-settings.json
 COC_SNIPPETS=$HOME/.config/coc/ultisnips
@@ -89,8 +90,11 @@ install_tmux() {
     ln -s $DOTFILES/tmux/tmux.conf $HOME/.tmux.conf
 }
 
-install_tilix() {
-    dconf load /com/gexperts/Tilix/ < $DOTFILES/tilix/tilix.dconf
+install_terminal() {
+    if [ ! -d $ALACRITTY_PATH ]; then
+        mkdir -p $ALACRITTY_PATH
+    fi
+    ln -s $DOTFILES/alacritty/alacritty.yml $ALACRITTY_PATH/alacritty.yml
 }
 
 install_neovim() {
@@ -149,6 +153,7 @@ DEV_PACKAGES=(
 
 GUI_PACKAGES=(
     'firefox'
+    'firefox-developer-edition'
     'telegram-desktop'
     'i3-gaps'
     'i3lock'
@@ -157,7 +162,7 @@ GUI_PACKAGES=(
     'vifm'
     'tk'
     'libffi'
-    'tilix'
+    'alacritty'
     'unclutter'
 )
 
@@ -223,7 +228,7 @@ install_gui_config() {
     echo "Installing gui configs"
     install_X
     install_i3
-    install_tilix
+    install_terminal
 }
 
 install_all() {

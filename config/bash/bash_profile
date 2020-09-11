@@ -15,7 +15,7 @@ export HISTCONTROL=ignoreboth:erasedups
 
 # Default programs
 export EDITOR="nvim"
-export TERMINAL="tilix"
+export TERMINAL="alacritty"
 export BROWSER="firefox-developer-edition"
 export TERM="xterm-256color"
 
