@@ -27,8 +27,11 @@ bindsym $mod+n exec $TERMINAL -e $EDITOR
 # start a terminal
 bindsym $mod+Return exec $TERMINAL
 
-# start brave browser
+# start browser
 bindsym $mod+b exec $BROWSER
+
+# open file browser
+bindsym $mod+Shift+b exec $TERMINAL -e vifm
 
 # lockscream
 bindsym $mod+Shift+t exec i3lock -i ~/.lockscreen.png -p default -n
