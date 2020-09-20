@@ -344,10 +344,7 @@ augroup END
 "*****************************************************************************
 
 "" junegunn/fzf.vim
-set wildmode=list:longest,list:full
-set wildignore+=*.o,*.obj,.git,*.rbc,*.pyc,__pycache__
 let $FZF_DEFAULT_COMMAND = 'ag --hidden --ignore .git -g ""'
-set grepprg=ag\ --nogroup\ --nocolor
 
 "SimpylFold config
 let g:SimpylFold_docstring_preview=1
