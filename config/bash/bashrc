@@ -20,8 +20,6 @@ alias \
     sva="source venv/bin/activate" \
     pvv="python -m venv venv" \
     pvv-sva="pvv && sva" \
-    g="git" \
-    gti="git" \
     v="nvim" \
     vf="vifm" \
     grep="grep --color=auto" \
