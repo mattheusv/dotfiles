@@ -31,6 +31,13 @@ Plug 'editorconfig/editorconfig-vim'
 " Surround parentheses, brackets, quotes, XML tags, and more
 Plug 'tpope/vim-surround'
 
+function! BuildComposer(info)
+  if a:info.status != 'unchanged' || a:info.force
+      !cargo build --release --locked
+  endif
+endfunction
+Plug 'euclio/vim-markdown-composer', { 'do': function('BuildComposer') }
+
 "*****************************************************************************
 "" Custon Plugs
 "*****************************************************************************"
@@ -348,3 +355,6 @@ let $FZF_DEFAULT_COMMAND = 'ag --hidden --ignore .git -g ""'
 
 "SimpylFold config
 let g:SimpylFold_docstring_preview=1
+
+" vim-markdown-composer
+let g:markdown_composer_autostart = 0
