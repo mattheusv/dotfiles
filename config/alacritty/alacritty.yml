@@ -35,4 +35,5 @@ shell:
         - -u # Force UTF-8 
         - new 
         - -A
-        - -s default
+        - -s
+        - default
