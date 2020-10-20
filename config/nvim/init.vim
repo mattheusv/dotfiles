@@ -314,7 +314,7 @@ endfunction
 let python_highlight_all = 1
 let g:python3_host_prog = '~/.config/nvim/venv/bin/python3'
 
-" vim-go
+" Go
 let g:go_list_type = "quickfix"
 let g:go_fmt_command = "goimports"
 let g:go_fmt_fail_silently = 1
@@ -346,6 +346,9 @@ augroup go
     au FileType go nmap <leader>T :GoDeclsDir<CR>
     au FileType go nnoremap <S-C-K> :GoInfo<CR>
 augroup END
+
+" Rust
+autocmd BufWrite *.rs : Format
 
 "*****************************************************************************
 "" Plugins Custom configs
