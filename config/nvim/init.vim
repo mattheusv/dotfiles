@@ -180,6 +180,7 @@ cnoreabbrev D d
 " Git Maps
 nnoremap <leader>gs :G<CR>
 nnoremap <leader>gd :Gdiffsplit<CR>
+nnoremap <leader>gk :!gitk<CR>
 
 " Set working directory
 nnoremap <leader>. :lcd %:p:h<CR>
