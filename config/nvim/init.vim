@@ -107,6 +107,8 @@ set updatetime=300
 " don't give |ins-completion-menu| messages.
 set shortmess+=c
 
+set mouse=a
+
 "" Autocmd to fix syntax highlight
 "" https://vim.fandom.com/wiki/Fix_syntax_highlighting
 augroup vimrc-sync-fromstart
