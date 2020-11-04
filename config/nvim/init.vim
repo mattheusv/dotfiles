@@ -216,7 +216,7 @@ noremap <leader>x :bn<CR>
 noremap <leader>c :bp<cr>:bd #<cr>
 
 "" Search for files
-nnoremap <c-p> :Files<cr>
+nnoremap <c-p> :GFiles<cr>
 nnoremap <silent> <leader>q :Buffers<CR>
 
 " Tagbar FZF
