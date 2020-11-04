@@ -28,7 +28,7 @@
 	plo = pull origin
 	r = remote -v
 	b = branch
-	l = log --pretty=oneline
+	l = log --pretty=oneline -n 20
     sh = stash
 
 [core]
