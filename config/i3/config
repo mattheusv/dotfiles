@@ -7,7 +7,7 @@ set $outer_gaps 25
 font pango: Hack Nerd Font Bold 8
 
 # default workspace layout
-workspace_layout tabbed
+workspace_layout stacking
 
 # #---Gaps---# #
 for_window [class="^.*"] border pixel 2
