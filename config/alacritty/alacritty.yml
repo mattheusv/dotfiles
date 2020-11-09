@@ -1,10 +1,13 @@
+font:
+  size: 9.5
+  normal:
+    family: Hack Nerd Font
+    style: Normal
+
 # Colors (Gruvbox dark)
 colors:
-  # Default colors
   primary:
-    # hard contrast: background = '#1d2021'
     background: '#282828'
-    # soft contrast: background = '#32302f'
     foreground: '#ebdbb2'
 
   # Normal colors
