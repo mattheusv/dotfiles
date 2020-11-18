@@ -31,11 +31,6 @@ label=
 command=battery/battery
 interval=30
 
-[temperature]
-label= 
-command=temperature/temperature
-interval=10
-
 [time]
 command=date '+ %Y-%m-%d %H:%M:%S'
 interval=1
