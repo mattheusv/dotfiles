@@ -47,8 +47,6 @@ bindsym $mod+q kill
 
 # start rofi
 bindsym $mod+d exec rofi -show drun -columns 3
-bindsym $mod+Ctrl+d   exec "rofi -show run"
-bindsym $mod+Shift+W   exec "rofi -show window"
 
 # change focus
 bindsym $mod+h focus left
