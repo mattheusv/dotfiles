@@ -1,0 +1,167 @@
+dev:
+    # Python
+    - package:
+        name: python
+    - package:
+        name: python-pip
+
+    # Nodejs
+    - package:
+        name: nodejs
+    - package:
+        name: npm
+
+    #Golang
+    - package:
+        name: go
+    - package:
+        name: gopls
+
+    # fzf
+    - package:
+        name: fzf
+
+    # The silver searcher
+    - package:
+        name: the_silver_searcher
+
+    # xclip
+    - package:
+        name: xclip
+
+    # docker
+    - package:
+        name: docker
+    - package:
+        name: docker-compose
+
+    # Git
+    - link:
+        src: $DOTFILES/git/gitconfig
+        dst: ~/.gitconfig
+        relink: true
+    - link:
+        src: $DOTFILES/git/gitmessage
+        dst: ~/.gitmessage
+
+    # Bash
+    - link:
+        src: $DOTFILES/bash/bash_profile
+        dst: ~/.bash_profile
+        relink: true
+    - shell:
+        command: echo -e '\n export PATH=$PATH:$HOME/.dotfiles/bin' >> $HOME/.bashrc
+
+    # asdf
+    - shell:
+        command: git clone https://github.com/asdf-vm/asdf.git $ASDF_PATH --branch v0.7.6
+    - shell:
+        command: echo -e '\n. $HOME/.asdf/asdf.sh' >> $DOTFILES/bash/.local
+    - shell:
+        command: echo -e '\n. $HOME/.asdf/completions/asdf.bash' >> $DOTFILES/bash/.local
+    - shell:
+        command: ~/.asdf/bin/asdf plugin-add python
+
+    # tmux
+    - package:
+        name: tmux
+      link:
+          src: $DOTFILES/tmux/tmux.conf
+          dst: ~/.tmux.conf
+      shell:
+          command: git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+
+    # neovim
+    - package:
+        name: neovim
+      shell:
+          command: curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+      link:
+          src: $DOTFILES/nvim/init.vim
+          dst: ~/.config/nvim/init.vim
+    - link:
+        src: $DOTFILES/nvim/coc-settings.json
+        dst: ~/.config/nvim/coc-settings.json
+    - link:
+        src: $DOTFILES/nvim/ultisnips/go.snippets
+        dst: ~/.config/coc/ultisnips/go.snippets
+    - shell:
+        command: pip install --user python-language-server
+    - shell:
+        command: python -m venv ~/.config/nvim/venv
+    - shell:
+        command: ~/.config/nvim/venv/bin/python3 -m pip install pynvim
+    - shell:
+        command: npm i -g bash-language-server
+    - shell:
+        command: npm install -g dockerfile-language-server-nodejs
+    - shell:
+        command: nvim +PlugInstall +qall
+
+
+aur:
+    - shell:
+        command: yay brave 
+
+    - shell:
+        command: yay nerd-fonts-complete 
+
+    - shell:
+        command: yay paper-icon-theme
+
+    - shell:
+        command: yay postman-bin
+
+gui:
+    - package:
+        name: firefox
+    - package:
+        name: firefox-developer-edition
+
+    - package:
+        name: telegram-desktop
+
+    # TODO link files
+    - package:
+        name: vifm
+
+    - package:
+        name: tk
+
+    - package:
+        name: unclutter
+
+    # terminal
+    - package:
+        name: alacritty
+      link:
+          src: $DOTFILES/alacritty/alacritty.yml
+          dst: ~/.config/alacritty/alacritty.yml
+
+    # i3 gaps
+    - package:
+        name: i3-gaps
+      link:
+          src: $DOTFILES/i3/config
+          dst: ~/.config/i3/config
+
+    # i3 blocks
+    - package:
+        name: i3blocks
+      link:
+          src: $DOTFILES/i3blocks/config
+          dst: ~/.config/i3blocks/config
+      shell:
+          command: git clone https://github.com/vivien/i3blocks-contrib ~/.config/i3blocks
+
+    # rofi
+    - package:
+        name: rofi
+      link:
+          src: $DOTFILES/rofi/config
+          dst: ~/.config/rofi/config
+
+    # X
+    - link:
+        src: $DOTFILES/X/xinitrc
+        dst: ~/.xinitrc
