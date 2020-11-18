@@ -32,9 +32,8 @@ command=battery/battery
 interval=30
 
 [time]
-command=date '+ %Y-%m-%d %H:%M:%S'
+command=date '+%Y-%m-%d %H:%M:%S'
 interval=1
-label= 
 
 [shutdown_menu]
 full_text= 
