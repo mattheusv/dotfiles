@@ -114,6 +114,9 @@ aur:
 
 gui:
     - package:
+        name: arandr
+
+    - package:
         name: firefox
     - package:
         name: firefox-developer-edition
