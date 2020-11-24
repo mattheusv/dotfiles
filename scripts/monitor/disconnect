@@ -13,7 +13,7 @@ main() {
         monitor="$2"
     else
         monitors=$(xrandr --query | grep " connected" | cut -d" " -f1)
-        monitor=$(echo -e $monitors | tr " " "\n" | rofi -dmenu -i -lines 5 -p "Monitors")
+        monitor=$(echo -e $monitors | tr " " "\n" | dmenu -i -p "Monitors")
     fi
 
     if [ "$monitor" ]; then

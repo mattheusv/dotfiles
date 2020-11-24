@@ -157,12 +157,9 @@ gui:
       shell:
           command: git clone https://github.com/vivien/i3blocks-contrib ~/.config/i3blocks
 
-    # rofi
+    # dmenu
     - package:
-        name: rofi
-      link:
-          src: $DOTFILES/rofi/config
-          dst: ~/.config/rofi/config
+        name: dmenu
 
     # X
     - link:

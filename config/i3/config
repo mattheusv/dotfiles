@@ -45,8 +45,8 @@ bindsym Control+$mod+Delete exec dot dmenu shutdow_menu
 # kill focused window
 bindsym $mod+q kill
 
-# start rofi
-bindsym $mod+d exec rofi -show drun -columns 3
+# start dmenu
+bindsym $mod+d exec dmenu_run
 
 # change focus
 bindsym $mod+h focus left
