@@ -40,7 +40,7 @@ bindsym $mod+Shift+t exec i3lock -i ~/.lockscreen.png -p default -n
 bindsym Print exec xfce4-screenshooter
 
 # show shutdown menu
-bindsym Control+$mod+Delete exec ~/.config/i3blocks/shutdown_menu/shutdown_menu -c
+bindsym Control+$mod+Delete exec dot dmenu shutdow_menu
 
 # kill focused window
 bindsym $mod+q kill
