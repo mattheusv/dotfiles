@@ -14,8 +14,6 @@ for_window [class="^.*"] border pixel 2
 gaps inner $inner_gaps
 gaps outer $outer_gaps
 
-set $refresh_i3status pkill -RTMIN+10 i3blocks
-
 # ----- Bindings ----- #
 
 # Use Mouse+$mod to drag floating windows to their wanted position
@@ -135,9 +133,9 @@ bindsym $mod+Control+m mode "monitor"
 
 # ----- Workspace Setup ----- #
 
-set $ws1 "1:  "
-set $ws2 "2:  "
-set $ws3 "3:  "
+set $ws1 "1 "
+set $ws2 "2 "
+set $ws3 "3 "
 set $ws4 "4 "
 set $ws5 "5 "
 set $ws6 "6 "
@@ -225,19 +223,14 @@ mode "monitor" {
         bindsym $mod+Control+m mode "default"
 }
 
-bar {
-    status_command i3blocks
-    position top
-}
-
 # ----- XF86 Bindings ----- #
 
 # Volume config
 # Use pactl to adjust volume in PulseAudio.
-bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +1% && $refresh_i3status
-bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -1% && $refresh_i3status
-bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle && $refresh_i3status
-bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle && $refresh_i3status
+bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +1%
+bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -1%
+bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle
+bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle
 
 # screen brightness
 bindsym XF86MonBrightnessUp exec xbacklight -inc 10 # increase screen brightness
@@ -245,6 +238,9 @@ bindsym XF86MonBrightnessDown exec xbacklight -dec 10 # decrease screen brightne
 
 
 # ----- Startup programs ----- #
+
+# start polybar
+exec_always --no-startup-id ~/.dotfiles/config/polybar/launch.sh
 
 # define wallpaper
 exec_always --no-startup-id feh --bg-fill ~/.wallpaper.png
