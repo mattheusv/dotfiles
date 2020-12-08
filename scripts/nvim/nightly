@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+
+
+runtime=$HOME/.dotfiles/lib/neovim/runtime/
+config=$HOME/.dotfiles/config/nvim/init.nightly.vim
+bin=$HOME/.dotfiles/lib/neovim/build/bin/nvim
+
+VIMRUNTIME=$runtime $bin -u $config $@

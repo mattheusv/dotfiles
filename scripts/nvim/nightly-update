@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+
+
+cd ~/.dotfiles/lib/neovim
+git pull origin nightly
+make CMAKE_BUILD_TYPE=Release
