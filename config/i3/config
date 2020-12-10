@@ -38,7 +38,7 @@ bindsym $mod+Shift+t exec i3lock -i ~/.lockscreen.png -p default -n
 bindsym Print exec xfce4-screenshooter
 
 # show shutdown menu
-bindsym Control+$mod+Delete exec dot dmenu shutdow_menu
+bindsym Control+$mod+Delete exec dotf dmenu shutdow_menu
 
 # kill focused window
 bindsym $mod+q kill
@@ -203,16 +203,16 @@ mode "resize" {
 
 # Manage multi monitors
 mode "monitor" {
-        bindsym c exec --no-startup-id dot monitor extra --disconnect # Connect to new monitor and disconnect other
+        bindsym c exec --no-startup-id dotf monitor extra --disconnect # Connect to new monitor and disconnect other
 
-        bindsym h exec --no-startup-id dot monitor extra --right # Connect new monitor on right side
-        bindsym l exec --no-startup-id dot monitor extra --left # Connect new monitor on left side
+        bindsym h exec --no-startup-id dotf monitor extra --right # Connect new monitor on right side
+        bindsym l exec --no-startup-id dotf monitor extra --left # Connect new monitor on left side
 
         # same bindings, but for the arrow keys
-        bindsym Right exec --no-startup-id dot monitor extra --right # Connect new monitor on right side
-        bindsym Left exec --no-startup-id dot monitor extra --left # Connect new monitor on left side
+        bindsym Right exec --no-startup-id dotf monitor extra --right # Connect new monitor on right side
+        bindsym Left exec --no-startup-id dotf monitor extra --left # Connect new monitor on left side
 
-        bindsym d exec --no-startup-id dot monitor disconnect # Disconnect monitor (Rofi menu will be prompt to choose the monitor)
+        bindsym d exec --no-startup-id dotf monitor disconnect # Disconnect monitor (Rofi menu will be prompt to choose the monitor)
 
 
         bindsym m exec --no-startup-id arandr # Manual configuration

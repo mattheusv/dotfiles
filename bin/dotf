@@ -1,15 +1,15 @@
 #!/usr/bin/env bash
 
-#/ dot manager dot files configuration
+#/ dotf manager dot files configuration
 #/
 #/ Commands:
 #/  contexts | c  Show all available contexts
 #/
 #/ Usage:
-#/   dot <context> <cmd> <args>
+#/   dotf <context> <cmd> <args>
 #/
 #/ Example:
-#/   dot tmux reload
+#/   dotf tmux reload
 #/
 
 export HERE="$(cd $(dirname "$0")/.. && pwd)"
@@ -25,7 +25,7 @@ contexts() {
     for dir in $(ls $DOTFILES_SCRIPTS | sort); do
         echo "   "$dir
     done
-    echo -e "\nUse \"dot <context>\" to see available commands to context.\n"
+    echo -e "\nUse \"dotf <context>\" to see available commands to context.\n"
 }
 
 commands() {
@@ -34,23 +34,24 @@ commands() {
         | sort); do
         echo "   "$cmd
     done
-    echo -e "\nUse \"dot $1 <cmd> -h\" to see available arguments to command\n"
+    echo -e "\nUse \"dotf $1 <cmd> -h\" to see available arguments to command\n"
 }
 
 show_usage() {
-  echo "Usage: 'dot <context> <cmd> <args>'"
-  echo "Try 'dot --help' for more information."
+  echo "Usage: 'dotf <context> <cmd> <args>'"
+  echo "Try 'dotf --help' for more information."
 }
 
 show_unknown_command() {
   echo "ERROR: unknown command \"$1\""
-  echo "Try 'dot --help' for more information."
+  echo "Try 'dotf --help' for more information."
 }
 
 case "$1" in
     "contexts"  ) contexts; exit 0 ;;
     "c"         ) contexts; exit 0 ;;
     "-h"        ) show_help; exit 0 ;;
+    "--help"    ) show_help; exit 0 ;;
     ""          ) show_usage; exit 0 ;;
 esac
 
@@ -66,7 +67,7 @@ if [ ! -f "$DOTFILES_SCRIPTS/$1/$2" ]; then
     exit 0
 fi
 
-# execute dot <context> <cmd> <args>
+# execute dotf <context> <cmd> <args>
 if [ "$#" -gt 1 ]; then
     if [ "$3" == '-h' ]; then
         grep '^#/' < "$DOTFILES_SCRIPTS/$1/$2" | cut -c4-
