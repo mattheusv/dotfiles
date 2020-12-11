@@ -214,10 +214,6 @@ xnoremap J :move '>+1<CR>gv-gv
 vnoremap < <gv
 vnoremap > >gv
 
-"" Buffer nav
-noremap <leader>z :bp<CR>
-noremap <leader>x :bn<CR>
-
 "" Close buffer
 noremap <leader>c :bp<cr>:bd #<cr>
 
