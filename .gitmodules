@@ -1,0 +1,3 @@
+[submodule "lib/git-number"]
+	path = lib/git-number
+	url = https://github.com/holygeek/git-number

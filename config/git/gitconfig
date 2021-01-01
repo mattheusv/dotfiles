@@ -13,15 +13,19 @@
 	rebase = true
 
 [alias]
-	st = status -s
+	st = number -s
 	sst = status
 	aa = add .
+    a = number add
+    rs = number restore
 	cm = commit
 	cmm = commit -m
 	cma = commit -am
-	ck = checkout
+    si = switch
+	ck = number checkout
 	cka = checkout .
 	cko = checkout origin
+    df = number diff
 	ps = push
 	pso = push origin
 	pl = pull

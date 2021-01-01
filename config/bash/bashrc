@@ -27,6 +27,8 @@ export PATH="$HOME/.cargo/bin:$PATH"
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
 export FZF_DEFAULT_OPTS='--height 40% --layout=reverse --border'
 
+# git number bin
+export PATH=$HOME/.dotfiles/lib/git-number:$PATH
 
 # -- alias -- #
 alias \
