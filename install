@@ -153,7 +153,6 @@ DEV_PACKAGES=(
 
 GUI_PACKAGES=(
     'firefox'
-    'firefox-developer-edition'
     'telegram-desktop'
     'i3-gaps'
     'i3lock'
