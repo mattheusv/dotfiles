@@ -63,6 +63,8 @@ call plug#end()
 
 let mapleader=','
 
+set nowrap
+
 set splitbelow
 set splitright
 
