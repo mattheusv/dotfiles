@@ -1,3 +1,6 @@
 [submodule "lib/git-number"]
 	path = lib/git-number
 	url = https://github.com/holygeek/git-number
+[submodule "lib/neovim"]
+	path = lib/neovim
+	url = https://github.com/neovim/neovim/
