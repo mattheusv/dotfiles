@@ -4,3 +4,7 @@
 cd ~/.dotfiles/lib/neovim
 git pull origin nightly
 make CMAKE_BUILD_TYPE=Release
+
+cd ~/.dotfiles/
+git add lib/neovim
+git cmm "neovim-nightly: bump new version"
