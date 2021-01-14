@@ -37,6 +37,18 @@
 
 [core]
     editor = 'nvim'
+    pager = 'delta'
+
+[interactive]
+    diffFilter = delta --color-only
 
 [commit]
 	template = /home/matheus/.gitmessage
+
+[delta]
+    features = line-numbers decorations
+
+[delta "decorations"]
+    commit-decoration-style = bold yellow box ul
+    file-style = bold yellow ul
+    file-decoration-style = none
