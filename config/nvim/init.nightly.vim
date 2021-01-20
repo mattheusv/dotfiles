@@ -133,6 +133,8 @@ augroup END
 "" Visual Settings
 "*****************************************************************************
 
+let g:netrw_banner = 0
+
 set termguicolors
 
 " Line number
