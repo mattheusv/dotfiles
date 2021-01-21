@@ -56,118 +56,60 @@ Plug 'sebdah/vim-delve'
 
 call plug#end()
 
-
 "*****************************************************************************
 "" Basic Setup
 "*****************************************************************************"
-
 let mapleader=','
-
 set nowrap
-
 set splitbelow
 set splitright
-
 set fileformats=unix,dos,mac
-
-"" Tabs. May be overriten by autocmd rules
 set tabstop=4
 set softtabstop=0
 set shiftwidth=4
 set expandtab
-
-"" Enable hidden buffers
 set hidden
-
-"" Searching
 set hlsearch
 set incsearch
 set ignorecase
 set smartcase
-
-"" Directories for swp files
 set nobackup
 set nowritebackup
 set noswapfile
-
-" Enable folding
 set foldmethod=indent
 set foldlevel=99
-
-" Enable load .nvimrc files to specific projects
 set exrc
 set secure
-
-" Enable nvim copy allways to clipboard
 set clipboard+=unnamedplus
-
-" Better display for messages
 set cmdheight=2
-
-" You will have bad experience for diagnostic messages when it's default 4000.
 set updatetime=300
-
-" don't give |ins-completion-menu| messages.
 set shortmess+=c
-
 set mouse=a
-
-" Live Substitution
 set inccommand=split
 
-"" Autocmd to fix syntax highlight
-"" https://vim.fandom.com/wiki/Fix_syntax_highlighting
+"*****************************************************************************
+"" Autogroups
+"*****************************************************************************"
 augroup vimrc-sync-fromstart
   autocmd!
   autocmd BufEnter * :syntax sync fromstart
 augroup END
 
-"" Remember cursor position
 augroup vimrc-remember-cursor-position
   autocmd!
   autocmd BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g`\"" | endif
 augroup END
 
-
 "*****************************************************************************
 "" Visual Settings
 "*****************************************************************************
-
 let g:netrw_banner = 0
-
 set termguicolors
-
-" Line number
 set number
 set relativenumber
-
-" Highlighting in cursor line
 set cursorline
-
-" Visual color
-colorscheme gruvbox
 set bg=dark
-
-" IndentLine
-let g:indentLine_enabled = 1
-let g:indentLine_concealcursor = 0
-let g:indentLine_char = '┆'
-let g:indentLine_faster = 1
-
-" lightline.vim
-let g:lightline = {
-      \ 'active': {
-      \   'left': [ [ 'mode', 'paste' ],
-      \             [ 'gitbranch', 'readonly', 'relativepath', 'modified' ] ]
-      \ },
-      \   'right': [ [ 'lineinfo' ],
-      \              [ 'percent' ],
-      \              [ 'fileformat', 'fileencoding', 'filetype', 'charvaluehex' ] 
-      \ ],
-      \ 'component_function': {
-      \   'gitbranch': 'FugitiveHead'
-      \ },
-      \ }
+colorscheme gruvbox
 
 "*****************************************************************************
 "" Abbreviations
@@ -312,11 +254,25 @@ autocmd BufWrite *.rs : Format
 "" Plugins Custom configs
 "*****************************************************************************
 
-"" junegunn/fzf.vim
-let $FZF_DEFAULT_COMMAND = 'ag --hidden --ignore .git -g ""'
+let g:SimpylFold_docstring_preview = 1
 
-"SimpylFold config
-let g:SimpylFold_docstring_preview=1
-
-" vim-markdown-composer
 let g:markdown_composer_autostart = 0
+
+let g:indentLine_enabled = 1
+let g:indentLine_concealcursor = 0
+let g:indentLine_char = '┆'
+let g:indentLine_faster = 1
+
+let g:lightline = {
+      \ 'active': {
+      \   'left': [ [ 'mode', 'paste' ],
+      \             [ 'gitbranch', 'readonly', 'relativepath', 'modified' ] ]
+      \ },
+      \   'right': [ [ 'lineinfo' ],
+      \              [ 'percent' ],
+      \              [ 'fileformat', 'fileencoding', 'filetype', 'charvaluehex' ] 
+      \ ],
+      \ 'component_function': {
+      \   'gitbranch': 'FugitiveHead'
+      \ },
+      \ }
