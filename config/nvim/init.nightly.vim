@@ -230,7 +230,6 @@ let g:go_highlight_space_tab_error = 0
 let g:go_highlight_array_whitespace_error = 0
 let g:go_highlight_trailing_whitespace_error = 0
 let g:go_highlight_extra_types = 1
-let g:go_rename_command = "gopls"
 let g:go_echo_go_info = 0
 
 augroup go
@@ -238,13 +237,12 @@ augroup go
     au Filetype go command! -bang A call go#alternate#Switch(<bang>0, 'edit')
     au Filetype go command! -bang AV call go#alternate#Switch(<bang>0, 'vsplit')
     au Filetype go command! -bang AS call go#alternate#Switch(<bang>0, 'split')
-    au Filetype go command! -bang AT call go#alternate#Switch(<bang>0, 'tabe')
     au FileType go nmap <Leader>rt :GoTestFunc<CR>
     au FileType go nmap <Leader>dd <Plug>(go-def-vertical)
     au FileType go nmap <Leader>dv <Plug>(go-doc-vertical)
     au FileType go nmap <leader>t :GoDecls<CR>
     au FileType go nmap <leader>T :GoDeclsDir<CR>
-    au FileType go nnoremap <S-C-K> :GoInfo<CR>
+    au FileType go nnoremap <silent> <C-K> :GoInfo<CR>
 augroup END
 
 " Rust
