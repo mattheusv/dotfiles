@@ -136,6 +136,7 @@ set cursorline
 " Visual color
 colorscheme gruvbox
 set bg=dark
+set termguicolors
 
 "*****************************************************************************
 "" Abbreviations
