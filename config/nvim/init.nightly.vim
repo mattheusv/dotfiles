@@ -200,6 +200,7 @@ nnoremap <silent> td <cmd>lua vim.lsp.buf.type_definition()<CR>
 nnoremap <silent> gr <cmd>lua vim.lsp.buf.references()<CR>
 nnoremap <silent> gi <cmd>lua vim.lsp.buf.implementation()<CR>
 nnoremap <silent> <s-k> <cmd>lua vim.lsp.buf.hover()<CR>
+nnoremap <silent> <space>e <cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>
 nmap <silent> [g <cmd> lua vim.lsp.diagnostic.goto_prev()<CR>
 nmap <silent> ]g <cmd> lua vim.lsp.diagnostic.goto_next()<CR>
 
