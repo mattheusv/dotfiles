@@ -201,8 +201,8 @@ nnoremap <silent> gr <cmd>lua vim.lsp.buf.references()<CR>
 nnoremap <silent> gi <cmd>lua vim.lsp.buf.implementation()<CR>
 nnoremap <silent> <s-k> <cmd>lua vim.lsp.buf.hover()<CR>
 nnoremap <silent> <space>e <cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>
-nmap <silent> [g <cmd> lua vim.lsp.diagnostic.goto_prev()<CR>
-nmap <silent> ]g <cmd> lua vim.lsp.diagnostic.goto_next()<CR>
+nmap <silent> [d <cmd> lua vim.lsp.diagnostic.goto_prev()<CR>
+nmap <silent> ]d <cmd> lua vim.lsp.diagnostic.goto_next()<CR>
 
 command! -nargs=0 Format :lua vim.lsp.buf.formatting_sync(nil, 1000)
 
