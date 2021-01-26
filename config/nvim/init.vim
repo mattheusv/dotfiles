@@ -109,19 +109,18 @@ set shortmess+=c
 
 set mouse=a
 
-"" Autocmd to fix syntax highlight
-"" https://vim.fandom.com/wiki/Fix_syntax_highlighting
+"*****************************************************************************
+"" Autogroups
+"*****************************************************************************"
 augroup vimrc-sync-fromstart
   autocmd!
   autocmd BufEnter * :syntax sync fromstart
 augroup END
 
-"" Remember cursor position
 augroup vimrc-remember-cursor-position
   autocmd!
   autocmd BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g`\"" | endif
 augroup END
-
 
 "*****************************************************************************
 "" Visual Settings
@@ -137,27 +136,6 @@ set cursorline
 " Visual color
 colorscheme gruvbox
 set bg=dark
-
-" IndentLine
-let g:indentLine_enabled = 1
-let g:indentLine_concealcursor = 0
-let g:indentLine_char = '┆'
-let g:indentLine_faster = 1
-
-" lightline.vim
-let g:lightline = {
-      \ 'active': {
-      \   'left': [ [ 'mode', 'paste' ],
-      \             [ 'gitbranch', 'readonly', 'relativepath', 'modified' ] ]
-      \ },
-      \   'right': [ [ 'lineinfo' ],
-      \              [ 'percent' ],
-      \              [ 'fileformat', 'fileencoding', 'filetype', 'charvaluehex' ] 
-      \ ],
-      \ 'component_function': {
-      \   'gitbranch': 'FugitiveHead'
-      \ },
-      \ }
 
 "*****************************************************************************
 "" Abbreviations
@@ -229,7 +207,7 @@ nmap ]h <Plug>(GitGutterNextHunk)
 nmap [h <Plug>(GitGutterPrevHunk)
 
 "*****************************************************************************
-"" coc.nvim Mappings
+"" LSP (COC)
 "*****************************************************************************
 
 " Use tab for trigger completion with characters ahead and navigate.
@@ -266,10 +244,6 @@ nnoremap <silent> <S-K> :call <SID>show_documentation()<CR>
 nmap <silent> [g <Plug>(coc-diagnostic-prev-error)
 nmap <silent> ]g <Plug>(coc-diagnostic-next-error)
 
-"*****************************************************************************
-"" coc.nvim configuration
-"*****************************************************************************"
-
 " Global extensions
 let g:coc_global_extensions = [
     \ "coc-prettier",
@@ -288,10 +262,6 @@ command! -nargs=0 Format :call CocAction('format')
 
 " use `:OR` for organize import of current buffer
 command! -nargs=0 OR :call CocAction('runCommand', 'editor.action.organizeImport')
-
-"*****************************************************************************
-"" coc.nvim Functions
-"*****************************************************************************
 
 " coc check back space for auto completion
 function! s:check_back_space() abort
@@ -364,3 +334,25 @@ let g:SimpylFold_docstring_preview=1
 
 " vim-markdown-composer
 let g:markdown_composer_autostart = 0
+
+" IndentLine
+let g:indentLine_enabled = 1
+let g:indentLine_concealcursor = 0
+let g:indentLine_char = '┆'
+let g:indentLine_faster = 1
+
+" lightline.vim
+let g:lightline = {
+      \ 'active': {
+      \   'left': [ [ 'mode', 'paste' ],
+      \             [ 'gitbranch', 'readonly', 'relativepath', 'modified' ] ]
+      \ },
+      \   'right': [ [ 'lineinfo' ],
+      \              [ 'percent' ],
+      \              [ 'fileformat', 'fileencoding', 'filetype', 'charvaluehex' ] 
+      \ ],
+      \ 'component_function': {
+      \   'gitbranch': 'FugitiveHead'
+      \ },
+      \ }
+
