@@ -183,6 +183,19 @@ local function configure_maps()
     vim.api.nvim_set_keymap("n", "[h",  [[<Cmd> GitGutterPrevHunk<CR>]], opts)
 end
 
+local function configure_commands()
+    vim.api.nvim_command("command! CopyBuffer let @+ = expand('%:s')")
+end
+
+local function configure_treesitter()
+    require'nvim-treesitter.configs'.setup {
+        ensure_installed = "maintained",
+        highlight = {
+            enable = true,
+        },
+    }
+end
+
 function editor.setup()
     set_globals()
     set_options()
@@ -191,6 +204,8 @@ function editor.setup()
     set_colors()
     configure_statusbar()
     configure_maps()
+    configure_treesitter()
+    configure_commands()
 end
 
 return editor

@@ -25,6 +25,7 @@ Plug 'nvim-telescope/telescope.nvim'
 
 "" Color Theme
 Plug 'morhetz/gruvbox'
+Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 
 " Manage editoconfig files
 Plug 'editorconfig/editorconfig-vim'
