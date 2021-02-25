@@ -16,6 +16,8 @@
 	st = number -s
 	sst = status
 	aa = add .
+	au = add -u
+    amend = !git add -u && git commit --amend
     a = number add
     rs = number restore
 	cm = commit
