@@ -39,7 +39,6 @@ alias \
     pvv-sva="pvv && sva" \
     grep="grep --color=auto" \
     diff="diff --color=auto" \
-    nvim-nightly="$HOME/.dotfiles/scripts/nvim/nightly" \
 
 # Load specific configurations per system
 if [ -e $HOME/.dotfiles/config/bash/.local ]; then
