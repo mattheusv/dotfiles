@@ -104,9 +104,16 @@ local on_attach = function(client, bufnr)
 end
 
 local function setup_servers()
-    local servers = {"gopls", "rust_analyzer", "jedi_language_server", "tsserver"}
-    for _, server in pairs(servers) do
-        nvim_lsp[server].setup{on_attach = on_attach}
+    local gopls_debug_cfg = {
+        -- cmd = {"gopls", "-remote", "localhost:8888"},
+    }
+
+    local servers = {gopls =  gopls_debug_cfg, rust_analyzer = {}, jedi_language_server = {}, tsserver = {}, clangd = {}}
+    for server, config in pairs(servers) do
+        config = config or {}
+        config.on_attach = on_attach
+
+        nvim_lsp[server].setup(config)
     end
 end
 
