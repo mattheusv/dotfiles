@@ -1,6 +1,13 @@
 #!/usr/bin/env bash
 
+NEOVIM_PATH=$HOME/.dotfiles/lib/neovim
 
-cd ~/.dotfiles/lib/neovim
+if [ ! -d $NEOVIM_PATH ]; then
+    echo "Neovim not found, cloning..."
+    git clone https://github.com/neovim/neovim $NEOVIM_PATH
+fi
+
+cd $NEOVIM_PATH
+git checkout nightly
 git pull origin nightly
 make CMAKE_BUILD_TYPE=Release
