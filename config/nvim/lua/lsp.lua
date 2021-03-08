@@ -13,8 +13,6 @@ local function set_options()
 end
 
 local function setup_vimgo()
-    local opts = {noremap = true, silent = true}
-
     vim.g.go_list_type = "quickfix"
     vim.g.go_fmt_command = "goimports"
     vim.g.go_fmt_fail_silently = true
@@ -54,7 +52,7 @@ local on_attach = function(client, bufnr)
   vim.api.nvim_command([[inoremap <expr> <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<S-Tab>"]])
 
   -- Mappings.
-  buf_set_keymap("i", "<c-space>", "completion#trigger_completion()", opts_expr) 
+  buf_set_keymap("i", "<c-space>", "completion#trigger_completion()", opts_expr)
   buf_set_keymap('n', '<leader>rn', '<cmd>lua vim.lsp.buf.rename()<CR>', opts)
   buf_set_keymap('n', 'gd', '<Cmd>lua vim.lsp.buf.definition()<CR>', opts)
   buf_set_keymap('n', 'gD', '<Cmd>lua vim.lsp.buf.declaration()<CR>', opts)
@@ -108,7 +106,31 @@ local function setup_servers()
         -- cmd = {"gopls", "-remote", "localhost:8888"},
     }
 
-    local servers = {gopls =  gopls_debug_cfg, rust_analyzer = {}, jedi_language_server = {}, tsserver = {}, clangd = {}}
+    local html_capabilities = vim.lsp.protocol.make_client_capabilities()
+    html_capabilities.textDocument.completion.completionItem.snippetSupport = true
+
+    local servers = {
+        gopls =  gopls_debug_cfg,
+        rust_analyzer = {},
+        jedi_language_server = {},
+        tsserver = {},
+        clangd = {},
+        bashls = {},
+        dockerls = {},
+        html = {capabilities = html_capabilities},
+        yamlls = {},
+        vimls = {},
+        sumneko_lua = {
+            cmd = {"lua-language-server"}, -- Installed bin with `paru lua-language-server`
+            settings = {
+                Lua = {
+                    diagnostics = {
+                        globals = {"vim"}
+                    },
+                }
+            }
+        },
+    }
     for server, config in pairs(servers) do
         config = config or {}
         config.on_attach = on_attach
