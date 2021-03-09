@@ -101,16 +101,22 @@ local on_attach = function(client, bufnr)
 
 end
 
-local function setup_servers()
-    local gopls_debug_cfg = {
-        -- cmd = {"gopls", "-remote", "localhost:8888"},
-    }
+local function gopls_config()
+    local gopls_remote = os.getenv("GOPLS_REMOTE")
+    if gopls_remote == "1" then
+        return {
+            cmd = {"gopls", "-remote", "localhost:8888"}
+        }
+    end
+    return {}
+end
 
+local function setup_servers()
     local html_capabilities = vim.lsp.protocol.make_client_capabilities()
     html_capabilities.textDocument.completion.completionItem.snippetSupport = true
 
     local servers = {
-        gopls =  gopls_debug_cfg,
+        gopls =  gopls_config(),
         rust_analyzer = {},
         jedi_language_server = {},
         tsserver = {},
