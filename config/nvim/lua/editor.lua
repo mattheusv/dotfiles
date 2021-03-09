@@ -3,11 +3,11 @@ local editor = {}
 local function set_globals()
     vim.g.mapleader = ","
     vim.g.netrw_banner = false
-    vim.g.nowrap = true 
+    vim.g.nowrap = true
     vim.g.diagnostic_insert_delay = true
-    vim.g.nobackup = true 
-    vim.g.nowritebackup = true 
-    vim.g.noswapfile = true 
+    vim.g.nobackup = true
+    vim.g.nowritebackup = true
+    vim.g.noswapfile = true
     vim.g.python3_host_prog = '~/.config/nvim/venv/bin/python3'
 
     -- Plugins options
@@ -46,8 +46,8 @@ local function set_options()
     vim.o.incsearch = true
     vim.o.ignorecase = true
     vim.o.smartcase = true
-    vim.o.backup = false 
-    vim.o.writebackup = false 
+    vim.o.backup = false
+    vim.o.writebackup = false
     vim.o.foldmethod = "indent"
     vim.o.foldlevel = 99
     vim.o.exrc = true
