@@ -1,8 +1,6 @@
 #!/bin/bash -e
 
 INIT_VIM=$HOME/.config/nvim/init.vim
-COC_SETTINGS=$HOME/.config/nvim/coc-settings.json
-COC_SNIPPETS=$HOME/.config/coc/ultisnips
 
 if [ ! -e "$INIT_VIM" ]; then
     mkdir -p $HOME/.config/nvim/
@@ -14,22 +12,13 @@ if [ ! -f "~/.local/share/nvim/site/autoload/plug.vim"  ]; then
 fi
 ln -s $DOTFILES/nvim/init.vim $INIT_VIM
 
-# setup coc settings
-if [ ! -e "$COC_SETTINGS" ]; then
-    ln -s $DOTFILES/nvim/coc-settings.json $COC_SETTINGS
-fi
-
-# setup coc snippets
-if [ ! -d "$COC_SNIPPETS" ]; then
-    mkdir -p $COC_SNIPPETS
-fi
-if [ ! -e "$COC_SNIPPETS"/go.snippets ]; then
-    ln -s $DOTFILES/nvim/ultisnips/go.snippets $COC_SNIPPETS/go.snippets
-fi
+# Install neovim lsp
+./scripts/nvim/nightly-update
 
 # Install python lsp
-pip install --user python-language-server
+pip install --user jedi-language-server
 python -m venv ~/.config/nvim/venv
+~/.config/nvim/venv/bin/pip install -U pip
 ~/.config/nvim/venv/bin/pip install pynvim
 
 # Install bash lsp
@@ -37,5 +26,11 @@ npm i -g bash-language-server
 
 # Install docker lsp
 npm install -g dockerfile-language-server-nodejs
+
+# Instal vim lsp
+npm install -g vim-language-server
+
+# Install yaml language server
+npm install -g yaml-language-server
 
 # nvim +PlugInstall +qall # TODO check why generate error reading from input
