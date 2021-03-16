@@ -38,7 +38,6 @@ alias \
     pvv="python -m venv venv" \
     pvv-sva="pvv && sva" \
     v="nvim" \
-    vf="vifm" \
     grep="grep --color=auto" \
     diff="diff --color=auto" \
     nvim-nightly="$HOME/.dotfiles/scripts/nvim/nightly" \

@@ -158,7 +158,6 @@ GUI_PACKAGES=(
     'i3lock'
     'i3blocks'
     'rofi'
-    'vifm'
     'tk'
     'libffi'
     'alacritty'

@@ -125,10 +125,6 @@ gui:
     - package:
         name: telegram-desktop
 
-    # TODO link files
-    - package:
-        name: vifm
-
     - package:
         name: tk
 
