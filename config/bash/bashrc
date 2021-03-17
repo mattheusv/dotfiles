@@ -37,7 +37,6 @@ alias \
     sva="source venv/bin/activate" \
     pvv="python -m venv venv" \
     pvv-sva="pvv && sva" \
-    v="nvim" \
     grep="grep --color=auto" \
     diff="diff --color=auto" \
     nvim-nightly="$HOME/.dotfiles/scripts/nvim/nightly" \
