@@ -57,6 +57,9 @@ Plug 'raimon49/requirements.txt.vim', {'for': 'requirements'}
 Plug 'fatih/vim-go', {'do': ':GoInstallBinaries'}
 Plug 'sebdah/vim-delve'
 
+" Fish
+Plug 'dag/vim-fish'
+
 call plug#end()
 
 lua require('init')
