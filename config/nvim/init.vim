@@ -44,6 +44,10 @@ Plug 'euclio/vim-markdown-composer', { 'do': function('BuildComposer') }
 " File tree
 Plug 'preservim/nerdtree'
 
+" Nice icons
+Plug 'ryanoasis/vim-devicons'
+Plug 'kyazdani42/nvim-web-devicons'
+
 "*****************************************************************************
 "" Custon Plugs
 "*****************************************************************************"
