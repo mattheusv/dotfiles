@@ -183,6 +183,9 @@ local function configure_maps()
     vim.api.nvim_set_keymap("n", "<leader>q", [[<Cmd> lua require('telescope.builtin').buffers()<CR>]], opts)
     configure_telescope_maps()
 
+    -- Tree maps
+    vim.api.nvim_set_keymap("n", "<C-b>",  [[:NERDTreeFind<CR>]], opts)
+
     -- Git maps
     vim.api.nvim_set_keymap("n", "<leader>gs", [[<Cmd> G<CR>]], opts)
     vim.api.nvim_set_keymap("n", "<leader>gd", [[<Cmd> Gdiffsplit<CR>]], opts)

@@ -41,6 +41,9 @@ function! BuildComposer(info)
 endfunction
 Plug 'euclio/vim-markdown-composer', { 'do': function('BuildComposer') }
 
+" File tree
+Plug 'preservim/nerdtree'
+
 "*****************************************************************************
 "" Custon Plugs
 "*****************************************************************************"
