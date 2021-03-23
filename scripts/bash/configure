@@ -1,0 +1,6 @@
+#!/bin/bash -e
+
+
+ln -s $DOTFILES/bash/bash_profile $HOME/.bash_profile
+echo -e "\n . <(cat $DOTFILES/bash/bashrc)" >> $HOME/.bashrc
+echo -e '\n export PATH=$PATH:$HOME/.dotfiles/bin' >> $HOME/.bashrc
