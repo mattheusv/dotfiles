@@ -2,17 +2,7 @@
 
 ## Installation
   ```
-  git clone https://github.com/msAlcantara/dotfiles $HOME/.dotfiles
+  git clone git@github.com:msAlcantara/dotfiles.git --recurse-submodules $HOME/.dotfiles && cd ~/.dotfiles
 
-  $HOME/.dotfiles/install <config> # $HOME/.dotfiles/install -h to list configs
-  ```
-
-## Usage
-  ```
-  dot <context> <cmd> <args>...  # dot tmux reload, for example
-  ```
-
-## Help
-  ```
-  dot -h
+  make help
   ```
