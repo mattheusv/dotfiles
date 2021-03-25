@@ -26,3 +26,8 @@ end
 
 function fish_greeting
 end
+
+# https://github.com/fish-shell/fish-shell/issues/7841
+function fish_command_not_found
+    __fish_default_command_not_found_handler $argv
+end
