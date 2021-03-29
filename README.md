@@ -2,7 +2,9 @@
 
 ## Installation
   ```
-  git clone git@github.com:msAlcantara/dotfiles.git --recurse-submodules $HOME/.dotfiles && cd ~/.dotfiles
+  git clone https://github.com/msalcantara/dotfiles --recurse-submodules $HOME/.dotfiles 
 
-  make help
+  cd ~/.dotfiles
+
+  make
   ```
