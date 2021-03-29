@@ -112,13 +112,7 @@ aur:
     - shell:
         command: yay postman-bin
 
-    - shell:
-        command: yay polybar
-
 gui:
-    - package:
-        name: arandr
-
     - package:
         name: firefox
 
@@ -137,29 +131,6 @@ gui:
       link:
           src: $DOTFILES/alacritty/alacritty.yml
           dst: ~/.config/alacritty/alacritty.yml
-
-    # i3 gaps
-    - package:
-        name: i3-gaps
-      link:
-          src: $DOTFILES/i3/config
-          dst: ~/.config/i3/config
-
-    # i3 blocks
-    - package:
-        name: i3blocks
-      link:
-          src: $DOTFILES/i3blocks/config
-          dst: ~/.config/i3blocks/config
-      shell:
-          command: git clone https://github.com/vivien/i3blocks-contrib ~/.config/i3blocks
-
-    # rofi
-    - package:
-        name: rofi
-      link:
-          src: $DOTFILES/rofi/config
-          dst: ~/.config/rofi/config
 
     # X
     - link:

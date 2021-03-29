@@ -10,7 +10,7 @@ pacman-install-gui-packages: ## Install gui packages
 	pacman -S - < ./scripts/pacman/gui-packages
 
 configure-all: ## Configure all configs
-	configure-bash configure-git configure-i3 configure-nvim configure-terminal configure-tmux configure-X
+	configure-bash configure-git configure-nvim configure-terminal configure-tmux configure-X
 
 configure-asdf: ## Configure and install languages
 	DOTFILES=$(DOTFILES) ./scripts/asdf/configure
@@ -20,9 +20,6 @@ configure-bash: ## Configure bash config files
 
 configure-git: ## Configure git config files
 	DOTFILES=$(DOTFILES) ./scripts/git/configure
-
-configure-i3: ## Configure i3 config files
-	DOTFILES=$(DOTFILES) ./scripts/i3/configure
 
 configure-nvim: ## Configure neovim config files
 	DOTFILES=$(DOTFILES) ./scripts/nvim/configure

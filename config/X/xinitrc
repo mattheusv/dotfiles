@@ -46,5 +46,5 @@ if type "xrandr"; then
     unclutter &
 fi
 
-# start i3
-exec i3
+# start xfce4
+exec startxfce4
