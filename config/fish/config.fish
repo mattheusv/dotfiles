@@ -18,6 +18,12 @@ function fish_user_key_bindings
   # ctrl-del
   bind \e\[3\;5~ kill-word
 
+  # Configure fzf bindings
+  if test -e ~/.fzf/shell/key-bindings.fish
+    source ~/.fzf/shell/key-bindings.fish  
+    fzf_key_bindings
+  end
+
   # Load bindings to specific machines
   if functions -q local_bindings
 		local_bindings
