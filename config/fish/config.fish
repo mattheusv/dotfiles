@@ -1,3 +1,29 @@
+# GOLANG ENVs
+if type -q "go"
+    set -a PATH /usr/local/go/bin
+    set -g GOBIN (go env GOPATH)/bin
+    set -g GO111MODULE on
+    set -a -g PATH $GOBIN
+end
+
+# Python ENVs
+set -a PATH $HOME/.local/bin
+
+# Rust Envs
+set -a PATH $HOME/.cargo/bin
+
+# Fzf
+set -g FZF_DEFAULT_OPTS '--height 40% --layout=reverse --border'
+
+# git number bin
+set -a PATH $HOME/.dotfiles/lib/git-number
+
+# asdf
+if test -e ~/.asdf/
+    source $HOME/.asdf/asdf.fish
+    source $HOME/.asdf/completions/asdf.fish
+end
+
 function fish_prompt
     if test -n "$SSH_TTY"
         echo -n (set_color brred)"$USER"(set_color white)'@'(set_color yellow)(prompt_hostname)' '
