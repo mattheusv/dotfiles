@@ -4,7 +4,7 @@ DOTFILES=~/.dotfiles/config
 default: help;
 
 pacman-install-dev-packages: ## Install dev packages
-	pacman -S - < ./scripts/pacman/dev-packages
+	pacman --noconfirm -S - < ./scripts/pacman/dev-packages
 
 pacman-install-gui-packages: ## Install gui packages
 	pacman -S - < ./scripts/pacman/gui-packages
