@@ -1,0 +1,11 @@
+#!/bin/bash -e
+
+
+FISH_CONFIG=$HOME/.config/fish/
+
+if [ ! -d "$FISH_CONFIG" ]; then
+    mkdir -p $FISH_CONFIG
+fi
+
+ln -s $DOTFILES/fish/config.fish $HOME/.config/fish/fish.config
+ln -s $DOTFILES/fish/fish_variables $HOME/.config/fish/fish_variables

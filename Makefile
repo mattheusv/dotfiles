@@ -18,6 +18,9 @@ configure-asdf: ## Configure and install languages
 configure-bash: ## Configure bash config files
 	DOTFILES=$(DOTFILES) ./scripts/bash/configure
 
+configure-fish: ## Configure fish config files
+	DOTFILES=$(DOTFILES) ./scripts/fish/configure
+
 configure-git: ## Configure git config files
 	DOTFILES=$(DOTFILES) ./scripts/git/configure
 
