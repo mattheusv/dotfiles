@@ -1,5 +1,0 @@
-#/bin/bash -e
-
-
-ln -s $DOTFILES/git/gitconfig $HOME/.gitconfig
-ln -s $DOTFILES/git/gitmessage $HOME/.gitmessage

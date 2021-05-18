@@ -1,0 +1,125 @@
+#!/bin/bash -e
+
+ASDF_BIN=$ASDF_PATH/bin/asdf
+
+
+exists() {
+  command -v "$1" >/dev/null 2>&1
+}
+
+configure_asdf() {
+    ASDF_PATH=~/.asdf
+    if [ ! -d $ASDF_PATH  ]; then
+        git clone https://github.com/asdf-vm/asdf.git $ASDF_PATH --branch v0.8.0 -q
+        echo -e '\n. $HOME/.asdf/asdf.sh' >> $DOTFILES/bash/.local
+        echo -e '\n. $HOME/.asdf/completions/asdf.bash' >> $DOTFILES/bash/.local
+    fi
+}
+
+configure_nodejs() {
+    if ! exists node; then
+        echo "Installing Nodejs"
+        $ASDF_BIN plugin-add nodejs
+        $ASDF_BIN install nodejs lts
+        $ASDF_BIN global nodejs lts
+    fi
+}
+
+configure_go() {
+    if ! exists go; then
+        echo "Installing Go"
+        wget -q https://golang.org/dl/go1.16.4.linux-amd64.tar.gz
+        sudo tar -C /usr/local -xzf go1.16.4.linux-amd64.tar.gz
+    fi
+}
+
+configure_rust() {
+    if ! exists cargo; then
+        curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+    fi
+}
+
+configure_languages() {
+    configure_asdf
+    configure_nodejs
+    configure_go
+    configure_rust
+}
+
+configure_editor() {
+    VIM_PLUG=$HOME/.local/share/nvim/site/autoload/plug.vim
+    NVIM_CONFIG=$HOME/.config/nvim
+    NVIM_CONFIG_LUA=$HOME/.config/nvim/lua
+    INIT_VIM=$NVIM_CONFIG/init.vim
+    INIT_LUA=$NVIM_CONFIG_LUA/init.lua
+    LSP_LUA=$NVIM_CONFIG_LUA/lsp.lua
+    EDITOR_LUA=$NVIM_CONFIG_LUA/editor.lua
+
+
+    if [ ! -d "$NVIM_CONFIG" ]; then
+        mkdir -p $NVIM_CONFIG
+    fi
+
+    if [ ! -f $VIM_PLUG ]; then
+        echo "Installing vim plug"
+        curl -q -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs \
+            https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+    fi
+
+    if [ ! -d $NVIM_CONFIG_LUA ]; then
+        mkdir -p $NVIM_CONFIG_LUA
+    fi
+
+    if [ ! -f $INIT_VIM ];then 
+        ln -s $DOTFILES/nvim/init.vim $INIT_VIM
+    fi
+
+    if [ ! -f $INIT_LUA ];then 
+        ln -s $DOTFILES/nvim/lua/init.lua $INIT_LUA
+    fi
+
+    if [ ! -f $LSP_LUA ];then 
+        ln -s $DOTFILES/nvim/lua/lsp.lua $LSP_LUA
+    fi
+
+    if [ ! -f $EDITOR_LUA ];then 
+        ln -s $DOTFILES/nvim/lua/editor.lua $EDITOR_LUA
+    fi
+
+    # Install neovim lsp
+    if ! exists nvim; then
+        echo "Installing Neovim"
+        ./scripts/nvim/nightly-update
+
+        # Install python lsp
+        pip install --user jedi-language-server
+        python3 -m venv ~/.config/nvim/venv
+        ~/.config/nvim/venv/bin/pip install -U pip
+        ~/.config/nvim/venv/bin/pip install pynvim
+
+        # Install lsp servers
+        npm i -g bash-language-server dockerfile-language-server-nodejs vim-language-server yaml-language-server
+
+        nvim +PlugInstall +qall
+    fi
+}
+
+install_tools() {
+    OS=$(awk -F= '/^NAME/{print $2}' /etc/os-release)
+
+    if [ "$OS" = "\"Arch Linux\"" ]; then
+        echo "Installing Arch Linux development tools..."
+        sudo pacman -S - < ./scripts/dev-packages.archlinux
+    else
+        echo "Installing Debian development tools..."
+        sudo apt install $(cat ./scripts/dev-packages.debian)
+    fi
+}
+
+configure_dev() {
+    install_tools
+    configure_languages
+    configure_editor
+}
+
+configure_dev

@@ -1,0 +1,101 @@
+#!/bin/bash -e
+
+configure_terminal() {
+    ALACRITTY_PATH=~/.config/alacritty/
+    ALACRITTY_FILE=$ALACRITTY_PATH/alacritty.yml
+    if [ ! -d $ALACRITTY_PATH ]; then
+        mkdir -p $ALACRITTY_PATH
+    fi
+    if [ ! -e $ALACRITTY_FILE ]; then
+        echo "Configurating alacrity config file"
+        ln -s $DOTFILES/alacritty/alacritty.yml $ALACRITTY_PATH/alacritty.yml
+    fi
+}
+
+configure_bash(){
+    BASH_PROFILE=$HOME/.bash_profile
+    if [ ! -e $BASH_PROFILE ]; then
+        echo "Configurating bash profile config file"
+        ln -s $DOTFILES/bash/bash_profile $HOME/.bash_profile
+        echo -e "\n . <(cat $DOTFILES/bash/bashrc)" >> $HOME/.bashrc
+        echo -e '\n export PATH=$PATH:$HOME/.dotfiles/bin' >> $HOME/.bashrc
+    fi
+}
+
+configure_fish() {
+    FISH_CONFIG=$HOME/.config/fish/
+    FISH_FILE=$FISH_CONFIG/config.fish
+    FISH_VARIBLES=$FISH_CONFIG/fish_variables
+
+    if [ ! -d "$FISH_CONFIG" ]; then
+        mkdir -p $FISH_CONFIG
+    fi
+
+    if [ ! -e "$FISH_FILE" ]; then
+        echo "Configurating fish config file"
+        ln -s $DOTFILES/fish/config.fish $FISH_FILE
+    fi
+
+    if [ ! -e "$FISH_VARIBLES" ]; then
+        echo "Configurating fish variables file"
+        ln -s $DOTFILES/fish/fish_variables $FISH_VARIBLES
+    fi
+
+}
+
+configure_git() {
+    GIT_CONFIG=$HOME/.gitconfig
+    GIT_MESSAGE=$HOME/.gitmessage
+
+    if [ ! -e $GIT_CONFIG ]; then
+        echo "Configurating git config file"
+        ln -s $DOTFILES/git/gitconfig $GIT_CONFIG
+    fi
+
+    if [ ! -e $GIT_MESSAGE ]; then
+        echo "Configurating git message file"
+        ln -s $DOTFILES/git/gitmessage $GIT_MESSAGE
+    fi
+
+}
+
+configure_tmux() {
+    TPM_PATH=~/.tmux/plugins/tpm
+    TMUX_CONF=$HOME/.tmux.conf
+
+    if [ ! -d $TPM_PATH ]; then
+        git clone https://github.com/tmux-plugins/tpm $TPM_PATH
+    fi
+
+    if [ ! -e $TMUX_CONF ]; then
+        echo "Configurating tmux config file"
+        ln -s $DOTFILES/tmux/tmux.conf $HOME/.tmux.conf
+    fi
+}
+
+install_packages() {
+    OS=$(awk -F= '/^NAME/{print $2}' /etc/os-release)
+
+    if [ "$OS" = "\"Arch Linux\"" ]; then
+        echo "Installing Arch Linux packages..."
+        sudo pacman -S - < ./scripts/base-packages.archlinux
+    else
+        echo "Installing Debian packages..."
+        sudo apt install $(cat ./scripts/base-packages.debian)
+    fi
+
+}
+
+configure_base(){
+    echo "Using $DOTFILES as dotfiles config directory"
+    install_packages
+    configure_terminal
+    configure_bash
+    configure_fish
+    configure_git
+    configure_tmux
+    echo "Finish with sucessful"
+}
+
+
+configure_base
