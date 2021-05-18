@@ -1,10 +1,8 @@
 # GOLANG ENVs
-if type -q "go"
-    set -a PATH /usr/local/go/bin
-    set -g GOBIN (go env GOPATH)/bin
-    set -g GO111MODULE on
-    set -a -g PATH $GOBIN
-end
+set -a PATH /usr/local/go/bin
+set -g GOBIN (go env GOPATH)/bin
+set -g GO111MODULE on
+set -a -g PATH $GOBIN
 
 # Python ENVs
 set -a PATH $HOME/.local/bin
