@@ -45,7 +45,9 @@ function fish_user_key_bindings
   # Configure fzf bindings
   if test -e ~/.fzf/shell/key-bindings.fish
     source ~/.fzf/shell/key-bindings.fish  
-    fzf_key_bindings
+  end
+  if type fzf_key_bindings &> /dev/null
+      fzf_key_bindings
   end
 
   # Load bindings to specific machines
