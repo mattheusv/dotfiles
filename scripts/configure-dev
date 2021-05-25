@@ -1,5 +1,6 @@
 #!/bin/bash -e
 
+ASDF_PATH=~/.asdf
 ASDF_BIN=$ASDF_PATH/bin/asdf
 
 
@@ -8,11 +9,11 @@ exists() {
 }
 
 configure_asdf() {
-    ASDF_PATH=~/.asdf
     if [ ! -d $ASDF_PATH  ]; then
         git clone https://github.com/asdf-vm/asdf.git $ASDF_PATH --branch v0.8.0 -q
         echo -e '\n. $HOME/.asdf/asdf.sh' >> $DOTFILES/bash/.local
         echo -e '\n. $HOME/.asdf/completions/asdf.bash' >> $DOTFILES/bash/.local
+        source ~/.bashrc
     fi
 }
 
