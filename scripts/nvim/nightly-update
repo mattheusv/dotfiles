@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+set -e
+
 NEOVIM_PATH=$HOME/.dotfiles/lib/neovim
 
 if [ ! -d $NEOVIM_PATH ]; then
