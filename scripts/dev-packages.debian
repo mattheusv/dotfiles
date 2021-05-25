@@ -1,2 +1,13 @@
 python3-pip
 build-essential
+ninja-build 
+gettext
+libtool
+libtool-bin
+autoconf
+automake
+cmake
+g++
+pkg-config
+unzip
+python3-venv
