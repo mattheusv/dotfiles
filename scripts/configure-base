@@ -81,6 +81,7 @@ install_packages() {
         sudo pacman -S - < ./scripts/base-packages.archlinux
     else
         echo "Installing Debian packages..."
+        sudo add-apt-repository ppa:mmstick76/alacritty
         sudo apt install $(cat ./scripts/base-packages.debian)
     fi
 
