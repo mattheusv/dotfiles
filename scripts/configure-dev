@@ -99,7 +99,8 @@ configure_editor() {
         ~/.config/nvim/venv/bin/pip install pynvim
 
         # Install lsp servers
-        npm i -g bash-language-server dockerfile-language-server-nodejs vim-language-server yaml-language-server
+        npm i -g bash-language-server dockerfile-language-server-nodejs vim-language-server \
+            yaml-language-server typescript-language-server
 
         nvim +PlugInstall +qall
     fi
