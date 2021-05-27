@@ -11,3 +11,5 @@ g++
 pkg-config
 unzip
 python3-venv
+ripgrep
+clangd
