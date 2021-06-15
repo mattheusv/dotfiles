@@ -9,6 +9,7 @@ local function set_globals()
     vim.g.nowritebackup = true
     vim.g.noswapfile = true
     vim.g.python3_host_prog = '~/.config/nvim/venv/bin/python3'
+    vim.g.markdown_fenced_languages = { 'go', 'rust', 'python', 'vim' }
 
     -- Plugins options
     vim.g.SimpylFold_docstring_preview = true
