@@ -65,6 +65,7 @@ local function set_options()
     vim.o.cursorline = true
     vim.wo.number = true
     vim.wo.relativenumber = true
+    vim.o.colorcolumn = "120"
 end
 
 local function set_abbreviations()
