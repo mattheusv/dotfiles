@@ -45,18 +45,11 @@ configure_fish() {
 
 configure_git() {
     GIT_CONFIG=$HOME/.gitconfig
-    GIT_MESSAGE=$HOME/.gitmessage
 
     if [ ! -e $GIT_CONFIG ]; then
         echo "Configurating git config file"
         ln -s $DOTFILES/git/gitconfig $GIT_CONFIG
     fi
-
-    if [ ! -e $GIT_MESSAGE ]; then
-        echo "Configurating git message file"
-        ln -s $DOTFILES/git/gitmessage $GIT_MESSAGE
-    fi
-
 }
 
 configure_tmux() {

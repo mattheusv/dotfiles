@@ -44,9 +44,6 @@
 [interactive]
     diffFilter = delta --color-only
 
-[commit]
-	template = /home/matheus/.gitmessage
-
 [delta]
     features = line-numbers decorations
 
