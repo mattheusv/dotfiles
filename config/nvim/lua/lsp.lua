@@ -80,9 +80,9 @@ local on_attach = function(client, bufnr)
   -- Set autocommands and maps to document highlight
   if client.resolved_capabilities.document_highlight then
     vim.api.nvim_exec([[
-      highlight LspReferenceRead guibg=#98971a  guifg=#282828
-      highlight LspReferenceText guibg=#98971a guifg=#282828
-      highlight LspReferenceWrite guibg=#98971a guifg=#282828
+      highlight LspReferenceRead cterm=bold ctermbg=red guibg=#464646
+      highlight LspReferenceText cterm=bold ctermbg=red guibg=#464646
+      highlight LspReferenceWrite cterm=bold ctermbg=red guibg=#464646
       autocmd CursorMoved <buffer> lua vim.lsp.buf.clear_references()
     ]], false)
     buf_set_keymap("n", "<space>h", "<Cmd> lua vim.lsp.buf.document_highlight()<CR>", opts)
