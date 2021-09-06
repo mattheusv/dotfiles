@@ -83,6 +83,7 @@ local on_attach = function(client, bufnr)
       highlight LspReferenceRead cterm=bold ctermbg=red guibg=#464646
       highlight LspReferenceText cterm=bold ctermbg=red guibg=#464646
       highlight LspReferenceWrite cterm=bold ctermbg=red guibg=#464646
+      autocmd CursorHold <buffer> lua vim.lsp.buf.document_highlight()
       autocmd CursorMoved <buffer> lua vim.lsp.buf.clear_references()
     ]], false)
     buf_set_keymap("n", "<space>h", "<Cmd> lua vim.lsp.buf.document_highlight()<CR>", opts)
