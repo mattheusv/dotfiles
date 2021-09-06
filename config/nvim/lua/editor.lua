@@ -188,6 +188,7 @@ local function configure_maps()
 
     -- Tree maps
     vim.api.nvim_set_keymap("n", "<C-b>",  [[:NERDTreeFind<CR>]], opts)
+    vim.g.NERDTreeWinPos = "right"
 
     -- Git maps
     vim.api.nvim_set_keymap("n", "<leader>gs", [[<Cmd> G<CR>]], opts)
