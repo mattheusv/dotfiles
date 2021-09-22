@@ -5,7 +5,7 @@ fzf
 the_silver_searcher
 xclip
 git
-gitk
+git-delta
 tmux
 fish
 unclutter

@@ -3,6 +3,11 @@ python-pip
 nodejs
 npm
 go
+clang
+gcc
+cmake
 docker
 docker-compose
-cmake
+neovim
+lua-language-server
+rust-analyzer
