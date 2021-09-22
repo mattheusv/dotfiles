@@ -107,21 +107,22 @@ configure_editor() {
 }
 
 install_tools() {
-    OS=$(awk -F= '/^NAME/{print $2}' /etc/os-release)
-
-    if [ "$OS" = "\"Arch Linux\"" ]; then
+    if [ "$1" == "arch" ]; then
         echo "Installing Arch Linux development tools..."
         sudo pacman -S - < ./scripts/dev-packages.archlinux
-    else
+    elif [ "$1" == "deb" ]; then
         echo "Installing Debian development tools..."
         sudo apt install $(cat ./scripts/dev-packages.debian)
+    else
+        echo "A distro base is required. Options are: arch, deb."
+        exit 1
     fi
 }
 
 configure_dev() {
-    install_tools
+    install_tools $@
     configure_languages
     configure_editor
 }
 
-configure_dev
+configure_dev $@

@@ -67,22 +67,23 @@ configure_tmux() {
 }
 
 install_packages() {
-    OS=$(awk -F= '/^NAME/{print $2}' /etc/os-release)
-
-    if [ "$OS" = "\"Arch Linux\"" ]; then
+    if [ "$1" == "arch" ]; then
         echo "Installing Arch Linux packages..."
         sudo pacman -S - < ./scripts/base-packages.archlinux
-    else
+    elif [ "$1" == "deb" ]; then
         echo "Installing Debian packages..."
         sudo add-apt-repository ppa:mmstick76/alacritty
         sudo apt install $(cat ./scripts/base-packages.debian)
+    else
+        echo "A distro base is required. Options are: arch, deb."
+        exit 1
     fi
 
 }
 
 configure_base(){
     echo "Using $DOTFILES as dotfiles config directory"
-    install_packages
+    install_packages $@
     configure_terminal
     configure_bash
     configure_fish
@@ -92,4 +93,4 @@ configure_base(){
 }
 
 
-configure_base
+configure_base $@
