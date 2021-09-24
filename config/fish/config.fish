@@ -12,6 +12,9 @@ set -a PATH $HOME/.local/bin
 # Rust Envs
 set -a PATH $HOME/.cargo/bin
 
+# Node Envs
+set -a PATH $HOME/.node/bin
+
 # Fzf
 set -g FZF_DEFAULT_OPTS '--height 40% --layout=reverse --border'
 
