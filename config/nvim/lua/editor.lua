@@ -121,6 +121,11 @@ local function set_autogroups()
             "*.rs",
             [[:Format]],
         },
+        {
+            "FileType",
+            "markdown,gitcommit",
+            "set spell",
+        },
       },
     }
 
