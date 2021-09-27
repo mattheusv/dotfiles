@@ -10,10 +10,7 @@ exists() {
 
 configure_asdf() {
     if [ ! -d $ASDF_PATH  ]; then
-        git clone https://github.com/asdf-vm/asdf.git $ASDF_PATH --branch v0.8.0 -q
-        echo -e '\n. $HOME/.asdf/asdf.sh' >> $DOTFILES/bash/.local
-        echo -e '\n. $HOME/.asdf/completions/asdf.bash' >> $DOTFILES/bash/.local
-        source ~/.bashrc
+        git clone https://github.com/asdf-vm/asdf.git $ASDF_PATH --branch v1.8.1 -q
     fi
 }
 
@@ -29,8 +26,8 @@ configure_nodejs() {
 configure_go() {
     if ! exists go; then
         echo "Installing Go"
-        wget -q https://golang.org/dl/go1.16.4.linux-amd64.tar.gz
-        sudo tar -C /usr/local -xzf go1.16.4.linux-amd64.tar.gz
+        wget -q https://golang.org/dl/go1.17.1.linux-amd64.tar.gz
+        sudo tar -C /usr/local -xzf go1.17.1.linux-amd64.tar.gz
     fi
 }
 
@@ -87,10 +84,13 @@ configure_editor() {
         ln -s $DOTFILES/nvim/lua/editor.lua $EDITOR_LUA
     fi
 
-    # Install neovim lsp
     if ! exists nvim; then
-        echo "Installing Neovim"
-        ./scripts/nvim/nightly-update
+        echo "WARNING: neovim not installed"
+    fi
+
+    # Install neovim lsp
+    if exists nvim; then
+        echo "Installing Neovim tools"
 
         # Install python lsp
         pip install --user jedi-language-server
