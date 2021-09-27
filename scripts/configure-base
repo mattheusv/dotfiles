@@ -12,16 +12,6 @@ configure_terminal() {
     fi
 }
 
-configure_bash(){
-    BASH_PROFILE=$HOME/.bash_profile
-    if [ ! -e $BASH_PROFILE ]; then
-        echo "Configurating bash profile config file"
-        ln -s $DOTFILES/bash/bash_profile $HOME/.bash_profile
-        echo -e "\n . <(cat $DOTFILES/bash/bashrc)" >> $HOME/.bashrc
-        echo -e '\n export PATH=$PATH:$HOME/.dotfiles/bin' >> $HOME/.bashrc
-    fi
-}
-
 configure_fish() {
     FISH_CONFIG=$HOME/.config/fish/
     FISH_FILE=$FISH_CONFIG/config.fish
@@ -85,7 +75,6 @@ configure_base(){
     echo "Using $DOTFILES as dotfiles config directory"
     install_packages $@
     configure_terminal
-    configure_bash
     configure_fish
     configure_git
     configure_tmux
