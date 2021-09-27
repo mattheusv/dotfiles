@@ -9,3 +9,5 @@ gitk
 tmux
 fish
 unclutter
+apt-transport-https
+curl
