@@ -19,6 +19,7 @@
 	au = add -u
     amend = !git add -u && git commit --amend
     a = number add
+    f = fetch
     rs = number restore --staged
 	cm = commit
 	cmm = commit -m
