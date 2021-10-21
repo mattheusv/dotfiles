@@ -37,6 +37,8 @@
 	b = branch
 	l = log --pretty=oneline -n 20
     sh = stash
+    cp = cherry-pick
+
 
 [core]
     editor = 'nvim'
