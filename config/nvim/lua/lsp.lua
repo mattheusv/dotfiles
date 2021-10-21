@@ -1,5 +1,6 @@
 local nvim_lsp = require('lspconfig')
-local completion = require('completion')
+local cmp = require('cmp')
+local compare = require("cmp.config.compare")
 local lsp = {}
 
 
@@ -41,18 +42,35 @@ local on_attach = function(client, bufnr)
 
   local filetype = vim.api.nvim_buf_get_option(0, 'filetype')
   local opts = {noremap = true, silent = true}
-  local opts_expr = {expr = true, noremap = true, silent = true}
-
-  completion.on_attach(client)
 
   buf_set_option('omnifunc', 'v:lua.vim.lsp.omnifunc')
 
-  -- FIXME convert to pure lua
-  vim.api.nvim_command([[inoremap <expr> <expr><TAB> pumvisible() ? "\<C-n>" : "\<Tab>"]])
-  vim.api.nvim_command([[inoremap <expr> <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<S-Tab>"]])
+  -- Completion setup
+  cmp.setup({
+      snippet = {
+          expand = function(args)
+              vim.fn["vsnip#anonymous"](args.body)
+          end,
+      },
+      mapping = {
+          ['<Tab>'] = cmp.mapping(cmp.mapping.select_next_item(), { 'i', 's' }),
+          ['<S-Tab>'] = cmp.mapping(cmp.mapping.select_prev_item(), { 'i', 's' }),
+          ['<C-Space>'] = cmp.mapping.complete(),
+          ['<C-c>'] = cmp.mapping.close(),
+          ['<CR>'] = cmp.mapping.confirm({
+                  behavior = cmp.ConfirmBehavior.Replace,
+                  select = true,
+              }),
+          },
+          sources = {
+              { name = "path" },
+              { name = "vsnip" },
+              { name = "nvim_lua" },
+              { name = "nvim_lsp" },
+          },
+  })
 
   -- Mappings.
-  buf_set_keymap("i", "<c-space>", "completion#trigger_completion()", opts_expr)
   buf_set_keymap('n', '<leader>rn', '<cmd>lua vim.lsp.buf.rename()<CR>', opts)
   buf_set_keymap('n', 'gd', '<Cmd>lua vim.lsp.buf.definition()<CR>', opts)
   buf_set_keymap('n', 'gD', '<Cmd>lua vim.lsp.buf.declaration()<CR>', opts)
@@ -141,6 +159,7 @@ local function setup_servers()
     for server, config in pairs(servers) do
         config = config or {}
         config.on_attach = on_attach
+        config.capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
 
         nvim_lsp[server].setup(config)
     end
