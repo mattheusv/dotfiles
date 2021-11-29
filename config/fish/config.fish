@@ -6,6 +6,10 @@ if type -q go
     set -a -g PATH $GOBIN
 end
 
+if type -q bat
+    alias cat=bat
+end
+
 # Python ENVs
 set -a PATH $HOME/.local/bin
 
