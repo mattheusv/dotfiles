@@ -1,0 +1,13 @@
+\set QUIET 1
+
+\set PROMPT1 '%[%033[1m%][%M:%> %n@%/ %x] # '
+\set PROMPT2 '... > '
+
+\timing
+
+\pset null 'null'
+
+\x auto
+\set VERBOSITY verbose
+
+\unset QUIET
