@@ -1,6 +1,6 @@
 \set QUIET 1
 
-\set PROMPT1 '%[%033[1m%][%M:%> %n@%/ %x] # '
+\set PROMPT1 '%[%033[0m%][%M:%> %n@%/ %x] # '
 \set PROMPT2 '... > '
 
 \timing
