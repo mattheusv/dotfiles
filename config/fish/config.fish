@@ -10,6 +10,9 @@ if type -q bat
     alias cat=bat
 end
 
+alias gs='git st'
+alias gd='git df'
+
 # Python ENVs
 set -a PATH $HOME/.local/bin
 
