@@ -201,6 +201,9 @@ local function configure_maps()
     vim.api.nvim_set_keymap("n", "<leader>gk", [[<Cmd> !gitk<CR>]], opts)
     vim.api.nvim_set_keymap("n", "]h", [[<Cmd> GitGutterNextHunk<CR>]], opts)
     vim.api.nvim_set_keymap("n", "[h",  [[<Cmd> GitGutterPrevHunk<CR>]], opts)
+
+    -- File manager maps
+    vim.api.nvim_set_keymap("n", "<F5>", [[<Cmd> NERDTreeRefreshRoot<CR>]], opts)
 end
 
 local function configure_commands()
