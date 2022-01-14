@@ -1,4 +1,0 @@
-#!/bin/bash -e
-
-
-ln -s $DOTFILES/X/xinitrc $HOME/.xinitrc
