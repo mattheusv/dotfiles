@@ -34,7 +34,7 @@ if test -e ~/.asdf/
     source $HOME/.asdf/completions/asdf.fish
 end
 
-set EDITOR=nvim
+set EDITOR nvim
 
 
 function fish_prompt
