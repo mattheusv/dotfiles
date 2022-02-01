@@ -10,7 +10,7 @@ exists() {
 
 configure_asdf() {
     if [ ! -d $ASDF_PATH  ]; then
-        git clone https://github.com/asdf-vm/asdf.git $ASDF_PATH --branch v1.8.1 -q
+        git clone https://github.com/asdf-vm/asdf.git $ASDF_PATH --branch v0.9.0 -q
     fi
 }
 
