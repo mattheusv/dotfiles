@@ -11,3 +11,10 @@ docker-compose
 neovim
 lua-language-server
 rust-analyzer
+tmux
+fish
+unzip
+fzf
+the_silver_searcher
+xclip
+git
