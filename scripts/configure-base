@@ -12,50 +12,6 @@ configure_terminal() {
     fi
 }
 
-configure_fish() {
-    FISH_CONFIG=$HOME/.config/fish/
-    FISH_FILE=$FISH_CONFIG/config.fish
-    FISH_VARIBLES=$FISH_CONFIG/fish_variables
-
-    if [ ! -d "$FISH_CONFIG" ]; then
-        mkdir -p $FISH_CONFIG
-    fi
-
-    if [ ! -e "$FISH_FILE" ]; then
-        echo "Configurating fish config file"
-        ln -s $DOTFILES/fish/config.fish $FISH_FILE
-    fi
-
-    if [ ! -e "$FISH_VARIBLES" ]; then
-        echo "Configurating fish variables file"
-        ln -s $DOTFILES/fish/fish_variables $FISH_VARIBLES
-    fi
-
-}
-
-configure_git() {
-    GIT_CONFIG=$HOME/.gitconfig
-
-    if [ ! -e $GIT_CONFIG ]; then
-        echo "Configurating git config file"
-        ln -s $DOTFILES/git/gitconfig $GIT_CONFIG
-    fi
-}
-
-configure_tmux() {
-    TPM_PATH=~/.tmux/plugins/tpm
-    TMUX_CONF=$HOME/.tmux.conf
-
-    if [ ! -d $TPM_PATH ]; then
-        git clone https://github.com/tmux-plugins/tpm $TPM_PATH
-    fi
-
-    if [ ! -e $TMUX_CONF ]; then
-        echo "Configurating tmux config file"
-        ln -s $DOTFILES/tmux/tmux.conf $HOME/.tmux.conf
-    fi
-}
-
 install_packages() {
     if [ "$1" == "arch" ]; then
         echo "Installing Arch Linux packages..."
@@ -81,9 +37,6 @@ configure_base(){
     echo "Using $DOTFILES as dotfiles config directory"
     install_packages $@
     configure_terminal
-    configure_fish
-    configure_git
-    configure_tmux
     echo "Finish with sucessful"
 }
 
