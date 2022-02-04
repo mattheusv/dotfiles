@@ -18,3 +18,5 @@ fzf
 the_silver_searcher
 xclip
 git
+git-delta
+ripgrep
