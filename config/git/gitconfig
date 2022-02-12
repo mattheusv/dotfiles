@@ -1,6 +1,6 @@
 [user]
 	name = Matheus Alcantara
-	email = matheusssilv97@gmail.com
+	email = mths.dev@pm.me
 
 [includeIf "gitdir:~/dev/work/**"]
     path = ~/dev/work/.gitconfig
