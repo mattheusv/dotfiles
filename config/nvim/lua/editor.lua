@@ -209,6 +209,7 @@ end
 local function configure_commands()
     vim.api.nvim_command("command! CopyBuffer let @+ = expand('%:s')")
     vim.api.nvim_command("command! CopyPkg let @+ = expand('%:h')")
+    vim.api.nvim_command("command! SaveSession :mksession! session.vim")
 end
 
 local function configure_treesitter()
