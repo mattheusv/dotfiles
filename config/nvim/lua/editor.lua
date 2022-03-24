@@ -207,9 +207,15 @@ local function configure_maps()
 end
 
 local function configure_commands()
-    vim.api.nvim_command("command! CopyBuffer let @+ = expand('%:s')")
+    vim.api.nvim_command("command! CopyBuffer execute('lua copy_buffer()')")
     vim.api.nvim_command("command! CopyPkg let @+ = expand('%:h')")
     vim.api.nvim_command("command! SaveSession :mksession! session.vim")
+end
+
+function copy_buffer()
+    local line = vim.fn.line('.')
+    local file = vim.fn.expand('%')
+    vim.fn.setreg("+", string.format("%s:%s", file, line))
 end
 
 local function configure_treesitter()
