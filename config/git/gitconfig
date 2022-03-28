@@ -38,6 +38,7 @@
 	l = log --pretty=oneline -n 20
     sh = stash
     cp = cherry-pick
+    search = !fish -c git-search
     last = for-each-ref --sort=-committerdate --count=20 --format='%(align:30,left)%(refname:short)%(end)%(committerdate:relative)' refs/heads/
     release-notes = !git log --oneline --left-right --cherry-pick $(git describe --tags --abbrev=0)..$(git rev-parse --abbrev-ref HEAD)
     # Show the commits from main branch that does not exists on current branch ignoring commits that was cherry-picked from main to current branch.

@@ -36,6 +36,12 @@ end
 
 set EDITOR nvim
 
+function git-search
+    set commit (git log --oneline | fzf | cut -d ' ' -f1)
+    if test -n "$commit"
+        git show $commit
+    end
+end
 
 function fish_prompt
     if test -n "$SSH_TTY"
@@ -59,7 +65,7 @@ function fish_user_key_bindings
 
   # Configure fzf bindings
   if test -e ~/.fzf/shell/key-bindings.fish
-    source ~/.fzf/shell/key-bindings.fish  
+    source ~/.fzf/shell/key-bindings.fish
   end
   if type fzf_key_bindings &> /dev/null
       fzf_key_bindings
