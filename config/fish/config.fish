@@ -28,6 +28,9 @@ set -g FZF_DEFAULT_OPTS '--height 40% --layout=reverse --border'
 # git number bin
 set -a PATH $HOME/.dotfiles/lib/git-number
 
+# custon scripts
+set -a PATH $HOME/.dotfiles/bin
+
 # asdf
 if test -e ~/.asdf/
     source $HOME/.asdf/asdf.fish
