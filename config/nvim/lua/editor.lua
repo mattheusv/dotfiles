@@ -49,6 +49,8 @@ local function set_options()
     vim.o.smartcase = true
     vim.o.backup = false
     vim.o.writebackup = false
+    vim.o.foldmethod = "expr"
+    vim.o.foldexpr = "nvim_treesitter#foldexpr()"
     vim.o.foldmethod = "indent"
     vim.o.foldlevel = 99
     vim.o.exrc = true
