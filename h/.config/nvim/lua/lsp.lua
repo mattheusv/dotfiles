@@ -150,7 +150,7 @@ local function setup_servers()
             settings = {
                 Lua = {
                     diagnostics = {
-                        globals = {"vim"}
+                        globals = {"vim", "use"}
                     },
                 }
             }
