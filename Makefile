@@ -1,19 +1,22 @@
-DOTFILES=~/.dotfiles/config
-
-
 default: help;
 
-configure-arch-base: ## Install and configure base tools to Arch Linux base installations
-	@DOTFILES=$(DOTFILES) ./scripts/configure-base arch
+configure-files: ## Setup the configuration files for all tools
+	stow --target ~ h/
 
-configure-arch-dev: ## Install and configure development tools to Arch Linux base installations
-	@DOTFILES=$(DOTFILES) ./scripts/configure-dev arch
+unconfigure-files: ## Remove the configuration files for all tools
+	stow -D --target ~ h/
 
-configure-deb-base: ## Install and configure base tools to Debian base installations
-	@DOTFILES=$(DOTFILES) ./scripts/configure-base deb
+configure-arch-base: ## Install base tools to Arch Linux base installations
+	./scripts/configure-base arch
 
-configure-deb-dev: ## Install and configure development tools to Deb base installations
-	@DOTFILES=$(DOTFILES) ./scripts/configure-dev deb
+configure-arch-dev: ## Install development tools to Arch Linux base installations
+	./scripts/configure-dev arch
+
+configure-deb-base: ## Install base tools to Debian base installations
+	./scripts/configure-base deb
+
+configure-deb-dev: ## Install development tools to Deb base installations
+	./scripts/configure-dev deb
 
 help:
 	@grep -E '^[a-zA-Z_-]+:.*?## .*$$' $(MAKEFILE_LIST) | sort | awk 'BEGIN {FS = ":.*?## "}; {printf "\033[36m%-30s\033[0m %s\n", $$1, $$2}'

@@ -1,87 +1,16 @@
 #!/bin/bash -e
 
-ASDF_PATH=~/.asdf
-ASDF_BIN=$ASDF_PATH/bin/asdf
-
-
 exists() {
   command -v "$1" >/dev/null 2>&1
 }
 
-configure_asdf() {
-    if [ ! -d $ASDF_PATH  ]; then
-        git clone https://github.com/asdf-vm/asdf.git $ASDF_PATH --branch v0.9.0 -q
-    fi
-}
-
-configure_nodejs() {
-    if ! exists node; then
-        echo "Installing Nodejs"
-        $ASDF_BIN plugin-add nodejs
-        $ASDF_BIN install nodejs lts
-        $ASDF_BIN global nodejs lts
-    fi
-}
-
-configure_go() {
-    if ! exists go; then
-        echo "Installing Go"
-        wget -q https://golang.org/dl/go1.17.1.linux-amd64.tar.gz
-        sudo tar -C /usr/local -xzf go1.17.1.linux-amd64.tar.gz
-    fi
-}
-
-configure_rust() {
-    if ! exists cargo; then
-        curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
-    fi
-}
-
-configure_languages() {
-    configure_asdf
-    configure_nodejs
-    configure_go
-    configure_rust
-}
-
 configure_editor() {
     VIM_PLUG=$HOME/.local/share/nvim/site/autoload/plug.vim
-    NVIM_CONFIG=$HOME/.config/nvim
-    NVIM_CONFIG_LUA=$HOME/.config/nvim/lua
-    INIT_VIM=$NVIM_CONFIG/init.vim
-    INIT_LUA=$NVIM_CONFIG_LUA/init.lua
-    LSP_LUA=$NVIM_CONFIG_LUA/lsp.lua
-    EDITOR_LUA=$NVIM_CONFIG_LUA/editor.lua
-
-
-    if [ ! -d "$NVIM_CONFIG" ]; then
-        mkdir -p $NVIM_CONFIG
-    fi
 
     if [ ! -f $VIM_PLUG ]; then
         echo "Installing vim plug"
         curl -q -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs \
             https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-    fi
-
-    if [ ! -d $NVIM_CONFIG_LUA ]; then
-        mkdir -p $NVIM_CONFIG_LUA
-    fi
-
-    if [ ! -f $INIT_VIM ];then 
-        ln -s $DOTFILES/nvim/init.vim $INIT_VIM
-    fi
-
-    if [ ! -f $INIT_LUA ];then 
-        ln -s $DOTFILES/nvim/lua/init.lua $INIT_LUA
-    fi
-
-    if [ ! -f $LSP_LUA ];then 
-        ln -s $DOTFILES/nvim/lua/lsp.lua $LSP_LUA
-    fi
-
-    if [ ! -f $EDITOR_LUA ];then 
-        ln -s $DOTFILES/nvim/lua/editor.lua $EDITOR_LUA
     fi
 
     if ! exists nvim; then
@@ -121,58 +50,10 @@ install_tools() {
     fi
 }
 
-configure_fish() {
-    FISH_CONFIG=$HOME/.config/fish/
-    FISH_FILE=$FISH_CONFIG/config.fish
-    FISH_VARIBLES=$FISH_CONFIG/fish_variables
-
-    if [ ! -d "$FISH_CONFIG" ]; then
-        mkdir -p $FISH_CONFIG
-    fi
-
-    if [ ! -e "$FISH_FILE" ]; then
-        echo "Configurating fish config file"
-        ln -s $DOTFILES/fish/config.fish $FISH_FILE
-    fi
-
-    if [ ! -e "$FISH_VARIBLES" ]; then
-        echo "Configurating fish variables file"
-        ln -s $DOTFILES/fish/fish_variables $FISH_VARIBLES
-    fi
-}
-
-configure_git() {
-    GIT_CONFIG=$HOME/.gitconfig
-
-    if [ ! -e $GIT_CONFIG ]; then
-        echo "Configurating git config file"
-        ln -s $DOTFILES/git/gitconfig $GIT_CONFIG
-    fi
-}
-
-configure_tmux() {
-    TPM_PATH=~/.tmux/plugins/tpm
-    TMUX_CONF=$HOME/.tmux.conf
-
-    if [ ! -d $TPM_PATH ]; then
-        git clone https://github.com/tmux-plugins/tpm $TPM_PATH
-    fi
-
-    if [ ! -e $TMUX_CONF ]; then
-        echo "Configurating tmux config file"
-        ln -s $DOTFILES/tmux/tmux.conf $HOME/.tmux.conf
-    fi
-}
-
-
 
 configure_dev() {
     install_tools $@
-    configure_languages
     configure_editor
-    configure_fish
-    configure_git
-    configure_tmux
 }
 
 configure_dev $@
