@@ -67,7 +67,6 @@ return require('packer').startup(function ()
 
     -- Golang
     use({'fatih/vim-go', run= ':GoInstallBinaries'})
-    use({'sebdah/vim-delve'})
 
     -- Fish
     use({'dag/vim-fish'})
