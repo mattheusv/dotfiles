@@ -1,6 +1,6 @@
 local nvim_lsp = require('lspconfig')
 local cmp = require('cmp')
-local compare = require("cmp.config.compare")
+local luasnip = require("luasnip")
 local lsp = {}
 
 
@@ -49,7 +49,7 @@ local on_attach = function(client, bufnr)
   cmp.setup({
       snippet = {
           expand = function(args)
-              vim.fn["vsnip#anonymous"](args.body)
+              luasnip.lsp_expand(args.body)
           end,
       },
       mapping = {

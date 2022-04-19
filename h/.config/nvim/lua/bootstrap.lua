@@ -48,12 +48,18 @@ return require('packer').startup(function ()
 
     -- LSP
     use({'neovim/nvim-lspconfig'})
-
-    use({'hrsh7th/nvim-cmp'})
-    use({'hrsh7th/cmp-nvim-lsp'})
-    use({'hrsh7th/cmp-vsnip'})
-    use({'hrsh7th/cmp-path'})
-    use({'hrsh7th/cmp-nvim-lua'})
+    use({ "L3MON4D3/LuaSnip" })
+    use({
+        "hrsh7th/nvim-cmp",
+        requires = {
+            "hrsh7th/cmp-nvim-lsp",
+            "saadparwaiz1/cmp_luasnip",
+            "onsails/lspkind-nvim",
+            "hrsh7th/cmp-path",
+            "hrsh7th/cmp-nvim-lua",
+            "hrsh7th/cmp-buffer",
+        },
+    })
 
     -- Python
     use({'tmhedberg/SimpylFold'})
