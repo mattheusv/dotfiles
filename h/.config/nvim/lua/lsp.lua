@@ -156,6 +156,7 @@ local function setup_servers()
                 }
             }
         },
+        perlpls = {},
     }
     for server, config in pairs(servers) do
         config = config or {}
