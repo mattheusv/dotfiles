@@ -1,6 +1,5 @@
 config/bash/.local
-
 .nvimrc
-
-
 neovim/
+venv
+packer_compiled.lua
