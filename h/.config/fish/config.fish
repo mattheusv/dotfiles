@@ -21,6 +21,7 @@ set -a PATH $HOME/.cargo/bin
 
 # Node Envs
 set -a PATH $HOME/.node/bin
+set -a PATH $HOME/.npm/bin
 
 # Fzf
 set -g FZF_DEFAULT_OPTS '--height 40% --layout=reverse --border'
