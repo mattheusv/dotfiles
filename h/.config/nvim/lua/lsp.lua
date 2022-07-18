@@ -157,6 +157,7 @@ local function setup_servers()
             }
         },
         perlpls = {},
+        jsonls = {},
     }
     for server, config in pairs(servers) do
         config = config or {}
