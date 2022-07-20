@@ -84,6 +84,7 @@ local function set_abbreviations()
     vim.api.nvim_command("cnoreabbrev Qa qa")
     vim.api.nvim_command("cnoreabbrev Qall qall")
     vim.api.nvim_command("cnoreabbrev D d")
+    vim.api.nvim_command("cnoreabbrev X x")
 end
 
 local function set_colors()
