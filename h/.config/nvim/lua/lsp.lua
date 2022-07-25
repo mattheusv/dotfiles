@@ -128,8 +128,6 @@ local on_attach = function(client, bufnr)
     buf_set_keymap("n", "<space>h", "<Cmd> lua vim.lsp.buf.document_highlight()<CR>", opts)
   end
 
-  vim.api.nvim_command("command! RestartLSP lua vim.lsp.stop_client(vim.lsp.get_active_clients()); vim.cmd 'edit'")
-
   if vim.tbl_contains({"go"}, filetype) then
       setup_vimgo()
   end
