@@ -89,15 +89,23 @@ local on_attach = function(client, bufnr)
   buf_set_keymap('n', ']d', '<cmd>lua vim.diagnostic.goto_next()<CR>', opts)
 
 
-  -- Set some keybinds conditional on server capabilities
-  if client.resolved_capabilities.document_formatting then
+  -- Set a map and auto formatting if lsp has suport
+  if client.server_capabilities.documentFormattingProvider then
     buf_set_keymap("n", "<space>f", "<cmd>lua vim.lsp.buf.formatting()<CR>", opts)
-  elseif client.resolved_capabilities.document_range_formatting then
-    buf_set_keymap("n", "<space>f", "<cmd>lua vim.lsp.buf.formatting()<CR>", opts)
+
+    -- vim-go already provide an auto formatting
+    if not vim.tbl_contains({"go"}, filetype) then
+        vim.api.nvim_create_autocmd("BufWritePre", {
+            group = vim.api.nvim_create_augroup("Formatting", { clear = true }),
+            callback = function ()
+                vim.lsp.buf.formatting_sync()
+            end
+        })
+    end
   end
 
   -- Set autocommands and maps to document highlight
-  if client.resolved_capabilities.document_highlight then
+  if client.server_capabilities.hoverProvider then
     vim.api.nvim_exec([[
       highlight LspReferenceRead cterm=bold ctermbg=red guibg=#464646
       highlight LspReferenceText cterm=bold ctermbg=red guibg=#464646
@@ -120,17 +128,7 @@ local on_attach = function(client, bufnr)
     buf_set_keymap("n", "<space>h", "<Cmd> lua vim.lsp.buf.document_highlight()<CR>", opts)
   end
 
-  vim.api.nvim_command("command! -nargs=0 Format :lua vim.lsp.buf.formatting_sync(nil, 1000)")
   vim.api.nvim_command("command! RestartLSP lua vim.lsp.stop_client(vim.lsp.get_active_clients()); vim.cmd 'edit'")
-
-  if vim.tbl_contains({"rust"}, filetype) then
-      vim.api.nvim_create_autocmd("BufWritePre", {
-          group = vim.api.nvim_create_augroup("Formatting", { clear = true }),
-          callback = function ()
-              vim.lsp.buf.formatting_sync()
-          end
-      })
-  end
 
   if vim.tbl_contains({"go"}, filetype) then
       setup_vimgo()
