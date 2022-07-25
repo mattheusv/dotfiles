@@ -37,100 +37,103 @@ local function setup_vimgo()
 end
 
 local on_attach = function(client, bufnr)
-  local function buf_set_keymap(...) vim.api.nvim_buf_set_keymap(bufnr, ...) end
-  local function buf_set_option(...) vim.api.nvim_buf_set_option(bufnr, ...) end
+    local function buf_set_keymap(...) vim.api.nvim_buf_set_keymap(bufnr, ...) end
 
-  local filetype = vim.api.nvim_buf_get_option(0, 'filetype')
-  local opts = {noremap = true, silent = true}
+    local function buf_set_option(...) vim.api.nvim_buf_set_option(bufnr, ...) end
 
-  buf_set_option('omnifunc', 'v:lua.vim.lsp.omnifunc')
+    local filetype = vim.api.nvim_buf_get_option(0, 'filetype')
+    local opts = { noremap = true, silent = true }
 
-  -- Completion setup
-  cmp.setup({
-      snippet = {
-          expand = function(args)
-              luasnip.lsp_expand(args.body)
-          end,
-      },
-      mapping = {
-          ['<Tab>'] = cmp.mapping(cmp.mapping.select_next_item(), { 'i', 's' }),
-          ['<S-Tab>'] = cmp.mapping(cmp.mapping.select_prev_item(), { 'i', 's' }),
-          ['<C-Space>'] = cmp.mapping.complete(),
-          ['<C-c>'] = cmp.mapping.close(),
-          ['<CR>'] = cmp.mapping.confirm({
-                  behavior = cmp.ConfirmBehavior.Replace,
-                  select = true,
-              }),
-          },
-          sources = {
-              { name = "path" },
-              { name = "vsnip" },
-              { name = "nvim_lua" },
-              { name = "nvim_lsp" },
-          },
-  })
+    buf_set_option('omnifunc', 'v:lua.vim.lsp.omnifunc')
 
-  -- Mappings.
-  buf_set_keymap('n', '<leader>rn', '<cmd>lua vim.lsp.buf.rename()<CR>', opts)
-  buf_set_keymap('n', 'gd', '<Cmd>lua vim.lsp.buf.definition()<CR>', opts)
-  buf_set_keymap('n', '<leader>gd', '<Cmd>vsplit<cr>:lua vim.lsp.buf.definition()<CR>', opts)
-  buf_set_keymap('n', 'gD', '<Cmd>lua vim.lsp.buf.declaration()<CR>', opts)
-  buf_set_keymap('n', 'td', [[<cmd>lua require('telescope.builtin').lsp_type_definitions()<CR>]], opts)
-  buf_set_keymap('n', '<space>a', '<cmd>lua vim.lsp.buf.code_action()<CR>', opts)
-  buf_set_keymap('n', 'gr', [[<cmd>lua require('telescope.builtin').lsp_references()<CR>]], opts)
-  buf_set_keymap('n', '<leader>s', [[<cmd>lua require('telescope.builtin').lsp_document_symbols()<CR>]], opts)
-  buf_set_keymap('n', '<leader>wd', [[<cmd>lua require('telescope.builtin').diagnostics()<CR>]], opts)
-  buf_set_keymap('n', '<leader>ws', [[<cmd>lua require('telescope.builtin').lsp_dynamic_workspace_symbols()<CR>]], opts)
-  buf_set_keymap('n', 'gi', [[<cmd>lua require('telescope.builtin').lsp_implementations()<CR>]], opts)
-  buf_set_keymap('n', 'K', '<Cmd>lua vim.lsp.buf.hover()<CR>', opts)
-  buf_set_keymap('i', '<C-s>', '<Cmd>lua vim.lsp.buf.signature_help()<CR>', opts)
-  buf_set_keymap('n', '<space>e', '<cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>', opts)
-  buf_set_keymap('n', '[d', '<cmd>lua vim.diagnostic.goto_prev()<CR>', opts)
-  buf_set_keymap('n', ']d', '<cmd>lua vim.diagnostic.goto_next()<CR>', opts)
+    -- Completion setup
+    cmp.setup({
+        snippet = {
+            expand = function(args)
+                luasnip.lsp_expand(args.body)
+            end,
+        },
+        mapping = {
+            ['<Tab>'] = cmp.mapping(cmp.mapping.select_next_item(), { 'i', 's' }),
+            ['<S-Tab>'] = cmp.mapping(cmp.mapping.select_prev_item(), { 'i', 's' }),
+            ['<C-Space>'] = cmp.mapping.complete(),
+            ['<C-c>'] = cmp.mapping.close(),
+            ['<CR>'] = cmp.mapping.confirm({
+                behavior = cmp.ConfirmBehavior.Replace,
+                select = true,
+            }),
+        },
+        sources = {
+            { name = "path" },
+            { name = "vsnip" },
+            { name = "nvim_lua" },
+            { name = "nvim_lsp" },
+        },
+    })
+
+    -- Mappings.
+    buf_set_keymap('n', '<leader>rn', '<cmd>lua vim.lsp.buf.rename()<CR>', opts)
+    buf_set_keymap('n', 'gd', '<Cmd>lua vim.lsp.buf.definition()<CR>', opts)
+    buf_set_keymap('n', '<leader>gd', '<Cmd>vsplit<cr>:lua vim.lsp.buf.definition()<CR>', opts)
+    buf_set_keymap('n', 'gD', '<Cmd>lua vim.lsp.buf.declaration()<CR>', opts)
+    buf_set_keymap('n', 'td', [[<cmd>lua require('telescope.builtin').lsp_type_definitions()<CR>]], opts)
+    buf_set_keymap('n', '<space>a', '<cmd>lua vim.lsp.buf.code_action()<CR>', opts)
+    buf_set_keymap('n', 'gr', [[<cmd>lua require('telescope.builtin').lsp_references()<CR>]], opts)
+    buf_set_keymap('n', '<leader>s', [[<cmd>lua require('telescope.builtin').lsp_document_symbols()<CR>]], opts)
+    buf_set_keymap('n', '<leader>wd', [[<cmd>lua require('telescope.builtin').diagnostics()<CR>]], opts)
+    buf_set_keymap('n', '<leader>ws', [[<cmd>lua require('telescope.builtin').lsp_dynamic_workspace_symbols()<CR>]], opts)
+    buf_set_keymap('n', 'gi', [[<cmd>lua require('telescope.builtin').lsp_implementations()<CR>]], opts)
+    buf_set_keymap('n', 'K', '<Cmd>lua vim.lsp.buf.hover()<CR>', opts)
+    buf_set_keymap('i', '<C-s>', '<Cmd>lua vim.lsp.buf.signature_help()<CR>', opts)
+    buf_set_keymap('n', '<space>e', '<cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>', opts)
+    buf_set_keymap('n', '[d', '<cmd>lua vim.diagnostic.goto_prev()<CR>', opts)
+    buf_set_keymap('n', ']d', '<cmd>lua vim.diagnostic.goto_next()<CR>', opts)
 
 
-  -- Set a map and auto formatting if lsp has suport
-  if client.server_capabilities.documentFormattingProvider then
-    buf_set_keymap("n", "<space>f", "<cmd>lua vim.lsp.buf.formatting()<CR>", opts)
+    -- Set a map and auto formatting if lsp has suport
+    if client.server_capabilities.documentFormattingProvider then
+        buf_set_keymap("n", "<space>f", "<cmd>lua vim.lsp.buf.formatting()<CR>", opts)
 
-    -- vim-go already provide an auto formatting
-    if not vim.tbl_contains({"go"}, filetype) then
-        vim.api.nvim_create_autocmd("BufWritePre", {
-            group = vim.api.nvim_create_augroup("Formatting", { clear = true }),
-            callback = function ()
-                vim.lsp.buf.formatting_sync()
+        -- vim-go already provide an auto formatting
+        if not vim.tbl_contains({ "go" }, filetype) then
+            vim.api.nvim_create_autocmd("BufWritePre", {
+                group = vim.api.nvim_create_augroup("Formatting", { clear = true }),
+                callback = function()
+                    vim.lsp.buf.formatting_sync()
+                end
+            })
+        end
+    end
+
+    -- Set autocommands and maps to document highlight
+    if client.server_capabilities.hoverProvider then
+        vim.api.nvim_exec([[
+            highlight LspReferenceRead cterm=bold ctermbg=red guibg=#464646
+            highlight LspReferenceText cterm=bold ctermbg=red guibg=#464646
+            highlight LspReferenceWrite cterm=bold ctermbg=red guibg=#464646
+            ]],
+            false
+        )
+
+        vim.api.nvim_create_autocmd("CursorHold", {
+            group = vim.api.nvim_create_augroup("DocumentHighlightHold", { clear = true }),
+            callback = function()
+                vim.lsp.buf.document_highlight()
             end
         })
+        vim.api.nvim_create_autocmd("CursorMoved", {
+            group = vim.api.nvim_create_augroup("DocumentHighlightMoved", { clear = true }),
+            callback = function()
+                vim.lsp.buf.clear_references()
+            end
+        })
+
+        buf_set_keymap("n", "<space>h", "<Cmd> lua vim.lsp.buf.document_highlight()<CR>", opts)
     end
-  end
 
-  -- Set autocommands and maps to document highlight
-  if client.server_capabilities.hoverProvider then
-    vim.api.nvim_exec([[
-      highlight LspReferenceRead cterm=bold ctermbg=red guibg=#464646
-      highlight LspReferenceText cterm=bold ctermbg=red guibg=#464646
-      highlight LspReferenceWrite cterm=bold ctermbg=red guibg=#464646
-    ]], false)
-
-    vim.api.nvim_create_autocmd("CursorHold", {
-        group = vim.api.nvim_create_augroup("DocumentHighlightHold", { clear = true }),
-        callback = function ()
-            vim.lsp.buf.document_highlight()
-        end
-    })
-    vim.api.nvim_create_autocmd("CursorMoved", {
-        group = vim.api.nvim_create_augroup("DocumentHighlightMoved", { clear = true }),
-        callback = function ()
-            vim.lsp.buf.clear_references()
-        end
-    })
-
-    buf_set_keymap("n", "<space>h", "<Cmd> lua vim.lsp.buf.document_highlight()<CR>", opts)
-  end
-
-  if vim.tbl_contains({"go"}, filetype) then
-      setup_vimgo()
-  end
+    if vim.tbl_contains({ "go" }, filetype) then
+        setup_vimgo()
+    end
 
 end
 
@@ -138,7 +141,7 @@ local function gopls_config()
     local gopls_remote = os.getenv("GOPLS_REMOTE")
     if gopls_remote == "1" then
         return {
-            cmd = {"gopls", "-remote", "localhost:8888"}
+            cmd = { "gopls", "-remote", "localhost:8888" }
         }
     end
     return {}
@@ -149,22 +152,22 @@ local function setup_servers()
     html_capabilities.textDocument.completion.completionItem.snippetSupport = true
 
     local servers = {
-        gopls =  gopls_config(),
+        gopls = gopls_config(),
         rust_analyzer = {},
         jedi_language_server = {},
         tsserver = {},
         clangd = {},
         bashls = {},
         dockerls = {},
-        html = {capabilities = html_capabilities},
+        html = { capabilities = html_capabilities },
         yamlls = {},
         vimls = {},
         sumneko_lua = {
-            cmd = {"lua-language-server"}, -- Installed bin with `paru lua-language-server`
+            cmd = { "lua-language-server" }, -- Installed bin with `paru lua-language-server`
             settings = {
                 Lua = {
                     diagnostics = {
-                        globals = {"vim", "use"}
+                        globals = { "vim", "use" }
                     },
                 }
             }

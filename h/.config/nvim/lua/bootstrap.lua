@@ -1,53 +1,53 @@
-return require('packer').startup(function ()
+return require('packer').startup(function()
     -- Boostrap packer
-    use({'wbthomason/packer.nvim'})
+    use({ 'wbthomason/packer.nvim' })
 
     -- Comment stuff
-    use({'tpope/vim-commentary'})
+    use({ 'tpope/vim-commentary' })
 
     -- Git plugins
-    use({ 'tpope/vim-fugitive'})
-    use({ 'airblade/vim-gitgutter'})
-    use({ 'rhysd/git-messenger.vim'})
+    use({ 'tpope/vim-fugitive' })
+    use({ 'airblade/vim-gitgutter' })
+    use({ 'rhysd/git-messenger.vim' })
 
     -- Status/tabline
-    use({'itchyny/lightline.vim'})
+    use({ 'itchyny/lightline.vim' })
 
     -- Display the indention levels
-    use({'Yggdroot/indentLine'})
+    use({ 'Yggdroot/indentLine' })
 
     -- Fuzzy finder
-    use({'nvim-lua/popup.nvim'})
-    use({'nvim-lua/plenary.nvim'})
-    use({'nvim-telescope/telescope.nvim'})
-    use({'nvim-telescope/telescope-fzy-native.nvim'})
+    use({ 'nvim-lua/popup.nvim' })
+    use({ 'nvim-lua/plenary.nvim' })
+    use({ 'nvim-telescope/telescope.nvim' })
+    use({ 'nvim-telescope/telescope-fzy-native.nvim' })
 
     -- Color Theme
-    use({'morhetz/gruvbox'})
-    use({'nvim-treesitter/nvim-treesitter', run= ':TSUpdate'})
+    use({ 'morhetz/gruvbox' })
+    use({ 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate' })
 
     -- Manage editoconfig files
-    use({'editorconfig/editorconfig-vim'})
+    use({ 'editorconfig/editorconfig-vim' })
 
     -- Surround parentheses, brackets, quotes, XML tags, and more
-    use({'tpope/vim-surround'})
+    use({ 'tpope/vim-surround' })
 
     -- Markdown preview
-    use({'euclio/vim-markdown-composer', run = 'cargo build --release --locked'})
+    use({ 'euclio/vim-markdown-composer', run = 'cargo build --release --locked' })
 
     -- File tree
-    use({'preservim/nerdtree'})
+    use({ 'preservim/nerdtree' })
 
     -- Nice icons
-    use({'ryanoasis/vim-devicons'})
-    use({'kyazdani42/nvim-web-devicons'})
+    use({ 'ryanoasis/vim-devicons' })
+    use({ 'kyazdani42/nvim-web-devicons' })
 
     --*****************************************************************************
     -- Custon Plugs
     --*****************************************************************************"
 
     -- LSP
-    use({'neovim/nvim-lspconfig'})
+    use({ 'neovim/nvim-lspconfig' })
     use({ "L3MON4D3/LuaSnip" })
     use({
         "hrsh7th/nvim-cmp",
@@ -62,12 +62,12 @@ return require('packer').startup(function ()
     })
 
     -- Python
-    use({'tmhedberg/SimpylFold'})
-    use({'raimon49/requirements.txt.vim', ft = {'requirements'} })
+    use({ 'tmhedberg/SimpylFold' })
+    use({ 'raimon49/requirements.txt.vim', ft = { 'requirements' } })
 
     -- Golang
-    use({'fatih/vim-go', run= ':GoInstallBinaries'})
+    use({ 'fatih/vim-go', run = ':GoInstallBinaries' })
 
     -- Fish
-    use({'dag/vim-fish'})
+    use({ 'dag/vim-fish' })
 end)

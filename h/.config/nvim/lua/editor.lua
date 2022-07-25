@@ -24,7 +24,6 @@ local function set_globals()
     vim.g.indentLine_faster = 1
 end
 
-
 local function set_options()
     -- Basic setup
     vim.o.splitbelow = true
@@ -92,48 +91,46 @@ local function set_colors()
     vim.cmd("colorscheme gruvbox")
 end
 
-
 local function set_autogroups()
     local group = vim.api.nvim_create_augroup("my_autogroup", { clear = true })
     vim.api.nvim_create_autocmd("BufEnter", {
         group = group,
         pattern = "*",
-        callback = function ()
+        callback = function()
             vim.api.nvim_command(":syntax sync fromstart")
         end
     })
     vim.api.nvim_create_autocmd("BufReadPost", {
         group = group,
         pattern = "*",
-        callback = function ()
+        callback = function()
             vim.api.nvim_command([[if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif]])
         end
     })
     vim.api.nvim_create_autocmd("FileType", {
         group = group,
         pattern = "markdown,gitcommit",
-        callback = function ()
+        callback = function()
             vim.o.spell = true
         end
     })
 end
 
-
 local function configure_statusbar()
     vim.g.lightline = {
         active = {
-            left = {{ 'mode', 'paste' }, { 'gitbranch', 'readonly', 'relativepath', 'modified' }}
+            left = { { 'mode', 'paste' }, { 'gitbranch', 'readonly', 'relativepath', 'modified' } }
         },
-        right = {{'lineinfo'}, {'percent'}, {'fileformat', 'fileencoding', 'filetype', 'charvaluehex'}},
+        right = { { 'lineinfo' }, { 'percent' }, { 'fileformat', 'fileencoding', 'filetype', 'charvaluehex' } },
         component_function = { gitbranch = 'FugitiveHead' }
     }
 end
 
 local function configure_telescope_maps()
     local actions = require('telescope.actions')
-    require('telescope').setup{
+    require('telescope').setup {
         defaults = {
-           file_sorter = require('telescope.sorters').get_fzy_sorter,
+            file_sorter = require('telescope.sorters').get_fzy_sorter,
             mappings = {
                 i = {
                     ["<c-j>"] = actions.move_selection_next,
@@ -153,13 +150,13 @@ local function configure_telescope_maps()
 end
 
 local function configure_maps()
-    local opts = {noremap = true, silent = true}
+    local opts = { noremap = true, silent = true }
 
     -- Base maps
     vim.api.nvim_set_keymap("n", "<leader>.", [[<Cmd> lcd %:p:h<CR>]], opts)
     vim.api.nvim_set_keymap("n", "<esc>", [[<Cmd> noh<return><esc>]], opts)
     vim.api.nvim_set_keymap("n", "<leader>h", [[<Cmd> split<CR>]], opts)
-    vim.api.nvim_set_keymap("n", "<leader>v",  [[<Cmd> vsplit<CR>]], opts)
+    vim.api.nvim_set_keymap("n", "<leader>v", [[<Cmd> vsplit<CR>]], opts)
     vim.api.nvim_set_keymap("n", "<C-k>", [[<C-W>k]], opts)
     vim.api.nvim_set_keymap("n", "<C-j>", [[<C-W>j]], opts)
     vim.api.nvim_set_keymap("n", "<C-h>", [[<C-W>h]], opts)
@@ -170,15 +167,16 @@ local function configure_maps()
     vim.api.nvim_set_keymap("v", ">", [[>gv]], opts)
 
     -- Buffer maps
-    vim.api.nvim_set_keymap("n", "<leader>c",  [[<Cmd> bp<cr>:bd #<cr>]], opts)
-    vim.api.nvim_set_keymap("n", "<c-p>", [[<Cmd> lua require('telescope.builtin').git_files({show_untracked=false})<CR>]], opts)
+    vim.api.nvim_set_keymap("n", "<leader>c", [[<Cmd> bp<cr>:bd #<cr>]], opts)
+    vim.api.nvim_set_keymap("n", "<c-p>",
+        [[<Cmd> lua require('telescope.builtin').git_files({show_untracked=false})<CR>]], opts)
     -- vim.api.nvim_set_keymap("n", "<c-p>", [[<Cmd> lua require('telescope.builtin').find_files()<CR>]], opts)
     vim.api.nvim_set_keymap("n", "<leader>rg", [[<Cmd> lua require('telescope.builtin').live_grep()<CR>]], opts)
     vim.api.nvim_set_keymap("n", "<leader>q", [[<Cmd> lua require('telescope.builtin').buffers()<CR>]], opts)
     configure_telescope_maps()
 
     -- Tree maps
-    vim.api.nvim_set_keymap("n", "<C-b>",  [[:NERDTreeFind<CR>]], opts)
+    vim.api.nvim_set_keymap("n", "<C-b>", [[:NERDTreeFind<CR>]], opts)
     vim.g.NERDTreeWinPos = "right"
 
     -- Git maps
@@ -186,7 +184,7 @@ local function configure_maps()
     vim.api.nvim_set_keymap("n", "<leader>gd", [[<Cmd> Gdiffsplit<CR>]], opts)
     vim.api.nvim_set_keymap("n", "<leader>gk", [[<Cmd> !gitk<CR>]], opts)
     vim.api.nvim_set_keymap("n", "]h", [[<Cmd> GitGutterNextHunk<CR>]], opts)
-    vim.api.nvim_set_keymap("n", "[h",  [[<Cmd> GitGutterPrevHunk<CR>]], opts)
+    vim.api.nvim_set_keymap("n", "[h", [[<Cmd> GitGutterPrevHunk<CR>]], opts)
 
     -- File manager maps
     vim.api.nvim_set_keymap("n", "<F5>", [[<Cmd> NERDTreeRefreshRoot<CR>]], opts)
@@ -206,7 +204,7 @@ function copy_buffer()
 end
 
 local function configure_treesitter()
-    require'nvim-treesitter.configs'.setup {
+    require 'nvim-treesitter.configs'.setup {
         ensure_installed = { "c", "lua", "rust", "go", "javascript", "typescript" },
         highlight = {
             enable = true,
