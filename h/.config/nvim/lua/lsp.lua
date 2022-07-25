@@ -102,9 +102,21 @@ local on_attach = function(client, bufnr)
       highlight LspReferenceRead cterm=bold ctermbg=red guibg=#464646
       highlight LspReferenceText cterm=bold ctermbg=red guibg=#464646
       highlight LspReferenceWrite cterm=bold ctermbg=red guibg=#464646
-      autocmd CursorHold <buffer> lua vim.lsp.buf.document_highlight()
-      autocmd CursorMoved <buffer> lua vim.lsp.buf.clear_references()
     ]], false)
+
+    vim.api.nvim_create_autocmd("CursorHold", {
+        group = vim.api.nvim_create_augroup("DocumentHighlightHold", { clear = true }),
+        callback = function ()
+            vim.lsp.buf.document_highlight()
+        end
+    })
+    vim.api.nvim_create_autocmd("CursorMoved", {
+        group = vim.api.nvim_create_augroup("DocumentHighlightMoved", { clear = true }),
+        callback = function ()
+            vim.lsp.buf.clear_references()
+        end
+    })
+
     buf_set_keymap("n", "<space>h", "<Cmd> lua vim.lsp.buf.document_highlight()<CR>", opts)
   end
 
@@ -112,7 +124,12 @@ local on_attach = function(client, bufnr)
   vim.api.nvim_command("command! RestartLSP lua vim.lsp.stop_client(vim.lsp.get_active_clients()); vim.cmd 'edit'")
 
   if vim.tbl_contains({"rust"}, filetype) then
-    vim.cmd [[autocmd BufWritePre <buffer> :lua vim.lsp.buf.formatting_sync()]]
+      vim.api.nvim_create_autocmd("BufWritePre", {
+          group = vim.api.nvim_create_augroup("Formatting", { clear = true }),
+          callback = function ()
+              vim.lsp.buf.formatting_sync()
+          end
+      })
   end
 
   if vim.tbl_contains({"go"}, filetype) then

@@ -93,46 +93,29 @@ local function set_colors()
 end
 
 
-function nvim_create_autogroups(definitions)
-  for group_name, definition in pairs(definitions) do
-    vim.api.nvim_command("augroup " .. group_name)
-    vim.api.nvim_command("autocmd!")
-    for _, def in ipairs(definition) do
-      local command = table.concat(vim.tbl_flatten {"autocmd", def}, " ")
-      vim.api.nvim_command(command)
-    end
-    vim.api.nvim_command("augroup END")
-  end
-end
-
-
 local function set_autogroups()
-    local autocmds = {
-      general = {
-        {
-          "BufEnter",
-          "*",
-          [[:syntax sync fromstart]],
-        },
-        {
-          "BufReadPost",
-          "*",
-          [[if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif]],
-        },
-        {
-            "BufWrite",
-            "*.rs",
-            [[:Format]],
-        },
-        {
-            "FileType",
-            "markdown,gitcommit",
-            "set spell",
-        },
-      },
-    }
-
-    nvim_create_autogroups(autocmds)
+    local group = vim.api.nvim_create_augroup("my_autogroup", { clear = true })
+    vim.api.nvim_create_autocmd("BufEnter", {
+        group = group,
+        pattern = "*",
+        callback = function ()
+            vim.api.nvim_command(":syntax sync fromstart")
+        end
+    })
+    vim.api.nvim_create_autocmd("BufReadPost", {
+        group = group,
+        pattern = "*",
+        callback = function ()
+            vim.api.nvim_command([[if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif]])
+        end
+    })
+    vim.api.nvim_create_autocmd("FileType", {
+        group = group,
+        pattern = "markdown,gitcommit",
+        callback = function ()
+            vim.o.spell = true
+        end
+    })
 end
 
 
