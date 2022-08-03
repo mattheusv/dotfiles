@@ -1,5 +1,6 @@
 local nvim_lsp = require('lspconfig')
 local cmp = require('cmp')
+local cmp_lsp = require("cmp_nvim_lsp")
 local luasnip = require("luasnip")
 local lsp = {}
 
@@ -175,10 +176,12 @@ local function setup_servers()
         perlpls = {},
         jsonls = {},
     }
+
+    local cap = cmp_lsp.update_capabilities(vim.lsp.protocol.make_client_capabilities())
     for server, config in pairs(servers) do
         config = config or {}
         config.on_attach = on_attach
-        config.capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
+        config.capabilities = cap
 
         nvim_lsp[server].setup(config)
     end
