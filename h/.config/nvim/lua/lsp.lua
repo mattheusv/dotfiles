@@ -128,8 +128,6 @@ local on_attach = function(client, bufnr)
                 vim.lsp.buf.clear_references()
             end
         })
-
-        buf_set_keymap("n", "<space>h", "<Cmd> lua vim.lsp.buf.document_highlight()<CR>", opts)
     end
 
     if vim.tbl_contains({ "go" }, filetype) then
