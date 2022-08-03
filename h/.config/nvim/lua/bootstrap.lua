@@ -17,10 +17,14 @@ return require('packer').startup(function()
     use({ 'Yggdroot/indentLine' })
 
     -- Fuzzy finder
-    use({ 'nvim-lua/popup.nvim' })
     use({ 'nvim-lua/plenary.nvim' })
-    use({ 'nvim-telescope/telescope.nvim' })
-    use({ 'nvim-telescope/telescope-fzy-native.nvim' })
+    use({
+        'nvim-lua/telescope.nvim',
+        requires = {
+            'nvim-lua/popup.nvim',
+            'nvim-telescope/telescope-fzy-native.nvim',
+        },
+    })
 
     -- Color Theme
     use({ 'morhetz/gruvbox' })
