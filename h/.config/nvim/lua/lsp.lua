@@ -106,7 +106,7 @@ local on_attach = function(client, bufnr)
     end
 
     -- Set autocommands and maps to document highlight
-    if client.server_capabilities.hoverProvider then
+    if client.server_capabilities.documentHighlightProvider then
         vim.api.nvim_exec([[
             highlight LspReferenceRead cterm=bold ctermbg=red guibg=#464646
             highlight LspReferenceText cterm=bold ctermbg=red guibg=#464646
