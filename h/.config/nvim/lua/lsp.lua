@@ -137,13 +137,28 @@ local on_attach = function(client, bufnr)
 end
 
 local function gopls_config()
+    local settings = {
+        gopls = {
+            buildFlags = { "-tags", "dynamic" },
+            allExperiments = true,
+            analyses = {
+                unusedparams = true,
+                shadow = true,
+            },
+            gofumpt = true,
+            staticcheck = true,
+        },
+    }
+
     local gopls_remote = os.getenv("GOPLS_REMOTE")
     if gopls_remote == "1" then
         return {
             cmd = { "gopls", "-remote", "localhost:8888" }
         }
     end
-    return {}
+    return {
+        settings = settings,
+    }
 end
 
 local function setup_servers()
