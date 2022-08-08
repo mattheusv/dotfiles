@@ -179,7 +179,7 @@ local function setup_servers()
     for server, config in pairs(servers) do
         config = config or {}
         config.on_attach = on_attach
-        config.capabilities = cap
+        config.capabilities = config.capabilities or cap
 
         nvim_lsp[server].setup(config)
     end
