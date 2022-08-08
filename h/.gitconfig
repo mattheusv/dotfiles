@@ -36,7 +36,7 @@
 	plo = pull origin
 	r = remote -v
 	b = branch
-	l = log --pretty=oneline -n 20
+	l = log --pretty=oneline -n 20 --abbrev-commit
     sh = stash
     cp = cherry-pick
     search = !fish -c git-search
