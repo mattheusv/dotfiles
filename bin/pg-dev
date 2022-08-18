@@ -1,0 +1,74 @@
+#!/bin/bash -e 
+
+#/ pg-dev build helper for Postgresql
+#/
+#/ Commands:
+#/  all         Build Postgresql, generate clangd compile_commands, install and execute tests
+#/  build       Build Postgresql
+#/  clean       Remove make config and build cache
+#/  configure   Re-configure makefile
+#/  lsp         Build Postgresql and generate clangd compile_commands.json file
+#/  install     Build, and install Postgresql on $PGINSTALL
+#/
+#/ Usage:
+#/   pg-dev <command> 
+#/
+
+PGINSTALL=$HOME/pgdev
+
+show_help() {
+     grep '^#/' < "$0" | cut -c4-
+}
+
+configure() {
+    CFLAGS="-O0" ./configure --prefix=$PGINSTALL \
+        --with-python \
+        --enable-tap-tests \
+        --enable-cassert \
+        --enable-debug \
+        --with-perl \
+        --with-tcl \
+        --with-openssl \
+        --with-llvm \
+        --enable-coverage
+}
+
+clean() {
+    make distclean || true
+}
+
+build() {
+    echo '-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-'
+    make -j4 world
+    echo '-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-'
+}
+
+install() {
+    build
+    make install
+    make install-world
+}
+
+
+generate_compiledb() {
+    bear -- make world
+}
+
+all() {
+    build
+    install
+    bear -- make world
+}
+
+
+case "$1" in
+    ""          ) show_help; exit 0 ;;
+    "-h"        ) show_help; exit 0 ;;
+    "--help"    ) show_help; exit 0 ;;
+    "lsp"       ) generate_compiledb; exit 0 ;;
+    "clean"     ) clean; exit 0 ;;
+    "configure" ) configure; exit 0 ;;
+    "build"     ) build; exit 0 ;;
+    "install"   ) install; exit 0 ;;
+    "all"       ) all; exit 0 ;;
+esac

@@ -1,0 +1,12 @@
+#!/bin/bash -e 
+
+PG_DATA=~/pgdev/data
+
+rm -rf $PG_DATA
+~/pgdev/bin/initdb -D $PG_DATA -U postgres
+
+~/pgdev/bin/pg_ctl start -D $PG_DATA -l /tmp/pgdev-logs
+
+~/pgdev/bin/psql -h localhost -U postgres
+
+~/pgdev/bin/pg_ctl stop -D ~/pgdev/data 
