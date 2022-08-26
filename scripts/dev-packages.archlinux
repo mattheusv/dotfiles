@@ -20,3 +20,7 @@ xclip
 git
 git-delta
 ripgrep
+htop
+bear
+llvm
+lcov
