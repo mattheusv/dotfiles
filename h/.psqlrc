@@ -10,4 +10,6 @@
 \x auto
 \set VERBOSITY verbose
 
+\set HISTCONTROL ignoredups
+
 \unset QUIET
