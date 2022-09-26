@@ -142,7 +142,7 @@ local function gopls_config()
             allExperiments = true,
             analyses = {
                 unusedparams = true,
-                shadow = true,
+                shadow = false,
             },
             gofumpt = true,
             staticcheck = true,
