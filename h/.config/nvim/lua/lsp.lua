@@ -139,7 +139,6 @@ end
 local function gopls_config()
     local settings = {
         gopls = {
-            buildFlags = { "-tags", "dynamic" },
             allExperiments = true,
             analyses = {
                 unusedparams = true,
