@@ -88,3 +88,16 @@ end
 function fish_command_not_found
     __fish_default_command_not_found_handler $argv
 end
+
+function gbr --description "Git browse commits"
+    set -l log_line_to_hash "echo {} | grep -o '[a-f0-9]\{7\}' | head -1"
+    set -l view_commit "$log_line_to_hash | xargs -I % sh -c 'git show --color=always % | delta | less -R'"
+
+    git log --date=short --format="%C(green)%C(bold)%cd %C(auto)%h%d %s (%an)" --graph --color=always |
+    fzf --ansi --no-sort --reverse --multi --preview="$view_commit" \
+    | cut -d ' ' -f3 | read -lz commit
+    commandline -i -- (echo $commit | grep -o "[a-f0-9]\{7,\}")
+
+end
+
+bind \cg gbr
