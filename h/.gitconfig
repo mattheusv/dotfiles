@@ -63,3 +63,6 @@
 
 [init]
 	defaultBranch = main
+[rebase]
+	autosquash = true
+	autostash = true
