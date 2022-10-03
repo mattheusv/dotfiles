@@ -41,7 +41,7 @@ if test -e ~/.asdf/
     source $HOME/.asdf/completions/asdf.fish
 end
 
-set EDITOR nvim
+set -gx EDITOR 'nvim'
 
 function git-search
     set commit (git log --oneline | fzf | cut -d ' ' -f1)
