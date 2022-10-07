@@ -13,9 +13,6 @@ return require('packer').startup(function()
     -- Status/tabline
     use({ 'itchyny/lightline.vim' })
 
-    -- Display the indention levels
-    use({ 'Yggdroot/indentLine' })
-
     -- Fuzzy finder
     use({ 'nvim-lua/plenary.nvim' })
     use({
