@@ -21,6 +21,9 @@ return require('packer').startup(function()
             'nvim-telescope/telescope-fzy-native.nvim',
         },
     })
+    use({ 'ryanoasis/vim-devicons' })
+    use({ 'kyazdani42/nvim-web-devicons' })
+    use({ 'preservim/nerdtree' })
 
     -- Color Theme
     use({ 'morhetz/gruvbox' })
@@ -31,17 +34,6 @@ return require('packer').startup(function()
 
     -- Markdown preview
     use({ 'euclio/vim-markdown-composer', run = 'cargo build --release --locked' })
-
-    -- File tree
-    use({ 'preservim/nerdtree' })
-
-    -- Nice icons
-    use({ 'ryanoasis/vim-devicons' })
-    use({ 'kyazdani42/nvim-web-devicons' })
-
-    --*****************************************************************************
-    -- Custon Plugs
-    --*****************************************************************************"
 
     -- LSP
     use({ 'neovim/nvim-lspconfig' })
