@@ -6,14 +6,13 @@ return require('packer').startup(function()
     use({ 'tpope/vim-commentary' })
 
     -- Git plugins
-    use({ 'tpope/vim-fugitive' })
     use({ 'airblade/vim-gitgutter' })
     use({ 'rhysd/git-messenger.vim' })
 
     -- Status/tabline
     use({ 'itchyny/lightline.vim' })
 
-    -- Fuzzy finder
+    -- UI
     use({ 'nvim-lua/plenary.nvim' })
     use({
         'nvim-lua/telescope.nvim',
