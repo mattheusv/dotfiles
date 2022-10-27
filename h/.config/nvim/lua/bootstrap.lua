@@ -26,9 +26,6 @@ return require('packer').startup(function()
     use({ 'morhetz/gruvbox' })
     use({ 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate' })
 
-    -- Manage editoconfig files
-    use({ 'editorconfig/editorconfig-vim' })
-
     -- Surround parentheses, brackets, quotes, XML tags, and more
     use({ 'tpope/vim-surround' })
 
