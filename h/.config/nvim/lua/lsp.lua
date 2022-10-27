@@ -161,9 +161,6 @@ local function gopls_config()
 end
 
 local function setup_servers()
-    local html_capabilities = vim.lsp.protocol.make_client_capabilities()
-    html_capabilities.textDocument.completion.completionItem.snippetSupport = true
-
     local servers = {
         gopls = gopls_config(),
         rust_analyzer = {},
@@ -172,7 +169,6 @@ local function setup_servers()
         clangd = {},
         bashls = {},
         dockerls = {},
-        html = { capabilities = html_capabilities },
         yamlls = {},
         vimls = {},
         sumneko_lua = {
