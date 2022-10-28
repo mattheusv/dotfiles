@@ -185,7 +185,7 @@ local function setup_servers()
         jsonls = {},
     }
 
-    local cap = cmp_lsp.update_capabilities(vim.lsp.protocol.make_client_capabilities())
+    local cap = cmp_lsp.default_capabilities(vim.lsp.protocol.make_client_capabilities())
     for server, config in pairs(servers) do
         config = config or {}
         config.on_attach = on_attach
