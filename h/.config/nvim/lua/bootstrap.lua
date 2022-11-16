@@ -58,6 +58,4 @@ return require('packer').startup(function()
     -- Golang
     use({ 'fatih/vim-go', run = ':GoInstallBinaries' })
 
-    -- Fish
-    use({ 'dag/vim-fish' })
 end)

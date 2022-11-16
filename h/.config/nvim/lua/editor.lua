@@ -206,7 +206,7 @@ end
 
 local function configure_treesitter()
     require 'nvim-treesitter.configs'.setup {
-        ensure_installed = { "c", "lua", "rust", "go", "javascript", "typescript" },
+        ensure_installed = { "c", "lua", "rust", "go", "javascript", "typescript", "fish" },
         highlight = {
             enable = true,
         },
