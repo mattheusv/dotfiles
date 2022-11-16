@@ -51,10 +51,6 @@ return require('packer').startup(function()
         },
     })
 
-    -- Python
-    use({ 'tmhedberg/SimpylFold' })
-    use({ 'raimon49/requirements.txt.vim', ft = { 'requirements' } })
-
     -- Golang
     use({ 'fatih/vim-go', run = ':GoInstallBinaries' })
 
