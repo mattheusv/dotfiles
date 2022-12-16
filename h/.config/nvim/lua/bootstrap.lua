@@ -22,7 +22,6 @@ return require('packer').startup(function()
             'nvim-telescope/telescope-fzy-native.nvim',
         },
     })
-    use({ 'ryanoasis/vim-devicons' })
     use({ 'kyazdani42/nvim-web-devicons' })
     use({ 'preservim/nerdtree' })
 
