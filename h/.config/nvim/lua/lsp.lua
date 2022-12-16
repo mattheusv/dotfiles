@@ -93,17 +93,14 @@ local on_attach = function(client, bufnr)
 
     -- Set a map and auto formatting if lsp has suport
     if client.supports_method("textDocument/formatting") then
-        buf_set_keymap("n", "<space>f", "<cmd>lua vim.lsp.buf.formatting()<CR>", opts)
+        buf_set_keymap("n", "<space>f", "<cmd>lua vim.lsp.buf.format({async=true})<CR>", opts)
 
-        -- vim-go already provide an auto formatting
-        if not vim.tbl_contains({ "go" }, filetype) then
-            vim.api.nvim_create_autocmd("BufWritePre", {
-                group = vim.api.nvim_create_augroup("Formatting", { clear = true }),
-                callback = function()
-                    vim.lsp.buf.formatting_sync()
-                end
-            })
-        end
+        vim.api.nvim_create_autocmd("BufWritePre", {
+            group = vim.api.nvim_create_augroup("Formatting", { clear = true }),
+            callback = function()
+                vim.lsp.buf.formatting_sync()
+            end
+        })
     end
 
     -- Set autocommands and maps to document highlight
