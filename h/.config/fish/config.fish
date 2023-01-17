@@ -12,6 +12,8 @@ end
 
 alias gs='git st'
 alias gd='git df'
+alias gl='git l'
+alias gla='git last'
 
 # Python ENVs
 set -a PATH $HOME/.local/bin
