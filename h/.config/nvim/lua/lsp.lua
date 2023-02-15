@@ -168,16 +168,17 @@ local function setup_servers()
         dockerls = {},
         yamlls = {},
         vimls = {},
-        sumneko_lua = {
-            cmd = { "lua-language-server" }, -- Installed bin with `paru lua-language-server`
-            settings = {
-                Lua = {
-                    diagnostics = {
-                        globals = { "vim", "use" }
-                    },
-                }
-            }
-        },
+        lua_ls = {},
+        -- sumneko_lua = {
+        --     cmd = { "lua-language-server" }, -- Installed bin with `paru lua-language-server`
+        --     settings = {
+        --         Lua = {
+        --             diagnostics = {
+        --                 globals = { "vim", "use" }
+        --             },
+        --         }
+        --     }
+        -- },
         perlpls = {},
         jsonls = {},
     }

@@ -220,7 +220,6 @@ local function configure_treesitter()
             "fish",
             "comment",
             "dockerfile",
-            "gitcommit",
             "sql",
             "toml",
         },
