@@ -12,4 +12,6 @@
 
 \set HISTCONTROL ignoredups
 
+\set HISTFILE ~/.psql_history- :DBNAME
+
 \unset QUIET
