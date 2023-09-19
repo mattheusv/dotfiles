@@ -196,12 +196,21 @@ local function configure_commands()
     vim.api.nvim_command("command! SaveSession :mksession! session.vim")
     vim.api.nvim_command("command! OpenSession :source session.vim")
     vim.api.nvim_command("command! Cb :up | %bd | e#")
+    vim.api.nvim_command("command! LspDisableFormatting execute('lua lsp_disable_formatting()')")
 end
 
 function Copy_buffer()
     local line = vim.fn.line('.')
     local file = vim.fn.expand('%')
     vim.fn.setreg("+", string.format("%s:%s", file, line))
+end
+
+function lsp_disable_formatting()
+    vim.api.nvim_create_autocmd("BufWritePre", {
+        group = vim.api.nvim_create_augroup("Formatting", { clear = true }),
+        callback = function()
+        end
+    })
 end
 
 local function configure_treesitter()
