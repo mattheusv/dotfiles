@@ -53,4 +53,7 @@ return require('packer').startup(function()
     -- Golang
     use({ 'fatih/vim-go', run = ':GoInstallBinaries' })
 
+    -- Zig
+    use({ 'ziglang/zig.vim' } )
+
 end)
