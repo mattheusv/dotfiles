@@ -74,7 +74,7 @@ local on_attach = function(client, bufnr)
 
     -- Mappings.
     buf_set_keymap('n', '<leader>rn', '<cmd>lua vim.lsp.buf.rename()<CR>', opts)
-    buf_set_keymap('n', 'gd', '<Cmd>lua vim.lsp.buf.definition()<CR>', opts)
+    buf_set_keymap('n', 'gd', [[<cmd>lua require('telescope.builtin').lsp_definitions()<CR>]], opts)
     buf_set_keymap('n', '<leader>gd', '<Cmd>vsplit<cr>:lua vim.lsp.buf.definition()<CR>', opts)
     buf_set_keymap('n', 'gD', '<Cmd>lua vim.lsp.buf.declaration()<CR>', opts)
     buf_set_keymap('n', 'td', [[<cmd>lua require('telescope.builtin').lsp_type_definitions()<CR>]], opts)
