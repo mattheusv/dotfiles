@@ -188,6 +188,9 @@ local function configure_maps()
 
     -- File manager maps
     vim.api.nvim_set_keymap("n", "<F5>", [[<Cmd> NERDTreeRefreshRoot<CR>]], opts)
+
+    -- telekasten notes maps
+    vim.api.nvim_set_keymap("n", "<C-n>", [[<Cmd> lua require('telekasten').panel()<CR>]], opts)
 end
 
 local function configure_commands()
@@ -248,6 +251,10 @@ function editor.setup()
     configure_maps()
     configure_treesitter()
     configure_commands()
+
+    require('telekasten').setup({
+        home = vim.fn.expand("~/notes"), 
+    })
 end
 
 return editor

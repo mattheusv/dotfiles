@@ -63,5 +63,9 @@ return require('packer').startup(function()
     -- Java
     use({ 'mfussenegger/nvim-jdtls' })
 
+    use ({
+        'renerocksai/telekasten.nvim',
+        requires = {'nvim-telescope/telescope.nvim'}
+    })
 
 end)
