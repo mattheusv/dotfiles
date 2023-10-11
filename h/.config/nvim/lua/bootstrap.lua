@@ -27,6 +27,7 @@ return require('packer').startup(function()
 
     -- Color Theme
     use({ 'morhetz/gruvbox' })
+    use({'rafikdraoui/couleurs.vim'})
     use({ 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate' })
 
     -- Surround parentheses, brackets, quotes, XML tags, and more
@@ -34,6 +35,9 @@ return require('packer').startup(function()
 
     -- Markdown preview
     use({ 'euclio/vim-markdown-composer', run = 'cargo build --release --locked' })
+
+    -- Spell checking
+    use({'mateusbraga/vim-spell-pt-br'})
 
     -- LSP
     use({ 'neovim/nvim-lspconfig' })

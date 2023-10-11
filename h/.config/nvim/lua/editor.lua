@@ -88,7 +88,7 @@ end
 
 local function set_colors()
     vim.o.bg = "dark"
-    vim.cmd("colorscheme gruvbox")
+    vim.cmd("colorscheme couleurs")
 end
 
 local function set_autogroups()
