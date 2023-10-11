@@ -90,6 +90,10 @@ local on_attach = function(client, bufnr)
     buf_set_keymap('n', '[d', '<cmd>lua vim.diagnostic.goto_prev()<CR>', opts)
     buf_set_keymap('n', ']d', '<cmd>lua vim.diagnostic.goto_next()<CR>', opts)
 
+    buf_set_keymap('n', '<MiddleMouse>', '<Cmd>lua vim.lsp.buf.hover()<CR>', opts)
+    buf_set_keymap('n', '<RightMouse>',[[<cmd>lua require('telescope.builtin').lsp_definitions()<CR>]], opts)
+    buf_set_keymap('n', '<2-RightMouse>', '<Cmd>:e#<CR>', opts)
+
 
     -- Set a map and auto formatting if lsp has suport
     if client.supports_method("textDocument/formatting") then
