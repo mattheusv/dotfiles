@@ -189,4 +189,30 @@ function lsp.setup()
     setup_servers()
 end
 
+function lsp.setup_java() 
+    local home = os.getenv('HOME')
+    local project_name = vim.fn.fnamemodify(vim.fn.getcwd(), ':p:h:t')
+    local workspace_dir = home .. '/dev/tools/jdtls-workspace' .. project_name
+
+    local config = {
+        cmd = {
+            'java', 
+            '-Declipse.application=org.eclipse.jdt.ls.core.id1',
+            '-Dosgi.bundles.defaultStartLevel=4',
+            '-Declipse.product=org.eclipse.jdt.ls.core.product',
+            '-Dlog.protocol=true',
+            '-Dlog.level=ALL',
+            '-Xmx1g',
+            '--add-modules=ALL-SYSTEM',
+            '--add-opens', 'java.base/java.util=ALL-UNNAMED',
+            '--add-opens', 'java.base/java.lang=ALL-UNNAMED',
+            '-jar', home .. '/dev/tools/eclipse.jdt.ls/org.eclipse.jdt.ls.product/target/repository/plugins/org.eclipse.equinox.launcher_1.6.500.v20230717-2134.jar',
+            '-configuration', home .. '/dev/tools/eclipse.jdt.ls/org.eclipse.jdt.ls.product/target/repository/config_linux',
+            '-data', workspace_dir
+        },
+        on_attach = on_attach
+    }
+    require('jdtls').start_or_attach(config)
+end
+
 return lsp

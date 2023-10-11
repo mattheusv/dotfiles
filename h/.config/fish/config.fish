@@ -14,6 +14,10 @@ alias gs='git st'
 alias gd='git df'
 alias gl='git l'
 alias gla='git last'
+alias gpl='git pull'
+
+source ~/.asdf/asdf.fish
+source ~/.asdf/plugins/java/set-java-home.fish
 
 # Python ENVs
 set -a PATH $HOME/.local/bin

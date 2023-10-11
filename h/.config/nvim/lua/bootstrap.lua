@@ -60,4 +60,8 @@ return require('packer').startup(function()
     -- Zig
     use({ 'ziglang/zig.vim' } )
 
+    -- Java
+    use({ 'mfussenegger/nvim-jdtls' })
+
+
 end)
