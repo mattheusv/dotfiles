@@ -13,7 +13,7 @@ return require('packer').startup(function()
     use({ 'itchyny/lightline.vim' })
 
     -- UI
-    use("lukas-reineke/indent-blankline.nvim")
+    use({"lukas-reineke/indent-blankline.nvim", tag = "v2.20.8" })
     use({ 'nvim-lua/plenary.nvim' })
     use({
         'nvim-lua/telescope.nvim',
