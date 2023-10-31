@@ -41,6 +41,9 @@ set -a PATH $HOME/.dotfiles/bin
 # working scripts
 set -a PATH $HOME/dev/work/bin
 
+# Build from source binaries tools
+set -a PATH $HOME/dev/tools/bin
+
 # asdf
 if test -e ~/.asdf/
     source $HOME/.asdf/asdf.fish
