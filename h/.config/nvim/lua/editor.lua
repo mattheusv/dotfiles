@@ -165,6 +165,8 @@ local function configure_maps()
     vim.api.nvim_set_keymap('x', 'J', [[:move '>+1<CR>gv-gv]], opts)
     vim.api.nvim_set_keymap("v", "<", [[<gv]], opts)
     vim.api.nvim_set_keymap("v", ">", [[>gv]], opts)
+    vim.api.nvim_set_keymap("i", "<c-l>", [[<Cmd> tabnext<CR>]], opts)
+    vim.api.nvim_set_keymap("i", "<c-h>", [[<Cmd> tabprevious<CR>]], opts)
 
     -- Buffer maps
     vim.api.nvim_set_keymap("n", "<leader>c", [[<Cmd> bp<cr>:bd #<cr>]], opts)
@@ -188,6 +190,7 @@ local function configure_maps()
 
     -- File manager maps
     vim.api.nvim_set_keymap("n", "<F5>", [[<Cmd> NERDTreeRefreshRoot<CR>]], opts)
+    vim.api.nvim_set_keymap("n", "<C-t>", [[<Cmd> NERDTreeMapOpenInTab<CR>]], opts)
 
     -- telekasten notes maps
     vim.api.nvim_set_keymap("n", "<C-n>", [[<Cmd> lua require('telekasten').panel()<CR>]], opts)
