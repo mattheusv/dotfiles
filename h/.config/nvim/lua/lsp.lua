@@ -175,7 +175,11 @@ local function setup_servers()
         lua_ls = {},
         perlpls = {},
         jsonls = {},
-        zls = {},
+        zls = {
+            settings = {
+                enable_autofix = false,
+            },
+        },
     }
 
     local cap = cmp_lsp.default_capabilities(vim.lsp.protocol.make_client_capabilities())
