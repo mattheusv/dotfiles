@@ -165,7 +165,18 @@ local function setup_servers()
     local servers = {
         gopls = gopls_config(),
         rust_analyzer = {},
-        jedi_language_server = {},
+        pylsp = {
+            settings = {
+                pylsp = {
+                    plugins = {
+                        pycodestyle = {
+                            maxLineLength = 120,
+                        }
+                    }
+                }
+            }
+        },
+        -- pyright = {},
         tsserver = {},
         clangd = {},
         bashls = {},
