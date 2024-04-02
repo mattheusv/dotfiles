@@ -225,7 +225,7 @@ function lsp.setup_java()
             '--add-modules=ALL-SYSTEM',
             '--add-opens', 'java.base/java.util=ALL-UNNAMED',
             '--add-opens', 'java.base/java.lang=ALL-UNNAMED',
-            '-jar', home .. '/dev/tools/eclipse.jdt.ls/org.eclipse.jdt.ls.product/target/repository/plugins/org.eclipse.equinox.launcher_1.6.700.v20231214-2017.jar',
+            '-jar', home .. '/dev/tools/eclipse.jdt.ls/org.eclipse.jdt.ls.product/target/repository/plugins/org.eclipse.equinox.launcher_1.6.700.v20240213-1244.jar',
             '-configuration', home .. '/dev/tools/eclipse.jdt.ls/org.eclipse.jdt.ls.product/target/repository/config_linux',
             '-data', workspace_dir
         },
