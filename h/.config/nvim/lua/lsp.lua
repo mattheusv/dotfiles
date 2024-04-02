@@ -211,11 +211,15 @@ end
 function lsp.setup_java() 
     local home = os.getenv('HOME')
     local project_name = vim.fn.fnamemodify(vim.fn.getcwd(), ':p:h:t')
-    local workspace_dir = home .. '/dev/tools/jdtls-workspace' .. project_name
+    local workspace_dir = home .. '/dev/tools/jdtls-workspace/' .. project_name
 
     local config = {
         cmd = {
-            'java', 
+            -- The jdtls command was put on PATH after compiling eclipse.jdt.ls
+            -- from source. The command will be at the following path after
+            -- compiling:
+            -- `org.eclipse.jdt.ls.product/target/repository/bin/jdtls`
+            'jdtls',
             '-Declipse.application=org.eclipse.jdt.ls.core.id1',
             '-Dosgi.bundles.defaultStartLevel=4',
             '-Declipse.product=org.eclipse.jdt.ls.core.product',
@@ -225,7 +229,6 @@ function lsp.setup_java()
             '--add-modules=ALL-SYSTEM',
             '--add-opens', 'java.base/java.util=ALL-UNNAMED',
             '--add-opens', 'java.base/java.lang=ALL-UNNAMED',
-            '-jar', home .. '/dev/tools/eclipse.jdt.ls/org.eclipse.jdt.ls.product/target/repository/plugins/org.eclipse.equinox.launcher_1.6.700.v20240213-1244.jar',
             '-configuration', home .. '/dev/tools/eclipse.jdt.ls/org.eclipse.jdt.ls.product/target/repository/config_linux',
             '-data', workspace_dir
         },
