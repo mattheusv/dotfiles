@@ -170,9 +170,12 @@ local function configure_maps()
 
     -- Buffer maps
     vim.api.nvim_set_keymap("n", "<leader>c", [[<Cmd> bp<cr>:bd #<cr>]], opts)
-    vim.api.nvim_set_keymap("n", "<c-p>",
-        [[<Cmd> lua require('telescope.builtin').git_files({show_untracked=false})<CR>]], opts)
-    -- vim.api.nvim_set_keymap("n", "<c-p>", [[<Cmd> lua require('telescope.builtin').find_files()<CR>]], opts)
+    if vim.fn.isdirectory('.git') ~= 0 then
+        vim.api.nvim_set_keymap("n", "<c-p>",
+            [[<Cmd> lua require('telescope.builtin').git_files({show_untracked=false})<CR>]], opts)
+    else 
+        vim.api.nvim_set_keymap("n", "<c-p>", [[<Cmd> lua require('telescope.builtin').find_files()<CR>]], opts)
+    end
     vim.api.nvim_set_keymap("n", "<leader>rg", [[<Cmd> lua require('telescope.builtin').live_grep()<CR>]], opts)
     vim.api.nvim_set_keymap("n", "<leader>q", [[<Cmd> lua require('telescope.builtin').buffers()<CR>]], opts)
     configure_telescope_maps()
