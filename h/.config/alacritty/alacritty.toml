@@ -19,8 +19,8 @@ white = "#a89984"
 yellow = "#d79921"
 
 [colors.primary]
-background = "#282828"
-foreground = "#ebdbb2"
+background = '#212121'
+foreground = '#F8F8F2'
 
 [font]
 size = 8.5
