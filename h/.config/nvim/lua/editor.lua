@@ -185,9 +185,6 @@ local function configure_maps()
     vim.g.NERDTreeWinPos = "right"
 
     -- Git maps
-    vim.api.nvim_set_keymap("n", "<leader>gs", [[<Cmd> G<CR>]], opts)
-    vim.api.nvim_set_keymap("n", "<leader>gd", [[<Cmd> Gdiffsplit<CR>]], opts)
-    vim.api.nvim_set_keymap("n", "<leader>gk", [[<Cmd> !gitk<CR>]], opts)
     vim.api.nvim_set_keymap("n", "]h", [[<Cmd> GitGutterNextHunk<CR>]], opts)
     vim.api.nvim_set_keymap("n", "[h", [[<Cmd> GitGutterPrevHunk<CR>]], opts)
 
