@@ -40,6 +40,11 @@ return require('packer').startup(function()
     -- Spell checking
     use({'mateusbraga/vim-spell-pt-br'})
 
+    -- Manage global and project-local settings
+    use({
+      "folke/neoconf.nvim",
+    })
+
     -- LSP
     use({ 'neovim/nvim-lspconfig' })
     use({ "L3MON4D3/LuaSnip" })

@@ -1,3 +1,5 @@
+require("neoconf").setup({ })
+
 local editor = {}
 
 local function set_globals()
