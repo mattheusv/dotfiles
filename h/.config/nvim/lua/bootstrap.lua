@@ -28,6 +28,7 @@ return require('packer').startup(function()
     -- Color Theme
     use({ 'morhetz/gruvbox' })
     use({'rafikdraoui/couleurs.vim'})
+    use({'wincent/base16-nvim'})
     use({ 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate' })
 
     -- Surround parentheses, brackets, quotes, XML tags, and more
