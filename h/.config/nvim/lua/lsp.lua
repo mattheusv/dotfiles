@@ -91,7 +91,7 @@ local on_attach = function(client, bufnr)
     buf_set_keymap('n', ']d', '<cmd>lua vim.diagnostic.goto_next()<CR>', opts)
 
     buf_set_keymap('n', '<MiddleMouse>', '<Cmd>lua vim.lsp.buf.hover()<CR>', opts)
-    buf_set_keymap('n', '<RightMouse>',[[<cmd>lua require('telescope.builtin').lsp_definitions()<CR>]], opts)
+    buf_set_keymap('n', '<RightMouse>', [[<cmd>lua require('telescope.builtin').lsp_definitions()<CR>]], opts)
     buf_set_keymap('n', '<2-RightMouse>', '<Cmd>:e#<CR>', opts)
 
 
@@ -134,7 +134,6 @@ local on_attach = function(client, bufnr)
     if vim.tbl_contains({ "go" }, filetype) then
         setup_vimgo()
     end
-
 end
 
 local function gopls_config()
@@ -183,7 +182,37 @@ local function setup_servers()
         dockerls = {},
         yamlls = {},
         vimls = {},
-        lua_ls = {},
+        lua_ls = {
+            on_init = function(client)
+                local path = client.workspace_folders[1].name
+                if vim.loop.fs_stat(path .. '/.luarc.json') or vim.loop.fs_stat(path .. '/.luarc.jsonc') then
+                    return
+                end
+
+                client.config.settings.Lua = vim.tbl_deep_extend('force', client.config.settings.Lua, {
+                    runtime = {
+                        -- Tell the language server which version of Lua you're using
+                        -- (most likely LuaJIT in the case of Neovim)
+                        version = 'LuaJIT'
+                    },
+                    -- Make the server aware of Neovim runtime files
+                    workspace = {
+                        checkThirdParty = false,
+                        library = {
+                            vim.env.VIMRUNTIME
+                            -- Depending on the usage, you might want to add additional paths here.
+                            -- "${3rd}/luv/library"
+                            -- "${3rd}/busted/library",
+                        }
+                        -- or pull in all of 'runtimepath'. NOTE: this is a lot slower
+                        -- library = vim.api.nvim_get_runtime_file("", true)
+                    }
+                })
+            end,
+            settings = {
+                Lua = {}
+            }
+        },
         perlpls = {},
         jsonls = {},
         zls = {
@@ -208,7 +237,7 @@ function lsp.setup()
     setup_servers()
 end
 
-function lsp.setup_java() 
+function lsp.setup_java()
     local home = os.getenv('HOME')
     local project_name = vim.fn.fnamemodify(vim.fn.getcwd(), ':p:h:t')
     local workspace_dir = home .. '/dev/tools/jdtls-workspace/' .. project_name
