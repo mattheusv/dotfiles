@@ -13,7 +13,7 @@ return require('packer').startup(function()
     use({ 'itchyny/lightline.vim' })
 
     -- UI
-    use({"lukas-reineke/indent-blankline.nvim", tag = "v2.20.8" })
+    use({ "lukas-reineke/indent-blankline.nvim", tag = "v2.20.8" })
     use({ 'nvim-lua/plenary.nvim' })
     use({
         'nvim-lua/telescope.nvim',
@@ -27,8 +27,8 @@ return require('packer').startup(function()
 
     -- Color Theme
     use({ 'morhetz/gruvbox' })
-    use({'rafikdraoui/couleurs.vim'})
-    use({'wincent/base16-nvim'})
+    use({ 'rafikdraoui/couleurs.vim' })
+    use({ 'wincent/base16-nvim' })
     use({ 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate' })
 
     -- Surround parentheses, brackets, quotes, XML tags, and more
@@ -38,12 +38,19 @@ return require('packer').startup(function()
     use({ 'euclio/vim-markdown-composer', run = 'cargo build --release --locked' })
 
     -- Spell checking
-    use({'mateusbraga/vim-spell-pt-br'})
+    use({ 'mateusbraga/vim-spell-pt-br' })
 
     -- Manage global and project-local settings
     use({
-      "folke/neoconf.nvim",
+        "folke/neoconf.nvim",
     })
+
+    -- Notes
+    use({
+        'renerocksai/telekasten.nvim',
+        requires = { 'nvim-telescope/telescope.nvim' }
+    })
+
 
     -- LSP
     use({ 'neovim/nvim-lspconfig' })
@@ -64,14 +71,8 @@ return require('packer').startup(function()
     use({ 'fatih/vim-go', run = ':GoInstallBinaries' })
 
     -- Zig
-    use({ 'ziglang/zig.vim' } )
+    use({ 'ziglang/zig.vim' })
 
     -- Java
     use({ 'mfussenegger/nvim-jdtls' })
-
-    use ({
-        'renerocksai/telekasten.nvim',
-        requires = {'nvim-telescope/telescope.nvim'}
-    })
-
 end)

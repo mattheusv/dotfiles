@@ -1,4 +1,4 @@
-require("neoconf").setup({ })
+require("neoconf").setup({})
 
 local editor = {}
 
@@ -175,7 +175,7 @@ local function configure_maps()
     if vim.fn.isdirectory('.git') ~= 0 then
         vim.api.nvim_set_keymap("n", "<c-p>",
             [[<Cmd> lua require('telescope.builtin').git_files({show_untracked=false})<CR>]], opts)
-    else 
+    else
         vim.api.nvim_set_keymap("n", "<c-p>", [[<Cmd> lua require('telescope.builtin').find_files()<CR>]], opts)
     end
     vim.api.nvim_set_keymap("n", "<leader>rg", [[<Cmd> lua require('telescope.builtin').live_grep()<CR>]], opts)
@@ -259,7 +259,7 @@ function editor.setup()
     configure_commands()
 
     require('telekasten').setup({
-        home = vim.fn.expand("~/notes"), 
+        home = vim.fn.expand("~/notes"),
     })
 end
 
