@@ -240,6 +240,7 @@ local function configure_treesitter()
             "dockerfile",
             "sql",
             "toml",
+            "java",
         },
         highlight = {
             enable = true,

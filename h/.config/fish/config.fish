@@ -29,6 +29,9 @@ set -a PATH $HOME/.cargo/bin
 set -a PATH $HOME/.node/bin
 set -a PATH $HOME/.npm/bin
 
+# Mason installed servers
+set -a PATH $HOME/.local/share/nvim/mason/bin
+
 # Fzf
 set -g FZF_DEFAULT_OPTS '--height 40% --layout=reverse --border'
 

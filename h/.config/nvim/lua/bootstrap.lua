@@ -67,6 +67,21 @@ return require('packer').startup(function()
         },
     })
 
+    -- LSP servers management
+    use({
+        "williamboman/mason.nvim",
+        requires = {
+            'WhoIsSethDaniel/mason-tool-installer.nvim',
+        },
+        config = function()
+            require('mason').setup {
+                registries = {
+                    'github:mason-org/mason-registry',
+                },
+            }
+        end
+    })
+
     -- Golang
     use({ 'fatih/vim-go', run = ':GoInstallBinaries' })
 

@@ -232,33 +232,40 @@ local function setup_servers()
     end
 end
 
+local function setup_mason()
+    require('mason-tool-installer').setup {
+        ensure_installed = {
+            'gopls',
+            'rust-analyzer',
+            'python-lsp-server',
+            'clangd',
+            'bash-language-server',
+            'dockerfile-language-server',
+            'docker-compose-language-service',
+            'yaml-language-server',
+            'vim-language-server',
+            'lua-language-server',
+            'json-lsp',
+            'zls',
+        }
+    }
+end
+
 function lsp.setup()
     set_options()
     setup_servers()
+    setup_mason()
 end
 
 function lsp.setup_java()
     local home = os.getenv('HOME')
     local project_name = vim.fn.fnamemodify(vim.fn.getcwd(), ':p:h:t')
-    local workspace_dir = home .. '/dev/tools/jdtls-workspace/' .. project_name
+    local workspace_dir = home .. '/.cache/jdtls/workspace/' .. project_name
 
     local config = {
         cmd = {
-            -- The jdtls command was put on PATH after compiling eclipse.jdt.ls
-            -- from source. The command will be at the following path after
-            -- compiling:
-            -- `org.eclipse.jdt.ls.product/target/repository/bin/jdtls`
             'jdtls',
-            '-Declipse.application=org.eclipse.jdt.ls.core.id1',
-            '-Dosgi.bundles.defaultStartLevel=4',
-            '-Declipse.product=org.eclipse.jdt.ls.core.product',
-            '-Dlog.protocol=true',
-            '-Dlog.level=ALL',
             '-Xmx4g',
-            '--add-modules=ALL-SYSTEM',
-            '--add-opens', 'java.base/java.util=ALL-UNNAMED',
-            '--add-opens', 'java.base/java.lang=ALL-UNNAMED',
-            '-configuration', home .. '/dev/tools/eclipse.jdt.ls/org.eclipse.jdt.ls.product/target/repository/config_linux',
             '-data', workspace_dir
         },
         on_attach = on_attach
