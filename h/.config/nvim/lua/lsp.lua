@@ -37,6 +37,15 @@ local function setup_vimgo()
     vim.api.nvim_command("command! -bang AS call go#alternate#Switch(<bang>0, 'vsplit')")
 end
 
+local function exists(list, element)
+    for _, value in ipairs(list) do
+        if value == element then
+            return true
+        end
+    end
+    return false
+end
+
 local on_attach = function(client, bufnr)
     local function buf_set_keymap(...) vim.api.nvim_buf_set_keymap(bufnr, ...) end
 
@@ -94,9 +103,18 @@ local on_attach = function(client, bufnr)
     buf_set_keymap('n', '<RightMouse>', [[<cmd>lua require('telescope.builtin').lsp_definitions()<CR>]], opts)
     buf_set_keymap('n', '<2-RightMouse>', '<Cmd>:e#<CR>', opts)
 
+    -- There is some projects that has a format style different from the lsp
+    -- server. In these cases the formatting is manually.
+    local projects_without_formatting = {
+        "trino",
+        "iceberg",
+    }
+
+
+    local project_name = vim.fn.fnamemodify(vim.fn.getcwd(), ':p:h:t')
 
     -- Set a map and auto formatting if lsp has suport
-    if client.supports_method("textDocument/formatting") then
+    if client.supports_method("textDocument/formatting") and not exists(projects_without_formatting, project_name) then
         buf_set_keymap("n", "<space>f", "<cmd>lua vim.lsp.buf.format({async=true})<CR>", opts)
 
         vim.api.nvim_create_autocmd("BufWritePre", {
