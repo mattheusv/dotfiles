@@ -285,6 +285,8 @@ function lsp.setup_java()
         cmd = {
             'jdtls',
             '-Xmx4g',
+            '-XX:+UseG1GC',
+            '-XX:+UseStringDeduplication',
             '-data', workspace_dir
         },
         on_attach = on_attach,
