@@ -145,10 +145,12 @@ local function configure_telescope_maps()
             fzy_native = {
                 override_generic_sorter = false,
                 override_file_sorter = true,
-            }
+            },
+            ["ui-select"] = {},
         }
     }
     require('telescope').load_extension('fzy_native')
+    require('telescope').load_extension('ui-select')
 end
 
 local function configure_maps()
