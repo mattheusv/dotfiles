@@ -287,7 +287,23 @@ function lsp.setup_java()
             '-Xmx4g',
             '-data', workspace_dir
         },
-        on_attach = on_attach
+        on_attach = on_attach,
+        settings = {
+            java = {
+                configuration = {
+                    runtimes = {
+                        {
+                            name = "JavaSE-22",
+                            path = home .. "/.asdf/installs/java/openjdk-22.0.1/",
+                        },
+                        {
+                            name = "JavaSE-17",
+                            path = home .. "/.asdf/installs/java/openjdk-17/",
+                        },
+                    }
+                }
+            }
+        }
     }
     require('jdtls').start_or_attach(config)
 end
