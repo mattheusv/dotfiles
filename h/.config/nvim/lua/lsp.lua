@@ -108,7 +108,8 @@ local on_attach = function(client, bufnr)
     end
 
     -- Set autocommands and maps to document highlight
-    if client.supports_method("textDocument/documentHighlight") then
+    -- jsonls don't support document highlight but for some reason the `supports_method` returns true anyway.
+    if client.supports_method("textDocument/documentHighlight") and not vim.tbl_contains({ "json" }, filetype) then
         vim.api.nvim_exec([[
             highlight LspReferenceRead cterm=bold ctermbg=red guibg=#464646
             highlight LspReferenceText cterm=bold ctermbg=red guibg=#464646
