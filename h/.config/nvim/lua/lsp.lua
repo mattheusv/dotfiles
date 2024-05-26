@@ -82,18 +82,20 @@ local on_attach = function(client, bufnr)
     })
 
     -- Mappings.
-    buf_set_keymap('n', '<leader>rn', '<cmd>lua vim.lsp.buf.rename()<CR>', opts)
+    buf_set_keymap('n', '<leader>rn', '<cmd>:Lspsaga rename<CR>', opts)
     buf_set_keymap('n', 'gd', [[<cmd>lua require('telescope.builtin').lsp_definitions()<CR>]], opts)
+    buf_set_keymap('n', 'gdp', [[<cmd>:Lspsaga peek_definition<CR>]], opts)
     buf_set_keymap('n', '<leader>gd', '<Cmd>vsplit<cr>:lua vim.lsp.buf.definition()<CR>', opts)
     buf_set_keymap('n', 'gD', '<Cmd>lua vim.lsp.buf.declaration()<CR>', opts)
     buf_set_keymap('n', 'td', [[<cmd>lua require('telescope.builtin').lsp_type_definitions()<CR>]], opts)
-    buf_set_keymap('n', '<space>a', '<cmd>lua vim.lsp.buf.code_action()<CR>', opts)
+    buf_set_keymap('n', 'tdp', [[<cmd>:Lspsaga peek_type_definition<CR>]], opts)
+    buf_set_keymap('n', '<space>a', '<cmd>:Lspsaga code_action<CR>', opts)
     buf_set_keymap('n', 'gr', [[<cmd>lua require('telescope.builtin').lsp_references()<CR>]], opts)
     buf_set_keymap('n', '<leader>s', [[<cmd>lua require('telescope.builtin').lsp_document_symbols()<CR>]], opts)
     buf_set_keymap('n', '<leader>wd', [[<cmd>lua require('telescope.builtin').diagnostics()<CR>]], opts)
     buf_set_keymap('n', '<leader>ws', [[<cmd>lua require('telescope.builtin').lsp_dynamic_workspace_symbols()<CR>]], opts)
     buf_set_keymap('n', 'gi', [[<cmd>lua require('telescope.builtin').lsp_implementations()<CR>]], opts)
-    buf_set_keymap('n', 'K', '<Cmd>lua vim.lsp.buf.hover()<CR>', opts)
+    buf_set_keymap('n', 'K', '<Cmd>:Lspsaga hover_doc<CR>', opts)
     buf_set_keymap('i', '<C-s>', '<Cmd>lua vim.lsp.buf.signature_help()<CR>', opts)
     buf_set_keymap('n', '<space>e', '<cmd>lua vim.diagnostic.open_float()<CR>', opts)
     buf_set_keymap('n', '[d', '<cmd>lua vim.diagnostic.goto_prev()<CR>', opts)
@@ -270,10 +272,19 @@ local function setup_mason()
     }
 end
 
+local function setup_lspsage()
+    require('lspsaga').setup({
+        lightbulb = {
+            enable = false,
+        },
+    })
+end
+
 function lsp.setup()
     set_options()
     setup_servers()
     setup_mason()
+    setup_lspsage()
 end
 
 function lsp.setup_java()

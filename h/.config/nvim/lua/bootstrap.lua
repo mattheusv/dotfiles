@@ -67,6 +67,7 @@ return require('packer').startup(function()
             "hrsh7th/cmp-buffer",
         },
     })
+    use({ 'nvimdev/lspsaga.nvim' })
 
     -- LSP servers management
     use({
