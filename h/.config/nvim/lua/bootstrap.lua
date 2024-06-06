@@ -52,6 +52,7 @@ return require('packer').startup(function()
         requires = { 'nvim-telescope/telescope.nvim' }
     })
 
+    use({ 'nvimtools/none-ls.nvim' })
 
     -- LSP
     use({ 'neovim/nvim-lspconfig' })

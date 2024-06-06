@@ -2,6 +2,7 @@ local nvim_lsp = require('lspconfig')
 local cmp = require('cmp')
 local cmp_lsp = require("cmp_nvim_lsp")
 local luasnip = require("luasnip")
+local null_ls = require("null-ls")
 local lsp = {}
 
 
@@ -185,18 +186,7 @@ local function setup_servers()
     local servers = {
         gopls = gopls_config(),
         rust_analyzer = {},
-        pylsp = {
-            settings = {
-                pylsp = {
-                    plugins = {
-                        pycodestyle = {
-                            maxLineLength = 120,
-                        }
-                    }
-                }
-            }
-        },
-        -- pyright = {},
+        pyright = {},
         tsserver = {},
         clangd = {},
         bashls = {},
@@ -280,11 +270,34 @@ local function setup_lspsage()
     })
 end
 
+local function setup_python_formatting()
+    null_ls.setup({
+        sources = {
+            null_ls.builtins.formatting.black.with({
+                command = "black",
+                extra_args = {
+                    "--fast",
+                    "--line-length=120",
+                },
+            }),
+            -- null_ls.builtins.formatting.isort,
+        },
+    })
+
+    vim.api.nvim_create_autocmd("BufWritePre", {
+        group = vim.api.nvim_create_augroup("Formatting", { clear = true }),
+        callback = function()
+            vim.lsp.buf.format()
+        end
+    })
+end
+
 function lsp.setup()
     set_options()
     setup_servers()
     setup_mason()
     setup_lspsage()
+    setup_python_formatting()
 end
 
 function lsp.setup_java()
