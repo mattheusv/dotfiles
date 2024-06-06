@@ -300,9 +300,15 @@ function lsp.setup_java()
             '-XX:+UseStringDeduplication',
             '-data', workspace_dir
         },
+        root_dir = vim.fs.dirname(vim.fs.find({ 'gradlew', '.git', 'mvnw' }, { upward = true })[1]),
         on_attach = on_attach,
         settings = {
             java = {
+                maxConcurrentBuilds = 2,
+                autobuild = false,
+                edit = {
+                    validateAllOpenBuffersOnChanges = false,
+                },
                 configuration = {
                     runtimes = {
                         {
@@ -314,9 +320,22 @@ function lsp.setup_java()
                             path = home .. "/.asdf/installs/java/openjdk-17/",
                         },
                     }
-                }
+                },
+                jdt = {
+                    ls = {
+                        lombokSupport = {
+                            enable = false,
+                        },
+                    },
+                },
             }
-        }
+        },
+        init_options = {
+            bundles = {
+                vim.fn.glob(
+                    home .. "/.local/share/nvim/mason/share/java-debug-adapter/com.microsoft.java.debug.plugin.jar", 1),
+            },
+        },
     }
     require('jdtls').start_or_attach(config)
 end
