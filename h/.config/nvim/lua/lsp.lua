@@ -309,7 +309,7 @@ function lsp.setup_java()
     local config = {
         cmd = {
             'jdtls',
-            '-Xmx4g',
+            '-Xmx8g',
             '-XX:+UseG1GC',
             '-XX:+UseStringDeduplication',
             '-data', workspace_dir
