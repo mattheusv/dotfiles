@@ -231,6 +231,7 @@ local function setup_servers()
                 enable_autofix = false,
             },
         },
+        typos_lsp = {},
     }
 
     local cap = cmp_lsp.default_capabilities(vim.lsp.protocol.make_client_capabilities())
