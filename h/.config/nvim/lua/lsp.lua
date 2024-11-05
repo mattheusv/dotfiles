@@ -187,7 +187,6 @@ local function setup_servers()
         gopls = gopls_config(),
         rust_analyzer = {},
         pyright = {},
-        tsserver = {},
         clangd = {},
         bashls = {},
         dockerls = {},
