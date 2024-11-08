@@ -38,7 +38,7 @@ set -g FZF_DEFAULT_OPTS '--height 40% --layout=reverse --border'
 # git number bin
 set -a PATH $HOME/.dotfiles/lib/git-number
 
-# custon scripts
+# custom scripts
 set -a PATH $HOME/.dotfiles/bin
 
 # working scripts
@@ -115,4 +115,14 @@ function gbr --description "Git browse commits"
 
 end
 
+function switch_git_worktree
+    set selected_path (git worktree list | fzf | awk '{print $1}')
+    if test -n "$selected_path"
+        cd "$selected_path"
+        commandline -f repaint
+    end
+end
+
 bind \cg gbr
+
+bind \cw switch_git_worktree
