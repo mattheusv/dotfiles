@@ -219,7 +219,7 @@ local function setup_servers()
                 Lua = {}
             }
         },
-        perlpls = {},
+        perlls = {},
         jsonls = {},
         zls = {
             settings = {
