@@ -121,8 +121,7 @@ local on_attach = function(client, bufnr)
     end
 
     -- Set autocommands and maps to document highlight
-    -- jsonls don't support document highlight but for some reason the `supports_method` returns true anyway.
-    if client.supports_method("textDocument/documentHighlight") and not vim.tbl_contains({ "json" }, filetype) then
+    if client.supports_method("textDocument/documentHighlight") then
         vim.api.nvim_exec([[
             highlight LspReferenceRead cterm=bold ctermbg=red guibg=#464646
             highlight LspReferenceText cterm=bold ctermbg=red guibg=#464646
@@ -131,14 +130,19 @@ local on_attach = function(client, bufnr)
             false
         )
 
+        -- Clear existing highlights when the cursor moves
+        vim.api.nvim_create_augroup("LspDocumentHighlight", { clear = true })
+
         vim.api.nvim_create_autocmd("CursorHold", {
-            group = vim.api.nvim_create_augroup("DocumentHighlightHold", { clear = true }),
+            group = "LspDocumentHighlight",
+            buffer = bufnr,
             callback = function()
                 vim.lsp.buf.document_highlight()
             end
         })
         vim.api.nvim_create_autocmd("CursorMoved", {
-            group = vim.api.nvim_create_augroup("DocumentHighlightMoved", { clear = true }),
+            group = "LspDocumentHighlight",
+            buffer = bufnr,
             callback = function()
                 vim.lsp.buf.clear_references()
             end
