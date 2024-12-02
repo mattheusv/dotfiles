@@ -106,26 +106,18 @@ local on_attach = function(client, bufnr)
     buf_set_keymap('n', '<RightMouse>', [[<cmd>lua require('telescope.builtin').lsp_definitions()<CR>]], opts)
     buf_set_keymap('n', '<2-RightMouse>', '<Cmd>:e#<CR>', opts)
 
-    -- There is some projects that has a format style different from the lsp
-    -- server. In these cases the formatting is manually.
-    local projects_without_formatting = {
-        "trino",
-        "iceberg",
-    }
-
-
-    local project_name = vim.fn.fnamemodify(vim.fn.getcwd(), ':p:h:t')
-
-    -- Set a map and auto formatting if lsp has suport
-    if client.supports_method("textDocument/formatting") and not exists(projects_without_formatting, project_name) then
+    -- Set a map and auto formatting if lsp has support
+    if client.supports_method("textDocument/formatting") then
         buf_set_keymap("n", "<space>f", "<cmd>lua vim.lsp.buf.format({async=true})<CR>", opts)
 
-        vim.api.nvim_create_autocmd("BufWritePre", {
-            group = vim.api.nvim_create_augroup("Formatting", { clear = true }),
-            callback = function()
-                vim.lsp.buf.format()
-            end
-        })
+        if not vim.tbl_contains({ "clangd" }, client.name) then
+            vim.api.nvim_create_autocmd("BufWritePre", {
+                group = vim.api.nvim_create_augroup("Formatting", { clear = true }),
+                callback = function()
+                  vim.lsp.buf.format()
+                end
+            })
+        end
     end
 
     -- Set autocommands and maps to document highlight
