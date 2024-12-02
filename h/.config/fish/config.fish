@@ -16,8 +16,9 @@ alias gl='git l'
 alias gla='git last'
 alias gpl='git pull'
 
-source ~/.asdf/asdf.fish
-source ~/.asdf/plugins/java/set-java-home.fish
+if test -e ~/.asdf/plugins/java/set-java-home.fish
+    source ~/.asdf/plugins/java/set-java-home.fish
+end
 
 # Python ENVs
 set -a PATH $HOME/.local/bin
@@ -48,7 +49,7 @@ set -a PATH $HOME/dev/work/bin
 set -a PATH $HOME/dev/tools/bin
 
 # asdf
-if test -e ~/.asdf/
+if test -e ~/.asdf/asdf.fish
     source $HOME/.asdf/asdf.fish
     source $HOME/.asdf/completions/asdf.fish
 end
