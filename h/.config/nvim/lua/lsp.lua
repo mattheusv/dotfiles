@@ -282,8 +282,11 @@ local function setup_python_formatting()
 
     vim.api.nvim_create_autocmd("BufWritePre", {
         group = vim.api.nvim_create_augroup("Formatting", { clear = true }),
+        pattern = "*.py",
         callback = function()
-            vim.lsp.buf.format()
+            if vim.bo.filetype == "python" then
+                vim.lsp.buf.format()
+            end
         end
     })
 end
