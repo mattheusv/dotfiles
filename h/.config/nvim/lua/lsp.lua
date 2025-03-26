@@ -114,7 +114,7 @@ local on_attach = function(client, bufnr)
             vim.api.nvim_create_autocmd("BufWritePre", {
                 group = vim.api.nvim_create_augroup("Formatting", { clear = true }),
                 callback = function()
-                  vim.lsp.buf.format()
+                    vim.lsp.buf.format()
                 end
             })
         end
@@ -291,12 +291,29 @@ local function setup_python_formatting()
     })
 end
 
+local function setup_c_postgres_formatting()
+    -- TODO: Only create the autocmd if pgindent is available on the system
+    -- TODO: Just create this autocmd on postgres source code directory.
+
+    vim.api.nvim_create_autocmd("BufWritePost", {
+        group = vim.api.nvim_create_augroup("PgFormatting", { clear = true }),
+        pattern = "*.c",
+        callback = function()
+            local filepath = vim.api.nvim_buf_get_name(0)
+            if vim.bo.filetype == "c" and filepath:match("pgdev") then
+                vim.cmd("silent! execute '!pgindent ' .. shellescape('" .. filepath .. "')")
+            end
+        end
+    })
+end
+
 function lsp.setup()
     set_options()
     setup_servers()
     setup_mason()
     setup_lspsage()
     setup_python_formatting()
+    setup_c_postgres_formatting()
 end
 
 function lsp.setup_java()
