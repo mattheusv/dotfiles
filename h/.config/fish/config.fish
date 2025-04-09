@@ -80,6 +80,14 @@ function fish_prompt
 end
 
 function fish_user_key_bindings
+  fish_vi_key_bindings
+  bind -M insert \cf accept-autosuggestion
+  bind -M insert \cg gbr
+  bind -M insert \cw switch_git_worktree
+  bind -M insert \cp forward-char
+  bind -M insert \cp up-or-search
+  bind -M insert \cn down-or-search
+
   # ctrl-del
   bind \e\[3\;5~ kill-word
 
