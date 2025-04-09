@@ -263,6 +263,10 @@ local function setup_lspsage()
         lightbulb = {
             enable = false,
         },
+        symbol_in_winbar = {
+            hide_keyword = true,
+            color_mode = false,
+        },
     })
 end
 
