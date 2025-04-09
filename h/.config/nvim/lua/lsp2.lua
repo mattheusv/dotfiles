@@ -241,8 +241,8 @@ end
 function lsp.setup()
     set_options()
     set_keymaps()
-    enable_servers()
     on_attach()
+    enable_servers()
 
     setup_mason()
     setup_lspsaga()
