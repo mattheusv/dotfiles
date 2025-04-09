@@ -1,5 +1,5 @@
 return require('packer').startup(function()
-    -- Boostrap packer
+    -- Bootstrap packer
     use({ 'wbthomason/packer.nvim' })
 
     -- Comment stuff
@@ -55,7 +55,7 @@ return require('packer').startup(function()
     use({ 'nvimtools/none-ls.nvim' })
 
     -- LSP
-    use({ 'neovim/nvim-lspconfig' })
+    use({ 'neovim/nvim-lspconfig', opts = { autoformat = false } })
     use({ "L3MON4D3/LuaSnip" })
     use({
         "hrsh7th/nvim-cmp",
