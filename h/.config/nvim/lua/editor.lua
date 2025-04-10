@@ -90,7 +90,42 @@ end
 
 local function set_colors()
     vim.o.bg = "dark"
-    vim.cmd("colorscheme couleurs")
+    vim.cmd("colorscheme zenwritten")
+
+    -- Make zenwritten better with some colors from rafikdraoui/couleurs.vim
+    vim.api.nvim_set_hl(0, "ColorColumn", {
+        fg = "NONE",
+        bg = "#3c3836",
+        sp = "NONE",
+        bold = false,
+        italic = false,
+        underline = false,
+        undercurl = false,
+    })
+
+    vim.api.nvim_set_hl(0, "CursorLine", {
+        fg = "NONE",
+        bg = "#3c3836",
+        sp = "NONE",
+        bold = false,
+        italic = false,
+        underline = false,
+        undercurl = false,
+    })
+
+    vim.api.nvim_set_hl(0, "Comment", {
+        fg = "#928374", -- Gray
+        bg = "NONE",
+        sp = "NONE",
+        italic = true,
+    })
+
+    vim.api.nvim_set_hl(0, "Constant", {
+        fg = "#79740e", -- purple
+        bg = "NONE",
+        sp = "NONE",
+        italic = true,
+    })
 end
 
 local function set_autogroups()

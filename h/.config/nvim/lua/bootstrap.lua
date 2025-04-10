@@ -30,6 +30,7 @@ return require('packer').startup(function()
     use({ 'morhetz/gruvbox' })
     use({ 'rafikdraoui/couleurs.vim' })
     use({ 'wincent/base16-nvim' })
+    use({ 'zenbones-theme/zenbones.nvim', requires = {"rktjmp/lush.nvim"} })
     use({ 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate' })
 
     -- Surround parentheses, brackets, quotes, XML tags, and more
