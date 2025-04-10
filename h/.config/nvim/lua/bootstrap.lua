@@ -10,7 +10,7 @@ return require('packer').startup(function()
     use({ 'rhysd/git-messenger.vim' })
 
     -- Status/tabline
-    use({ 'itchyny/lightline.vim' })
+    use({ 'nvim-lualine/lualine.nvim' })
 
     -- UI
     use({ "lukas-reineke/indent-blankline.nvim", tag = "v2.20.8" })

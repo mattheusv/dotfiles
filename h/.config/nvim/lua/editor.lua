@@ -119,12 +119,15 @@ local function set_autogroups()
 end
 
 local function configure_statusbar()
-    vim.g.lightline = {
-        active = {
-            left = { { 'mode', 'paste' }, { 'gitbranch', 'readonly', 'relativepath', 'modified' } }
+    require('lualine').setup {
+        sections = {
+            lualine_a = {'mode'},
+            lualine_b = {'diff', 'diagnostics'},
+            lualine_c = { { 'filename', path = 1 } },
+            lualine_x = {'encoding', 'fileformat', 'filetype'},
+            lualine_y = {'progress'},
+            lualine_z = {'location'}
         },
-        right = { { 'lineinfo' }, { 'percent' }, { 'fileformat', 'fileencoding', 'filetype', 'charvaluehex' } },
-        component_function = { gitbranch = 'FugitiveHead' }
     }
 end
 
