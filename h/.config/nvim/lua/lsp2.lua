@@ -102,8 +102,9 @@ local function setup_document_highlight(buffer)
         vim.api.nvim_set_hl(0, hl.name, hl.opts)
     end
 
-    -- Clear existing highlights when the cursor moves
-    local group = vim.api.nvim_create_augroup("LspDocumentHighlight", { clear = true })
+    -- Create a unique augroup per buffer
+    local group_name = "LspDocumentHighlight_" .. buffer
+    local group = vim.api.nvim_create_augroup(group_name, { clear = true })
 
     vim.api.nvim_create_autocmd("CursorHold", {
         group = group,
