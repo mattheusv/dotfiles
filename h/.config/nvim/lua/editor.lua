@@ -126,6 +126,14 @@ local function set_colors()
         sp = "NONE",
         italic = true,
     })
+
+    -- couleurs is better for mail
+    vim.api.nvim_create_autocmd("FileType", {
+        pattern = "mail",
+        callback = function()
+            vim.cmd("colorscheme couleurs")
+        end,
+    })
 end
 
 local function set_autogroups()
