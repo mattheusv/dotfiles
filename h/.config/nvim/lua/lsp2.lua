@@ -70,6 +70,17 @@ local function setup_postgres_formatting()
             end
         end
     })
+
+    vim.api.nvim_create_autocmd("BufWritePost", {
+        group = vim.api.nvim_create_augroup("PgFormattingHeader", { clear = true }),
+        pattern = "*.h",
+        callback = function()
+            local filepath = vim.api.nvim_buf_get_name(0)
+            if (filepath:match("pgdev") or filepath:match("2ndqpostgres")) then
+                vim.cmd("silent! execute '!pgindent ' .. shellescape('" .. filepath .. "')")
+            end
+        end
+    })
 end
 
 
