@@ -1,3 +1,3 @@
 require("bootstrap")
 require('editor').setup()
-require('lsp').setup()
+require('lsp2').setup()
