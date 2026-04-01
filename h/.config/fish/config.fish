@@ -10,11 +10,10 @@ if type -q bat
     alias cat=bat
 end
 
-alias gs='git st'
-alias gd='git df'
-alias gl='git l'
-alias gla='git last'
-alias gpl='git pull'
+alias gs='git number -s'
+alias gd='git number diff'
+alias gl='git log --pretty=oneline -n 20 --abbrev-commit'
+alias ga='git number add'
 
 if test -e ~/.asdf/plugins/java/set-java-home.fish
     source ~/.asdf/plugins/java/set-java-home.fish
