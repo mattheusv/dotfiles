@@ -48,10 +48,17 @@ local function setup_pyright()
     })
 end
 
+function FormatPG()
+    local filepath = vim.api.nvim_buf_get_name(0)
+    vim.cmd("silent! execute '!pgindent ' .. shellescape('" .. filepath .. "')")
+end
+
 local function setup_postgres_formatting()
     -- TODO: Only create the autocmd if pgindent is available on the system
     -- TODO: Just create this autocmd on postgres source code directory.
     -- TODO: include pgperltidy formatting for perl files.
+
+    vim.api.nvim_command("command! FormatPG execute('lua FormatPG()')")
 
     vim.api.nvim_create_autocmd("BufWritePost", {
         group = vim.api.nvim_create_augroup("PgFormatting", { clear = true }),
