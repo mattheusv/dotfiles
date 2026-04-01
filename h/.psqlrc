@@ -4,7 +4,7 @@
 \pset linestyle unicode
 \pset border 2
 
-\set PROMPT1 '%[%033[0m%][%M:%> %n@%/ %x] # '
+\set PROMPT1 '(%p) %[%033[0m%][%M:%> %n@%/ %x] # '
 \set PROMPT2 '... > '
 
 \timing
