@@ -159,6 +159,66 @@ local function on_attach()
     })
 end
 
+-- Custom function to select how to open Go to Definition
+local function go_to_definition_with_choice()
+    local actions = require('telescope.actions')
+    local action_state = require('telescope.actions.state')
+    local pickers = require('telescope.pickers')
+    local finders = require('telescope.finders')
+    local conf = require('telescope.config').values
+
+
+  local choices = {
+    { name = "Open definition in tab", action = "tab" },
+    { name = "Open definition in vsplit", action = "vsplit" },
+  }
+
+  pickers.new({}, {
+    prompt_title = "Go to Definition",
+    finder = finders.new_table {
+      results = choices,
+      entry_maker = function(entry)
+        return {
+          value = entry,
+          display = entry.name,
+          ordinal = entry.name,
+        }
+      end,
+    },
+    sorter = conf.generic_sorter({}),
+    attach_mappings = function(prompt_bufnr, map)
+      actions.select_default:replace(function()
+        actions.close(prompt_bufnr)
+        local selection = action_state.get_selected_entry().value
+        vim.lsp.buf_request(0, "textDocument/definition", vim.lsp.util.make_position_params(), function(_, result, _, _)
+          if not result or vim.tbl_isempty(result) then
+            vim.notify("Definition not found", vim.log.levels.WARN)
+            return
+          end
+
+          local def = vim.tbl_islist(result) and result[1] or result
+          local uri = def.uri or def.targetUri
+          local range = def.range or def.targetSelectionRange
+          local bufnr = vim.uri_to_bufnr(uri)
+
+          -- Load the buffer first
+          vim.fn.bufload(bufnr)
+
+          if selection.action == "tab" then
+            vim.cmd("tabnew")
+          elseif selection.action == "vsplit" then
+            vim.cmd("vsplit")
+          end
+
+          vim.api.nvim_set_current_buf(bufnr)
+          vim.api.nvim_win_set_cursor(0, { range.start.line + 1, range.start.character })
+        end)
+      end)
+      return true
+    end,
+  }):find()
+end
+
 local function set_keymaps()
     -- Builtin keymaps
     vim.keymap.set('n', '<leader>gd', vim.lsp.buf.definition)
@@ -181,6 +241,7 @@ local function set_keymaps()
     vim.keymap.set('n', '<leader>wd', telescope.diagnostics)
     vim.keymap.set('n', '<leader>ws', telescope.lsp_dynamic_workspace_symbols)
     vim.keymap.set('n', 'gi', telescope.lsp_implementations)
+    vim.keymap.set('n', '<leader>gds', go_to_definition_with_choice, { desc = "Go to definition (choose split/tab)" })
 
     -- Lspsaga keymaps
     vim.keymap.set('n', 'gdp', [[<cmd>:Lspsaga peek_definition<CR>]])
