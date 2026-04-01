@@ -215,8 +215,8 @@ local function configure_maps()
     vim.api.nvim_set_keymap('x', 'J', [[:move '>+1<CR>gv-gv]], opts)
     vim.api.nvim_set_keymap("v", "<", [[<gv]], opts)
     vim.api.nvim_set_keymap("v", ">", [[>gv]], opts)
-    vim.api.nvim_set_keymap("i", "<c-l>", [[<Cmd> tabnext<CR>]], opts)
-    vim.api.nvim_set_keymap("i", "<c-h>", [[<Cmd> tabprevious<CR>]], opts)
+    vim.api.nvim_set_keymap("n", "\\]", [[<Cmd> tabnext<CR>]], opts)
+    vim.api.nvim_set_keymap("n", "\\[", [[<Cmd> tabprevious<CR>]], opts)
 
     -- Buffer maps
     vim.api.nvim_set_keymap("n", "<leader>c", [[<Cmd> bp<cr>:bd #<cr>]], opts)
