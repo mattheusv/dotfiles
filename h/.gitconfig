@@ -14,31 +14,10 @@
 	rebase = true
 
 [alias]
-	st = number -s
-	sst = status
-	aa = add .
-	au = add -u
     amend = !git add -u && git commit --amend
-    a = number add
-    f = fetch
+    clean = number clean
     rs = number restore --staged
-	cm = commit
-	cmm = commit -m
-	cma = commit -am
-    si = switch
 	ck = number checkout
-	cka = checkout .
-	cko = checkout origin
-    df = number diff
-	ps = push
-	pso = push origin
-	pl = pull
-	plo = pull origin
-	r = remote -v
-	b = branch
-	l = log --pretty=oneline -n 20 --abbrev-commit
-    sh = stash
-    cp = cherry-pick
     search = !fish -c git-search
     last = for-each-ref --sort=-committerdate --count=20 --format='%(align:50,left)%(refname:short)%(end)%(committerdate:relative)' refs/heads/
     release-notes = !git log --oneline --left-right --cherry-pick $(git describe --tags --abbrev=0)..$(git rev-parse --abbrev-ref HEAD)
@@ -48,6 +27,7 @@
 
 [core]
     editor = 'nvim'
+    excludesFile = ~/dev/.gitignore
 
 [init]
 	defaultBranch = main
